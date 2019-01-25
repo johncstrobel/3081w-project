@@ -1,0 +1,4 @@
+# Extensions for git to ignore
+*.o
+*.out
+*.pvt
