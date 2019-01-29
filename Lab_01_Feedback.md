@@ -1,6 +1,6 @@
 ### Feedback for Lab 01
 
-Run on January 25, 14:11:08 PM.
+Run on January 29, 09:03:06 AM.
 
 
 #### Necessary Files and Structure
@@ -25,22 +25,20 @@ Run on January 25, 14:11:08 PM.
 
      "private.pvt" found.
 
-+ Skip: Check that no files with extension ".o" exist in directory "."
++ Fail: Check that no files with extension ".o" exist in directory "."
 
-  This test was not run because of an earlier failing test.
+ "main.o" found
 
-+ Skip: Check that no files with extension ".out" exist in directory "."
++ Fail: Check that no files with extension ".out" exist in directory "."
 
-  This test was not run because of an earlier failing test.
+ "lab01.out" found
 
-+ Skip: Check that file "shared.md" exists.
-
-  This test was not run because of an earlier failing test.
++ Pass: Check that file "shared.md" exists.
 
 
 ### Test that code compiles and creates the exectuable
 
-+ Skip: Check that make compiles.
++ Pass: Check that make compiles.
 
-  This test was not run because of an earlier failing test.
+
 
