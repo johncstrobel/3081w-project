@@ -26,7 +26,10 @@ void Point2::Print(){
 int Point2::Quadrant(){
 	if(x > 0){
 		if(y < 0) {
-			return 2;
+			return 4;
+		}
+		else if( y > 0){
+			return 1;
 		}
 		else{ // y > 0 or on border
 			return 1;
@@ -34,18 +37,21 @@ int Point2::Quadrant(){
 	}
 	else if (x < 0) {
 		if(y > 0) {
-			return 4;
+			return 2;
 		}
-		else{ // y < 0 or on border
+		else if(y < 0){
+			return 3;
+		}
+		else{ // y < 0
 			return 3;
 		}
 	}
 	else{ // x = 0
 		if(y > 0){
-			return 4;
+			return 2;
 		}
 		else if(y < 0){
-			return 2;
+			return 4;
 		}
 		else{ //both are 0
 			return 0;
