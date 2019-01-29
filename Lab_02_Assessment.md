@@ -1,8 +1,8 @@
 ### Assessment for Lab 02
 
-#### Total score: _52.5_ / _100.0_
+#### Total score: _97.5_ / _100.0_
 
-Run on January 29, 00:17:37 AM.
+Run on January 29, 01:28:45 AM.
 
 
 #### Necessary Files and Structure
@@ -29,73 +29,50 @@ Run on January 29, 00:17:37 AM.
 
 +  _2.5_ / _2.5_ : Pass: Check that no files with extension ".out" exist in directory "."
 
-+  _2.5_ / _2.5_ : Pass: Check that file/directory "duck" does not exist.
-
 +  _0_ / _2.5_ : Fail: Check that file/directory "ducks" does not exist.
 
      "ducks" found.
 
++  _2.5_ / _2.5_ : Pass: Check that file/directory "duck" does not exist.
+
 
 ### Test that code compiles and creates the correct files
 
-+  _0_ / _10_ : Skip: Check that make compiles.
++  _10_ / _10_ : Pass: Check that make compiles.
 
-  This test was not run because of an earlier failing test.
 
-+  _0_ / _10.5_ : Skip: Check that file "ducks" exists.
 
-  This test was not run because of an earlier failing test.
++  _10.5_ / _10.5_ : Pass: Check that file "ducks" exists.
 
-+  _0_ / _0.5_ : Skip: Check that file "duck.o" exists.
++  _0.5_ / _0.5_ : Pass: Check that file "duck.o" exists.
 
-  This test was not run because of an earlier failing test.
++  _0.5_ / _0.5_ : Pass: Check that file "mallard_duck.o" exists.
 
-+  _0_ / _0.5_ : Skip: Check that file "mallard_duck.o" exists.
++  _0.5_ / _0.5_ : Pass: Check that file "decoy_duck.o" exists.
 
-  This test was not run because of an earlier failing test.
++  _0.5_ / _0.5_ : Pass: Check that file "rubber_duck.o" exists.
 
-+  _0_ / _0.5_ : Skip: Check that file "decoy_duck.o" exists.
++  _0.5_ / _0.5_ : Pass: Check that file "quack_behavior.o" exists.
 
-  This test was not run because of an earlier failing test.
++  _0.5_ / _0.5_ : Pass: Check that file "mute_quack.o" exists.
 
-+  _0_ / _0.5_ : Skip: Check that file "rubber_duck.o" exists.
++  _0.5_ / _0.5_ : Pass: Check that file "quack_quack.o" exists.
 
-  This test was not run because of an earlier failing test.
++  _0.5_ / _0.5_ : Pass: Check that file "squeak_quack.o" exists.
 
-+  _0_ / _0.5_ : Skip: Check that file "quack_behavior.o" exists.
-
-  This test was not run because of an earlier failing test.
-
-+  _0_ / _0.5_ : Skip: Check that file "mute_quack.o" exists.
-
-  This test was not run because of an earlier failing test.
-
-+  _0_ / _0.5_ : Skip: Check that file "quack_quack.o" exists.
-
-  This test was not run because of an earlier failing test.
-
-+  _0_ / _0.5_ : Skip: Check that file "squeak_quack.o" exists.
-
-  This test was not run because of an earlier failing test.
-
-+  _0_ / _0.5_ : Skip: Check that file "main.o" exists.
-
-  This test was not run because of an earlier failing test.
++  _0.5_ / _0.5_ : Pass: Check that file "main.o" exists.
 
 
 #### Clean works
 
-+  _0_ / _10_ : Skip: make 'clean' in directory '.': expect result=Makefile, timeout=100
++  _10_ / _10_ : Pass: make 'clean' in directory '.': expect result=Makefile, timeout=100
 
-  This test was not run because of an earlier failing test.
+    make successful.
+    Check Makefile exists...OK: result Makefile found
 
-+  _0_ / _5_ : Skip: Check that no files with extension ".o" exist in directory "."
++  _5_ / _5_ : Pass: Check that no files with extension ".o" exist in directory "."
 
-  This test was not run because of an earlier failing test.
++  _5_ / _5_ : Pass: Check that file/directory "ducks" does not exist.
 
-+  _0_ / _5_ : Skip: Check that file/directory "ducks" does not exist.
-
-  This test was not run because of an earlier failing test.
-
-#### Total score: _52.5_ / _100.0_
+#### Total score: _97.5_ / _100.0_
 
