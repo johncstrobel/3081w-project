@@ -145,9 +145,9 @@ void ReadyForTransport(Object ** dynamic, Object ** local ) {
   *local = &local_object;
   std::cout << "When uncommented, about to delete." << std::endl;
   // delete *dynamic;
-  // delete dynamic;
-  // delete *local;
-  // delete local;
+  // delete dynamic; //segfault
+  // delete *local; //free(): invalid size
+  // delete local; //double free
 }
 
 void RunMemoryDemo() {
@@ -167,8 +167,8 @@ void RunMemoryDemo() {
     std::cout << "dyn_object address " << (int64_t) dyn_object << std::endl;
     std::cout << std::endl;
   }
-  // delete dyn_object;
-  // delete &dyn_object;
-  // delete local_object;
-  // delete &local_object;
+  // delete dyn_object; //runs
+  // delete &dyn_object; //segfault
+  // delete local_object; //segfault
+  delete &local_object;
 }
