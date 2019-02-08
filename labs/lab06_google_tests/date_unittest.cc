@@ -136,7 +136,25 @@ TEST_F(DateTest, MinusOperatorTest){
 }
 
 //constructor test: void
+TEST_F(DateTest, ConstructorVoidTest){
+  //these two should almost always get the same time, since time_t only 
+  //stores down to the second and the CPU is faster than that
+  Date current_date_actual;
+
+  //the following is taken or inspired by the given code, 
+  //written by Professor Amy Larson
+  std::time_t t = std::time(0);
+  std::tm* now = std::localtime(&t); 
+  Date current_date_expected(now->tm_year+1900,now->tm_mon+1,now->tm_mday);
+
+  EXPECT_EQ(current_date_actual.GetDate(),current_date_expected.GetDate()) << "void constructor incorrect (standard)";
+}
+
 //constructor test: epoch
+TEST_F(DateTest, ConstructorEpochTest){
+
+}
+
 //constructor test: 3 ints
 
 
