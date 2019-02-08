@@ -1,4 +1,4 @@
-$eval (ssh-agent)
+eval `ssh-agent`
 ssh-add
 
 these will prevent you from having to type in your password more than once for the current session
