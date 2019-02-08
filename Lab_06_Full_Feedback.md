@@ -1,6 +1,6 @@
 ### Feedback for Lab 06
 
-Run on February 07, 15:25:11 PM.
+Run on February 07, 22:12:12 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -57,6 +57,10 @@ Run on February 07, 15:25:11 PM.
 
 
 #### Results
+
++ Skip: Check that a GoogleTest test passes.
+
+  This test was not run because of an earlier failing test.
 
 + Skip: Check that a GoogleTest test passes.
 
