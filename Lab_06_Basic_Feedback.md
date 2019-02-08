@@ -1,6 +1,6 @@
 ### Basic Feedback for Lab 06
 
-Run on February 08, 11:32:06 AM.
+Run on February 08, 14:40:27 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -40,7 +40,7 @@ Run on February 08, 11:32:06 AM.
 + Pass: Check that file "date_unittest" exists.
 
 + Pass: Get all google tests.
-    3 tests found.
+    7 tests found.
 
 
 
@@ -58,7 +58,27 @@ Run on February 08, 11:32:06 AM.
 
 
 + Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.GetDateTest.
+
+
+
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.GetUsDateTest.
+
+
+
++ Pass: Check that a GoogleTest test passes.
     passes the test: DateTest.DaysBetweenTests.
+
+
+
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.PlusOperatorTest.
+
+
+
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.MinusOperatorTest.
 
 
 
