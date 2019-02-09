@@ -81,13 +81,10 @@ TEST_F(DateTest, PrintDateTestsWithoutNewline) {
   *
   */
 
-//GetDate test
+//GetDate test (assert used because every other test depends on it)
 TEST_F(DateTest, GetDateTest){//expect: yyyy-mm-dd
   ASSERT_EQ(first_day.GetDate(),"2018-09-04") << "first_day.GetDate() incorrect";
-  ASSERT_EQ(first_day.GetDate().length(),10) << "first_day.GetDate().length() incorrect";
-
   ASSERT_EQ(last_day.GetDate(),"2018-12-11") << "last_day.GetDate() incorrect";
-  ASSERT_EQ(last_day.GetDate().length(),10) << "last_day.GetDate().length() incorrect";
 }
 
 //GetUsDate test
@@ -100,9 +97,9 @@ TEST_F(DateTest,GetUsDateTest){//mm-dd-yyyy
 TEST_F(DateTest, DaysBetweenTests) {
   EXPECT_EQ(first_day.GetUsDate(), "09-04-2018") << "First day of class not setup properly";
   EXPECT_EQ(last_day.GetUsDate(), "12-11-2018") << "Last day of class not setup properly";
-  EXPECT_EQ(first_day.DaysBetween(last_day), 98) << "Days between is not calculated properly";
-
-  EXPECT_EQ(first_day.DaysBetween(first_day), 0) << "Days between one date not calculated properly";
+  EXPECT_EQ(first_day.DaysBetween(last_day), 98) << "Days between is not calculated properly (standard dates)";
+  EXPECT_EQ(last_day.DaysBetween(first_day), 98) << "Days between is not calculated properly (reverse dates)";
+  EXPECT_EQ(first_day.DaysBetween(first_day), 0) << "Days between same date not calculated properly";
 }
 
 //+ operator test
@@ -118,6 +115,9 @@ TEST_F(DateTest, PlusOperatorTest){
 
   first_day_plus = first_day + 30;
   EXPECT_EQ(first_day_plus.GetDate(),"2018-10-04") << "plus operator incorrect (add month)";
+
+  first_day_plus = first_day + 0;
+  EXPECT_EQ(first_day_plus.GetDate(),"2018-09-04") << "plus operator incorrect (zero)";
 }
 
 //- operator test
@@ -133,18 +133,21 @@ TEST_F(DateTest, MinusOperatorTest){
 
   first_day_minus = first_day - 31;
   EXPECT_EQ(first_day_minus.GetDate(),"2018-08-04") << "minus operator incorrect (subtract month)";
+
+  first_day_minus = first_day - 0;
+  EXPECT_EQ(first_day_minus.GetDate(),"2018-09-04") << "minus operator incorrect (zero)";
 }
 
 //constructor test: void
 TEST_F(DateTest, ConstructorVoidTest){
-  //these two should almost always get the same time, since time_t only 
+  //these two should almost always get the same time, since time_t only
   //stores down to the second and the CPU is faster than that
   Date current_date_actual;
 
-  //the following is taken or inspired by the given code, 
+  //the following is taken or inspired by the given code,
   //written by Professor Amy Larson
   std::time_t t = std::time(0);
-  std::tm* now = std::localtime(&t); 
+  std::tm* now = std::localtime(&t);
   Date current_date_expected(now->tm_year+1900,now->tm_mon+1,now->tm_mday);
 
   EXPECT_EQ(current_date_actual.GetDate(),current_date_expected.GetDate()) << "void constructor incorrect (standard)";
@@ -152,10 +155,45 @@ TEST_F(DateTest, ConstructorVoidTest){
 
 //constructor test: epoch
 TEST_F(DateTest, ConstructorEpochTest){
+  Date epoch_date_zero(0);
+  Date epoch_date_negative(-100000);
+  Date epoch_date_float(230000.5);
+  Date epoch_date_standard(10000000);
+  Date epoch_date_max_int(2147483647);
+  Date epoch_date_min_int(-2147483648);
 
+  EXPECT_EQ(epoch_date_zero.GetDate(),"1970-01-01") << "epoch constructor incorrect (zero)";
+  EXPECT_EQ(epoch_date_negative.GetDate(),"1969-12-30") << "epoch constructor incorrect (negative)";
+  EXPECT_EQ(epoch_date_float.GetDate(),"1970-01-03") << "epoch constructor incorrect (float)";
+  EXPECT_EQ(epoch_date_standard.GetDate(),"1970-04-26") << "epoch constructor incorrect (standard)";
+  EXPECT_EQ(epoch_date_max_int.GetDate(),"2038-01-19") << "epoch constructor incorrect (max int)";
+  EXPECT_EQ(epoch_date_min_int.GetDate(),"1901-12-13") << "epoch constructor incorrect (min int)";
 }
 
 //constructor test: 3 ints
+TEST_F(DateTest, ConstructorThreeIntsTest){
+  //year mutations
+  Date year_zero(0,1,1);
+  Date year_negative (-10, 1,1);
+  Date year_float(5.5,1,1);
+  EXPECT_EQ(year_zero.GetDate(),"0-01-01") << "three ints constructor incorrect (year zero)";
+  EXPECT_EQ(year_negative.GetDate(),"-10-01-01") << "three ints constructor incorrect (year negative)";
+  EXPECT_EQ(year_float.GetDate(),"5-01-01") << "three ints constructor incorrect (year float)";
+  //month mutations
+  Date month_zero(1970,0,1);
+  Date month_negative(1970,-10,1);
+  Date month_float(1970,5.5,1);
+  EXPECT_EQ(month_zero.GetDate(),"1970-00-01") << "three ints constructor incorrect (month zero)";
+  EXPECT_EQ(month_negative.GetDate(),"1970-0-10-01") << "three ints constructor incorrect (month negative)";
+  EXPECT_EQ(month_float.GetDate(),"1970-05-01") << "three ints constructor incorrect (month float)";
+  //day mutations
+  Date day_zero(1970,1,0);
+  Date day_negative(1970,1,-10);
+  Date day_float(1970,1,5.5);
+  EXPECT_EQ(day_zero.GetDate(), "1970-01-00") << "three ints constructor incorrect (day zero)";
+  EXPECT_EQ(day_negative.GetDate(), "1970-01-0-10")  << "three ints constructor incorrect (day negative)";
+  EXPECT_EQ(day_float.GetDate(), "1970-01-05") << "three ints constructor incorrect (day float)";
+}
 
 
 /**
