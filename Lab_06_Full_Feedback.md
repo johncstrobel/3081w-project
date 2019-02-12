@@ -1,6 +1,6 @@
 ### Feedback for Lab 06
 
-Run on February 09, 10:51:43 AM.
+Run on February 12, 17:08:40 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -40,7 +40,7 @@ Run on February 09, 10:51:43 AM.
 + Pass: Check that file "date_unittest" exists.
 
 + Pass: Get all google tests.
-    9 tests found.
+    10 tests found.
 
 
 
@@ -92,6 +92,11 @@ Run on February 09, 10:51:43 AM.
 
 
 
++ Pass: Check that a GoogleTest test passes.
+    passes the test: DateTest.ConstructorThreeIntsTest.
+
+
+
 + Pass: 100% of the tests passed.
 
 
@@ -100,8 +105,7 @@ Run on February 09, 10:51:43 AM.
 
 #### Testing Mutant 1 for failure
 
-+ Fail: There is no test case for this mutant (since all tests pass).
-   - Reason - Dates constructed with epoch are about 70 years in the future
++ Pass: At least one test failed for Mutant 1
 
 
 #### Testing Mutant 2 for failure
