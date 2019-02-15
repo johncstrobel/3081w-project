@@ -1,6 +1,6 @@
 ### Feedback for Lab 08
 
-Run on February 15, 08:01:57 AM.
+Run on February 15, 14:09:45 PM.
 
 
 #### System Files and Directory Structure
@@ -20,14 +20,13 @@ Run on February 15, 08:01:57 AM.
 
 + Pass: Check that file "date" exists.
 
-+ Fail: Program executes flawlessly.
-
-<pre> ... A set of Dates ... 
-</pre>
++ Pass: Program executes flawlessly.
 
 
 
-+ Skip: Check for correct output.
++ Pass: Check for correct output.
 
-  This test was not run because of an earlier failing test.
+    Complete.
+
+
 
