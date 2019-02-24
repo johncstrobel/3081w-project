@@ -23,14 +23,15 @@ RobotViewer::RobotViewer()
     : GraphicsApp(1024, 768, "Robot Simulation"),
       robot_land_(new RobotLand()),
       pause_btn_(nullptr) {
+  // Create a menu with 2 buttons for pausing and restarting the simulation.
+  // ADD BUTTONS here in the constructor to change the color of each robot.
+  // ADD the callback functions below.
+
   // Instantiate RobotLand, which holds 2 robots and an obstacle.
   robot_land_ = new RobotLand();
 }
 
 void RobotViewer::InitNanoGUI() {
-  // Create a menu with 2 buttons for pausing and restarting the simulation.
-  // ADD BUTTONS here to change the color of each robot.
-  // ADD the callback functions below.
   nanogui::FormHelper *gui = new nanogui::FormHelper(screen());
   nanogui::ref<nanogui::Window> window =
       gui->addWindow(Eigen::Vector2i(10, 10), "Simulation Controls");
@@ -68,10 +69,17 @@ void RobotViewer::OnPauseBtnPressed() {
   }
 }
 
+void RobotViewer::NoColorChangeBtnPressed0(){
+  robot_land_->Robots_[0]->set_color(!robot_land_->Robots_[0]->get_color());
+}
+
+void RobotViewer::NoColorChangeBtnPressed1(){
+  robot_land_->Robots_[0]->set_color(!robot_land_->Robots_[0]->get_color());
+}
+
 // this function requires an active nanovg drawing context (ctx),
 // so it can only be called from within DrawUsingNanoVG()
-void RobotViewer::DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos,
-                            double xvel, double yvel, double rad, double sensor_angle, double sensor_range) {
+void RobotViewer::DrawRobot(NVGcontext *ctx, Robot * robot){
   // translate and rotate all graphics calls that follow so that they are
   // centered
   // at the position and heading for this robot
@@ -87,13 +95,13 @@ void RobotViewer::DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos,
   // Put the origin of the coordinate system at the center of the robot, and
   // orient the x-axis to align with the velocity (i.e. heading) of the robot.
   nvgSave(ctx);
-  nvgTranslate(ctx, xpos, ypos);
-  double angle = std::atan2(yvel, xvel);
-  nvgRotate(ctx, angle);
+  nvgTranslate(ctx, robot->get_x_position(), robot->get_y_position());
+  // double angle = std::atan2(yvel, xvel);
+  nvgRotate(ctx, robot->get_direction());
 
   // robot's circle
   nvgBeginPath(ctx);
-  nvgCircle(ctx, 0.0, 0.0, rad);
+  nvgCircle(ctx, 0.0, 0.0, robot->get_radius());
   nvgFillColor(ctx, nvgRGBA(200, 200, 200, 255));
   nvgFill(ctx);
   nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
@@ -103,11 +111,11 @@ void RobotViewer::DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos,
   nvgSave(ctx);
   nvgRotate(ctx, M_PI / 2.0);
   nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
-  std::string text = "Robot " + std::to_string(id);
+  std::string text = "Robot " + std::to_string(robot->get_id());
   nvgText(ctx, 0.0, 10.0, text.c_str(), NULL);
   nvgRestore(ctx);
 
-  DrawRobotSensors(ctx, sensor_angle, sensor_range);
+  DrawRobotSensors(ctx, robot->get_sensor_angle(), robot->get_sensor_range());
 
   nvgRestore(ctx);
 }
@@ -191,14 +199,16 @@ void RobotViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   DrawObstacle(ctx, x, y, robot_land_->get_obstacle_radius());
 
   // Draw each robot in robot land
-  for (int i = 0; i < robot_land_->get_num_robots(); i++) {
-    double xpos, ypos;
-    robot_land_->get_robot_pos(i, &xpos, &ypos);
+  for (int i = 0; i < robot_land_->RobotsLength_; i++) {
+    DrawRobot(ctx, robot_land_->Robots_[i]);
 
-    double xvel, yvel;
-    robot_land_->get_robot_vel(i, &xvel, &yvel);
-
-    DrawRobot(ctx, i, xpos, ypos, xvel, yvel, robot_land_->get_robot_radius(), robot_land_->get_robot_sensor_angle(), robot_land_->get_robot_sensor_range());
+    // double xpos, ypos;
+    // robot_land_->get_robot_pos(i, &xpos, &ypos);
+    //
+    // double xvel, yvel;
+    // robot_land_->get_robot_vel(i, &xvel, &yvel);
+    //
+    // DrawRobot(ctx, i, xpos, ypos, xvel, yvel, robot_land_->get_robot_radius(), robot_land_->get_robot_sensor_angle(), robot_land_->get_robot_sensor_range());
   }
 }
 

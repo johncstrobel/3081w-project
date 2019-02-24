@@ -11,6 +11,9 @@
 #ifndef SRC_ROBOT_H_
 #define SRC_ROBOT_H_
 
+#include "point.h"
+#include "math.h"
+
 class Robot {
 
 public:
@@ -38,6 +41,8 @@ public:
   int get_id();
   double get_radius();
   Point get_position();
+	double get_x_position();
+	double get_y_position();
   double get_direction();
   double get_sensor_angle();
   double get_sensor_range();
