@@ -1,6 +1,6 @@
 ### Feedback for Lab 09
 
-Run on February 21, 14:30:57 PM.
+Run on February 24, 12:25:21 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -15,34 +15,67 @@ Run on February 21, 14:30:57 PM.
 
 + Pass: Change into directory "labs/lab09_robots".
 
-+ Pass: Check that make compiles.
-
-
-
-+ Pass: Copy directory "Files for Testing".
-
-
-
-+ Pass: Change into directory "Lab09".
-
 + Fail: Check that make compiles.
 
     Make compile fails with errors:.
-<pre>==== Auto-Generating Dependencies for ../src/robot_land.cc. ====
-/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -MM -MF ../build/obj/tests/robot_land.d -MP -MT ../build/obj/tests/robot_land.o -g -Wall -Wextra -pthread -fprofile-arcs -ftest-coverage -c -I/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0  -std=c++14 ../src/robot_land.cc
-==== Compiling ../src/robot_land.cc into ../build/obj/tests/robot_land.o. ====
-/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -g -Wall -Wextra -pthread -fprofile-arcs -ftest-coverage -c -I/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0  -std=c++14  -c -o  ../build/obj/tests/robot_land.o ../src/robot_land.cc
-==== Auto-Generating Dependencies for robot_unittest.cc. ====
-/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -MM -MF ../build/obj/tests/robot_unittest.d -MP -MT ../build/obj/tests/robot_unittest.o -g -Wall -Wextra -pthread -fprofile-arcs -ftest-coverage -c -I/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0  -std=c++14 robot_unittest.cc
-robot_unittest.cc:7:10: fatal error: src/robot.h: No such file or directory
- #include "src/robot.h"
-          ^~~~~~~~~~~~~
-compilation terminated.
-Makefile:141: recipe for target '../build/obj/tests/robot_unittest.o' failed
-make: *** [../build/obj/tests/robot_unittest.o] Error 1
+<pre>make -C src all
+make[1]: Entering directory '/class/grades/Spring-2019/csci3081/student-repos/Lab_09_Feedback/repo-strob105/labs/lab09_robots/src'
+==== Auto-Generating Dependencies for robot_viewer.cc. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -MM -MF ../build/obj/src/robot_viewer.d -MP -MT ../build/obj/src/robot_viewer.o -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0 robot_viewer.cc
+==== Compiling robot_viewer.cc into ../build/obj/src/robot_viewer.o. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0  -c -o  ../build/obj/src/robot_viewer.o robot_viewer.cc
+==== Auto-Generating Dependencies for robot_land.cc. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -MM -MF ../build/obj/src/robot_land.d -MP -MT ../build/obj/src/robot_land.o -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0 robot_land.cc
+==== Compiling robot_land.cc into ../build/obj/src/robot_land.o. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0  -c -o  ../build/obj/src/robot_land.o robot_land.cc
+==== Auto-Generating Dependencies for main.cc. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -MM -MF ../build/obj/src/main.d -MP -MT ../build/obj/src/main.o -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0 main.cc
+==== Compiling main.cc into ../build/obj/src/main.o. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0  -c -o  ../build/obj/src/main.o main.cc
+==== Auto-Generating Dependencies for robot.cc. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -MM -MF ../build/obj/src/robot.d -MP -MT ../build/obj/src/robot.o -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0 robot.cc
+==== Compiling robot.cc into ../build/obj/src/robot.o. ====
+/soft/gcc/7.1.0/Linux_x86_64/bin/g++ -W -Wall -g -std=c++14 -Wno-unused -c -I.. -I. -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/nanovg -isystem/classes/grades/Spring-2019/csci3081/csel-s19c3081/include/MinGfx-1.0  -c -o  ../build/obj/src/robot.o robot.cc
+In file included from robot.cc:11:0:
+../src/robot.h:27:31: error: ‘Point’ has not been declared
+  Robot(int id, double radius, Point origin, double speed);
+                               ^~~~~
+../src/robot.h:40:3: error: ‘Point’ does not name a type; did you mean ‘int’?
+   Point get_position();
+   ^~~~~
+   int
+../src/robot.h:49:3: error: ‘Point’ does not name a type; did you mean ‘int’?
+   Point origin_;   // center of circle around which robot is rotating
+   ^~~~~
+   int
+../src/robot.h:51:3: error: ‘Point’ does not name a type; did you mean ‘int’?
+   Point position_; // current {x,y} position in graphics window
+   ^~~~~
+   int
+robot.cc:14:1: error: ‘robot’ does not name a type; did you mean ‘Robot’?
+ robot::robot(int id, double radius, Point origin, double speed){
+ ^~~~~
+ Robot
+Makefile:105: recipe for target '../build/obj/src/robot.o' failed
+make[1]: *** [../build/obj/src/robot.o] Error 1
+make[1]: Leaving directory '/class/grades/Spring-2019/csci3081/student-repos/Lab_09_Feedback/repo-strob105/labs/lab09_robots/src'
+Makefile:14: recipe for target 'proj01' failed
+make: *** [proj01] Error 2
 </pre>
 
 
+
++ Skip: Copy directory "Files for Testing".
+
+  This test was not run because of an earlier failing test.
+
++ Skip: Change into directory "Lab09".
+
+  This test was not run because of an earlier failing test.
+
++ Skip: Check that make compiles.
+
+  This test was not run because of an earlier failing test.
 
 + Skip: Check that directory "../build/bin" exists.
 
