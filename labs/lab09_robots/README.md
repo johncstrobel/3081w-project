@@ -39,8 +39,6 @@ The directory structure for this lab is identical to that of the project.
     robot_viewer.h/cc and robot_land.h/cc.
 
 - `src/Makefile`:
-  - You should *NOT* have to modify this makefile _EXCEPT_ for the `CS3081DIR`
-    variable described above (both for this lab and the project).
   - Builds the project source, assumes it should build all .cc files in the
     current directory.
   - Creates the `build/bin/robotviewer` executable.
@@ -292,7 +290,7 @@ Within DrawRobot, use the setters and getters of the Robot class to extract the 
 1. Add 2 buttons to the GUI to change the color of each robot.
    - Create OnColorChangeBtnPressed0() method to change the color of robot 0.
    - Create OnColorChangeBtnPressed1() method to change the color of robot 1.
-   - Create 2 new nanogui buttons in the RobotViewer constructor, binding its
+   - Create 2 new nanogui buttons in the RobotViewer InitNanoGUI, binding its
      click action to the functions you just created (look at the other buttons in RobotViewer::InitNanoGUI for examples of how to do this).
 
 2. In `RobotViewer::DrawRobots`, incorporate Robot::color_. If it is true, then fill the robot circle with maroon (or whatever color you want):
