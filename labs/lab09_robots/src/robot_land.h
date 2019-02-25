@@ -12,8 +12,7 @@
  ******************************************************************************/
 #include <cmath>
 #include <iostream>
-#include <stdlib.h>//sleep function
-#include "robot.h"
+#include "src/robot.h"
 
 /*******************************************************************************
  * Class Definitions
@@ -33,24 +32,24 @@
  */
 class RobotLand {
  public:
-  Robot * Robots_[30]; //max length 30
-  int RobotsLength_ = 2; //num robots
+    Robot * Robots_[30];  // max length 30
+    int RobotsLength_ = 2;  // num robots
 
-  RobotLand(void) {
-   Point ori = Point(512,350);//origin
-   double spd;
-   for(int i = 0; i < RobotsLength_; i++){
-     spd = (double) i;
-     spd = (spd/4)+0.75;
-    Robots_[i] = new Robot(i, 50.0, ori, spd);
-   }
-  }
+    RobotLand(void) {
+      Point ori = Point(512, 350);  // origin
+      double spd;
+      for (int i = 0; i < RobotsLength_; i++) {
+        spd = static_cast<double> i;
+        spd = (spd/4)+0.75;
+        Robots_[i] = new Robot(i, 50.0, ori, spd);
+      }
+    }
 
-  ~RobotLand(void){
-   for(int i = 0; i < RobotsLength_; i++){
-    delete(Robots_[i]);
-   }
-  }
+    ~RobotLand(void) {
+      for (int i = 0; i < RobotsLength_; i++) {
+        delete(Robots_[i]);
+      }
+    }
 
   /**
    * @brief Set the simulation time for \ref RobotLand.
@@ -76,7 +75,7 @@ class RobotLand {
   void AdvanceTime(double dt) {
     sim_time_ += dt;
     std::cout << "Advancing simulation time to " << sim_time_ << std::endl;
-    for(int i = 0; i < RobotsLength_; i++){
+    for (int i = 0; i < RobotsLength_; i++) {
       Robots_[i]->Update(sim_time_);
     }
   }
@@ -98,8 +97,8 @@ class RobotLand {
    *
    * @return the robot object corresponding to the passed in ID.
    */
-  Robot * get_robot(int id){
-    if(id < RobotsLength_ && id > 0){
+  Robot * get_robot(int id) {
+    if (id < RobotsLength_ && id > 0) {
       return Robots_[id];
     }
   }
@@ -121,7 +120,6 @@ class RobotLand {
   double get_obstacle_radius() { return 75; }
 
  private:
-
   double sim_time_{0.0};
 };
 

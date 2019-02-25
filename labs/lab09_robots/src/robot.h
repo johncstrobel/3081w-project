@@ -6,17 +6,18 @@
  * The color can be changed via a user button in the RobotViewer.
  *
  * @file robot.cc
+ *
+ * Copyright 2019 John Strobel
  */
 
-#ifndef SRC_ROBOT_H_
-#define SRC_ROBOT_H_
+#ifndef CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_H_
+#define CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_H_
 
-#include "point.h"
-#include "math.h"
+#include "src/point.h"
+#include "src/math.h"
 
 class Robot {
-
-public:
+ public:
   /**
    * @brief A Robot is instantiated with a user-defined id, radius, and origin.
    * The constructor must also set the position, direction, color,
@@ -27,7 +28,7 @@ public:
    * @param[in] origin The {x,y} position around which the robot rotates.
    * @param[in] speed It controls the speed at which robot moves in circle
    */
-	Robot(int id, double radius, Point origin, double speed);
+  Robot(int id, double radius, Point origin, double speed);
 
   /**
     * @brief Given time, update the {x,y} position and direction angle of the Robot.
@@ -41,24 +42,24 @@ public:
   int get_id();
   double get_radius();
   Point get_position();
-	double get_x_position();
-	double get_y_position();
+  double get_x_position();
+  double get_y_position();
   double get_direction();
   double get_sensor_angle();
   double get_sensor_range();
 
-private:
+ private:
   int id_;
   double radius_;  // pixel units for size of robot in graphics window.
   bool color_;     // "true" will color in the robot, "false" leaves it white.
   Point origin_;   // center of circle around which robot is rotating
   double speed_;    // fixed constant to control rate of movement
-  Point position_; // current {x,y} position in graphics window
-  double direction_; // current directional angle in radians
-  double sensor_angle_; // angle between sensors relative to robot center.
+  Point position_;  // current {x,y} position in graphics window
+  double direction_;  // current directional angle in radians
+  double sensor_angle_;  // angle between sensors relative to robot center.
   double sensor_range_;  // distance range of sensor.
-	double circle_x(double t) { return 512 + 200.0 * cos(t); }
+  double circle_x(double t) { return 512 + 200.0 * cos(t); }
   double circle_y(double t) { return 350 + 200.0 * sin(t); }
 };
 
-#endif
+#endif  // CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_H_

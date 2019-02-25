@@ -4,8 +4,8 @@
  * @copyright 2017 3081 Staff, All rights reserved.
  */
 
-#ifndef SRC_ROBOT_VIEWER_H_
-#define SRC_ROBOT_VIEWER_H_
+#ifndef CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_VIEWER_H_
+#define CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_VIEWER_H_
 
 /*******************************************************************************
  * Includes
@@ -97,13 +97,13 @@ class RobotViewer : public GraphicsApp {
    * @brief Handle the user pressing the first color change button.
    *
    */
-   void OnColorChangeBtnPressed0();
+  void OnColorChangeBtnPressed0();
 
    /**
     * @brief Handle the user pressing the second color change button.
     *
     */
-    void OnColorChangeBtnPressed1();
+  void OnColorChangeBtnPressed1();
 
   /**
    * @brief Called each time the mouse moves on the screen within the GUI
@@ -214,7 +214,9 @@ class RobotViewer : public GraphicsApp {
    * @param[in] sensor_range Range distance in pixels of each sensor.
    */
   void DrawRobot(NVGcontext *ctx, Robot * robot);
-  // void DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos, double xvel, double yvel, double rad, double sensor_angle, double sensor_range);
+  // void DrawRobot(NVGcontext *ctx, int id, double xpos, double ypos,
+  // double xvel, double yvel, double rad, double sensor_angle,
+  // double sensor_range);
 
   /**
    * @brief Draw the sensors from a robot using nanogui.
@@ -223,7 +225,8 @@ class RobotViewer : public GraphicsApp {
    * @param[in] sensor_angle The angle of the robot's sensor.
    * @param[in] sensor_dist The range of the sensor.
    */
-  void DrawRobotSensors(NVGcontext *ctx, double sensor_angle, double sensor_range);
+  void DrawRobotSensors(NVGcontext *ctx, double sensor_angle,
+    double sensor_range);
 
   /**
    * @brief Draw an obostacle in the arena using nanogui.
@@ -242,4 +245,4 @@ class RobotViewer : public GraphicsApp {
 
 NAMESPACE_END(csci3081);
 
-#endif /* SRC_ROBOT_VIEWER_H_ */
+#endif  // CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_VIEWER_H_
