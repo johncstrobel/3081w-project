@@ -97,13 +97,13 @@ class RobotViewer : public GraphicsApp {
    * @brief Handle the user pressing the first color change button.
    *
    */
-   void NoColorChangeBtnPressed0();
+   void OnColorChangeBtnPressed0();
 
    /**
     * @brief Handle the user pressing the second color change button.
     *
     */
-    void NoColorChangeBtnPressed1();
+    void OnColorChangeBtnPressed1();
 
   /**
    * @brief Called each time the mouse moves on the screen within the GUI

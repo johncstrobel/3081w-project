@@ -4,14 +4,15 @@
  * @copyright 2017 3081 Staff, All rights reserved.
  */
 
-#ifndef SRC_ROBOT_LAND_H_
-#define SRC_ROBOT_LAND_H_
+#ifndef CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_LAND_H_
+#define CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_LAND_H_
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
 #include <cmath>
 #include <iostream>
+#include <stdlib.h>//sleep function
 #include "robot.h"
 
 /*******************************************************************************
@@ -37,12 +38,10 @@ class RobotLand {
 
   RobotLand(void) {
    Point ori = Point(512,350);//origin
-   int spd;
+   double spd;
    for(int i = 0; i < RobotsLength_; i++){
-     if(i==0)
-      spd = 1;
-     else
-      spd = 0.75;
+     spd = (double) i;
+     spd = (spd/4)+0.75;
     Robots_[i] = new Robot(i, 50.0, ori, spd);
    }
   }
@@ -126,4 +125,4 @@ class RobotLand {
   double sim_time_{0.0};
 };
 
-#endif  // SRC_ROBOT_LAND_H_
+#endif  // CSCI3081W_REPO_STROB105_LABS_LAB09_ROBOTS_SRC_ROBOT_LAND_H_

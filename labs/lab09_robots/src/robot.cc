@@ -13,10 +13,10 @@
 Robot::Robot(int id, double radius, Point origin, double speed)
 	: id_(id), radius_(radius), origin_(origin), speed_(speed) {
 	color_ = false;
-	position_ = Point(origin_.x_ + radius, origin.y_);
+	position_ = Point(712,350); //hard coded for now: see circle_x and y
 	direction_ = 0.0;
 	sensor_angle_ = 2.0;
-	sensor_range_ = 3.0;
+	sensor_range_ = 150.0;
 }
 
 void Robot::Update(double time){
@@ -25,8 +25,8 @@ void Robot::Update(double time){
 	double prev_pos_y = position_.y_;
 
 	//update position
-	position_.x_ = origin_.x_ + (radius_ * cos(time));
-	position_.y_ = origin_.y_ + (radius_ * sin(time));
+	position_.x_ = circle_x(speed_ * time);
+	position_.y_ = circle_y(speed_ * time);
 
 	//update direction
 	double x_vel = position_.x_ - prev_pos_x;

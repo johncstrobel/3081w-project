@@ -38,7 +38,8 @@ void RobotViewer::InitNanoGUI() {
   pause_btn_ =
       gui->addButton("Pause", std::bind(&RobotViewer::OnPauseBtnPressed, this));
   gui->addButton("Restart", std::bind(&RobotViewer::OnRestartBtnPressed, this));
-
+  gui->addButton("Toggle Robot0 Color", std::bind(&RobotViewer::OnColorChangeBtnPressed0, this));
+  gui->addButton("Toggle Robot1 Color", std::bind(&RobotViewer::OnColorChangeBtnPressed1, this));
   screen()->performLayout();
 
   paused_ = false;
@@ -69,12 +70,12 @@ void RobotViewer::OnPauseBtnPressed() {
   }
 }
 
-void RobotViewer::NoColorChangeBtnPressed0(){
+void RobotViewer::OnColorChangeBtnPressed0(){
   robot_land_->Robots_[0]->set_color(!robot_land_->Robots_[0]->get_color());
 }
 
-void RobotViewer::NoColorChangeBtnPressed1(){
-  robot_land_->Robots_[0]->set_color(!robot_land_->Robots_[0]->get_color());
+void RobotViewer::OnColorChangeBtnPressed1(){
+  robot_land_->Robots_[1]->set_color(!robot_land_->Robots_[1]->get_color());
 }
 
 // this function requires an active nanovg drawing context (ctx),
@@ -102,7 +103,12 @@ void RobotViewer::DrawRobot(NVGcontext *ctx, Robot * robot){
   // robot's circle
   nvgBeginPath(ctx);
   nvgCircle(ctx, 0.0, 0.0, robot->get_radius());
-  nvgFillColor(ctx, nvgRGBA(200, 200, 200, 255));
+  if(robot->get_color()){
+      nvgFillColor(ctx, nvgRGBA(122, 0, 25, 255));
+  }
+  else{
+    nvgFillColor(ctx, nvgRGBA(255,255,255,255));
+  }
   nvgFill(ctx);
   nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
   nvgStroke(ctx);
