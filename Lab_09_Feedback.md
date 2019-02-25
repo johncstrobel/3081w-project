@@ -1,6 +1,6 @@
 ### Feedback for Lab 09
 
-Run on February 24, 13:57:34 PM.
+Run on February 25, 16:22:02 PM.
 
 
 #### System Files and Lab Directory Structure
@@ -48,21 +48,27 @@ FAIL: color in constructor
 robot_unittest.cc:31: Failure
 Expected equality of these values:
   robot0->get_position().x_
-    Which is: 50
+    Which is: 712
   200
 FAIL: pos x_ in constructor
+robot_unittest.cc:32: Failure
+Expected equality of these values:
+  robot0->get_position().y_
+    Which is: 350
+  0
+FAIL: pos y_ in constructor
 robot_unittest.cc:33: Failure
 Expected equality of these values:
   robot1->get_position().x_
-    Which is: 50
+    Which is: 712
   200
 FAIL: pos x_ in constructor
-robot_unittest.cc:36: Failure
+robot_unittest.cc:34: Failure
 Expected equality of these values:
-  robot0->get_sensor_range()
-    Which is: 3
-  150
-FAIL: sensor range in constructor</pre>
+  robot1->get_position().y_
+    Which is: 350
+  0
+FAIL: pos y_ in constructor</pre>
 
 
 
