@@ -19,7 +19,7 @@
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
-// >>> MISSING HERE
+NAMESPACE_BEGIN(csci3081);
 
 /*******************************************************************************
  * Class Definitions
@@ -34,7 +34,7 @@
  * Since this is also a food class, many of its methods are intuitively
  * `virtual`.
  */
-class ArenaMobileEntity : public ArenaEntity {
+class ArenaMobileEntity: public ArenaEntity {
  public:
   /**
    * @brief ArenaMobileEntity's constructor.
