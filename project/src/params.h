@@ -62,7 +62,7 @@
 #define FOOD_RADIUS 20
 #define FOOD_COLLISION_DELTA 1
 #define FOOD_INIT_POS \
-  { 400, 400 }
+  { 520, 490 }
 #define FOOD_COLOR \
   { 0, 255, 0 }
 #define N_FOOD 1
