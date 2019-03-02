@@ -27,8 +27,7 @@ NAMESPACE_BEGIN(csci3081);
 Arena::Arena(): x_dim_(X_DIM),
       y_dim_(Y_DIM),
       entities_(),
-      mobile_entities_(),
-      light_sensors_() {
+      mobile_entities_() {
     AddEntity(new Light());
     AddEntity(new Food());
     AddEntity(new BraitenbergVehicle());
@@ -37,16 +36,14 @@ Arena::Arena(): x_dim_(X_DIM),
 Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
       y_dim_(Y_DIM),
       entities_(),
-      mobile_entities_(),
-      light_sensors_() {
+      mobile_entities_() {
   x_dim_ = arena_object["width"].get<double>();
   y_dim_ = arena_object["height"].get<double>();
   json_array& entities = arena_object["entities"].get<json_array>();
   for (unsigned int f = 0; f < entities.size(); f++) {
     json_object& entity_config = entities[f].get<json_object>();
-    unsigned int type = get_entity_type(
+    EntityType etype = get_entity_type(
       entity_config["type"].get<std::string>());
-    EntityType etype = static_cast<EntityType>(type);
 
     ArenaEntity* entity = NULL;
 
@@ -67,10 +64,6 @@ Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
 
     if (entity) {
       entity->LoadFromObject(entity_config);
-      if (etype == kBraitenberg) {
-        BraitenbergVehicle* bv = static_cast<BraitenbergVehicle*>(entity);
-        bv->UpdateLightSensors();
-      }
       AddEntity(entity);
     }
   }
@@ -93,8 +86,8 @@ void Arena::AddEntity(ArenaEntity* ent) {
     mobile_entities_.push_back(mob_ent);
   }
 
-  if (ent->get_type() == kBraitenberg) {
-    BraitenbergVehicle* bv = static_cast<BraitenbergVehicle*>(ent);
+  BraitenbergVehicle* bv = dynamic_cast<BraitenbergVehicle*>(ent);
+  if (bv) {
     bv->UpdateLightSensors();
   }
 }
