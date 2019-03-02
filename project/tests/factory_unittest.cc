@@ -6,7 +6,7 @@
  * Includes
  ******************************************************************************/
 #include <gtest/gtest.h>
-#include "src/arena.h"
+#include "src/factory.h"
 #include "src/entity_type.h"
 #include "src/params.h"
 // @TODO: include "src/factory.h"
@@ -39,12 +39,23 @@ TEST_F(FactoryTest, ConstructRobot){
   // test no robot type (default robot constuct)
 }
 
-TEST_F(FactoryTest, ConstructFood){
-  // test inside boundaries
-  // test outside boundaries
+TEST_F(FactoryTest, ConstructFoodDefault){
+  Food food = factory.ConstructFood();
+
+  EXPECT_EQ(food.get_color(), FOOD_COLOR) << "food constructor doesn't match default food color";
+  EXPECT_EQ(food.get_pose(), FOOD_INIT_POS)  << "food constructor doesn't match default food position";
+  EXPECT_EQ(food.get_radius(), FOOD_RADIUS)  << "food constructor doesn't match default food radius";
+  EXPECT_EQ(food.get_type(), kFood)  << "food constructor doesn't match food type";
 }
 
-TEST_F(FactoryTest, ConstructLight){
+TEST_F(FactoryTest, ConstructLightDefault){
+  Light light = factory.ConstructLight();
+
+  EXPECT_EQ(light.get_pose(), LIGHT_POSITION) << "light constructor doesn't match default light position";
+  EXPECT_EQ(light.get_color(), LIGHT_COLOR) << "light constructor doesn't match default light color";
+  EXPECT_EQ(light.get_radius(), LIGHT_RADIUS) << "light constructor doesn't match default light radius";
+  EXPECT_EQ(light.get_type(), kLight) << "light constructor doesn't match light type";
+  EXPECT_EQ(light.get_speed(), 3) << "light constructor doesn't match default light speed";
 }
 
 
