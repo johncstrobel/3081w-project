@@ -30,11 +30,27 @@ class FactoryTest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 
-TEST_F(FactoryTest, Constructor) {}
+TEST_F(FactoryTest, Constructor) {
+  // I'm not sure how to test a class that has no
+  // members, so... this.
+  EXPECT_EQ(1, 2) << "factory constructor tests not yet setup"
+}
 
 TEST_F(FactoryTest, ConstructRobot) {
-  // test each robot type
-  // test no robot type (default robot constuct)
+  BraitenbergVehicle robot = factory.ConstructRobot();
+
+  EXPECT_EQ(robot.get_type(), kBraitenberg)
+    << "constructed robot type incorrect";
+  EXPECT_EQ(robot.get_color(), BRAITENBERG_COLOR)
+    << "constructed robot color incorrect";
+  EXPECT_EQ(robot.get_speed(), 5.0)  // default speed
+    << "constructed robot speed incorrect";
+  EXPECT_EQ(robot.get_radius(), DEFAULT_RADIUS)
+    << "constructed robot radius incorrect";
+  EXPECT_EQ(robot.get_pose(), ROBOT_INIT_POS)
+    << "constructed robot initial position incorrect";
+
+  delete robot;
 }
 
 TEST_F(FactoryTest, ConstructFoodDefault) {
@@ -48,6 +64,8 @@ TEST_F(FactoryTest, ConstructFoodDefault) {
     << "food constructor doesn't match default food radius";
   EXPECT_EQ(food.get_type(), kFood)
     << "food constructor doesn't match food type";
+
+  delete food;
 }
 
 TEST_F(FactoryTest, ConstructLightDefault) {
@@ -63,13 +81,6 @@ TEST_F(FactoryTest, ConstructLightDefault) {
     << "light constructor doesn't match light type";
   EXPECT_EQ(light.get_speed(), 3)
     << "light constructor doesn't match default light speed";
-}
 
-
-
-TEST_F(ArenaTest, Constructor) {
-  EXPECT_EQ(arena->get_x_dim(), X_DIM);
-  EXPECT_EQ(arena->get_y_dim(), Y_DIM);
-  EXPECT_GE((int)arena->get_entities().size(), 3)
-    << "FAIL: Arena:Constructor - There should be at least 3 entities";
+  delete light;
 }
