@@ -2,6 +2,9 @@
  * Copyright 2019 John Strobel
  */
 
+#ifndef TESTS_FACTORY_UNITTEST_CC
+#define TESTS_FACTORY_UNITTEST_CC
+
 /*******************************************************************************
  * Includes
  ******************************************************************************/
@@ -9,7 +12,10 @@
 #include "src/factory.h"
 #include "src/entity_type.h"
 #include "src/params.h"
-// @TODO: include "src/factory.h"
+#include "src/braitenberg_vehicle.h"
+#include "src/food.h"
+
+using namespace csci3081;
 
  /******************************************************
 * TEST FEATURE SetUp
@@ -17,13 +23,13 @@
 class FactoryTest : public ::testing::Test {
  protected:
   virtual void SetUp() {
-    factory = new csci3081::Factory();
+    factory = new Factory();
   }
   virtual void TearDown() {
     delete factory;
   }
 
-  csci3081::Factory * factory;
+  Factory * factory;
 };
 
 /*******************************************************************************
@@ -33,54 +39,48 @@ class FactoryTest : public ::testing::Test {
 TEST_F(FactoryTest, Constructor) {
   // I'm not sure how to test a class that has no
   // members, so... this.
-  EXPECT_EQ(1, 2) << "factory constructor tests not yet setup"
+  EXPECT_EQ(1, 2) << "factory constructor tests not yet setup";
 }
 
 TEST_F(FactoryTest, ConstructRobot) {
-  BraitenbergVehicle robot = factory.ConstructRobot();
+  BraitenbergVehicle* robot = factory->ConstructRobot();
+  RgbColor color = DEFAULT_COLOR;
+  Pose pose = ROBOT_INIT_POS;
 
-  EXPECT_EQ(robot.get_type(), kBraitenberg)
-    << "constructed robot type incorrect";
-  EXPECT_EQ(robot.get_color(), BRAITENBERG_COLOR)
-    << "constructed robot color incorrect";
-  EXPECT_EQ(robot.get_speed(), 5.0)  // default speed
-    << "constructed robot speed incorrect";
-  EXPECT_EQ(robot.get_radius(), DEFAULT_RADIUS)
-    << "constructed robot radius incorrect";
-  EXPECT_EQ(robot.get_pose(), ROBOT_INIT_POS)
-    << "constructed robot initial position incorrect";
+  EXPECT_EQ(robot->get_type(), kBraitenberg) << "constructed robot type incorrect";
+  EXPECT_EQ(robot->get_color(), color) << "constructed robot color incorrect";
+  EXPECT_EQ(robot->get_speed(), 5.0) << "constructed robot speed incorrect";  // default speed
+  EXPECT_EQ(robot->get_radius(), 20) << "constructed robot radius incorrect";
+  EXPECT_EQ(robot->get_pose(), pose) << "constructed robot initial position incorrect";
 
   delete robot;
 }
 
 TEST_F(FactoryTest, ConstructFoodDefault) {
-  Food food = factory.ConstructFood();
+  Food* food = factory->ConstructFood();
+  RgbColor color = FOOD_COLOR;
+  Pose pose = FOOD_INIT_POS;
 
-  EXPECT_EQ(food.get_color(), FOOD_COLOR)
-    << "food constructor doesn't match default food color";
-  EXPECT_EQ(food.get_pose(), FOOD_INIT_POS)
-    << "food constructor doesn't match default food position";
-  EXPECT_EQ(food.get_radius(), FOOD_RADIUS)
-    << "food constructor doesn't match default food radius";
-  EXPECT_EQ(food.get_type(), kFood)
-    << "food constructor doesn't match food type";
+  EXPECT_EQ(food->get_color(), color) << "food constructor doesn't match default food color";
+  EXPECT_EQ(food->get_pose(), pose) << "food constructor doesn't match default food position";
+  EXPECT_EQ(food->get_radius(), 0) << "food constructor doesn't match default food radius";
+  EXPECT_EQ(food->get_type(), kFood) << "food constructor doesn't match food type";
 
   delete food;
 }
 
 TEST_F(FactoryTest, ConstructLightDefault) {
-  Light light = factory.ConstructLight();
+  Light* light = factory->ConstructLight();
+  Pose pose = LIGHT_POSITION;
+  RgbColor color = LIGHT_COLOR;
 
-  EXPECT_EQ(light.get_pose(), LIGHT_POSITION)
-    << "light constructor doesn't match default light position";
-  EXPECT_EQ(light.get_color(), LIGHT_COLOR)
-    << "light constructor doesn't match default light color";
-  EXPECT_EQ(light.get_radius(), LIGHT_RADIUS)
-    << "light constructor doesn't match default light radius";
-  EXPECT_EQ(light.get_type(), kLight)
-    << "light constructor doesn't match light type";
-  EXPECT_EQ(light.get_speed(), 3)
-    << "light constructor doesn't match default light speed";
+  EXPECT_EQ(light->get_pose(), pose) << "light constructor doesn't match default light position";
+  EXPECT_EQ(light->get_color(), color) << "light constructor doesn't match default light color";
+  EXPECT_EQ(light->get_radius(), 30) << "light constructor doesn't match default light radius";
+  EXPECT_EQ(light->get_type(), kLight) << "light constructor doesn't match light type";
+  EXPECT_EQ(light->get_speed(), 3) << "light constructor doesn't match default light speed";
 
   delete light;
 }
+
+#endif  // TESTS_FACTORY_UNITTEST_CC
