@@ -1,23 +1,23 @@
 ### Assessment for Lab 09
 
-#### Total score: _0_ / _60_
+#### Total score: _20_ / _100_
 
-Run on March 01, 17:37:26 PM.
+Run on March 04, 14:22:42 PM.
 
 
 #### System Files and Lab Directory Structure
 
-+ Pass: Copy directory "Files for Dependencies".
++  _10_ / _10_ : Pass: Copy directory "Files for Dependencies".
 
 
 
-+ Pass: Check that directory "labs" exists.
++  _5_ / _5_ : Pass: Check that directory "labs" exists.
 
-+ Pass: Check that directory "labs/lab09_robots" exists.
++  _5_ / _5_ : Pass: Check that directory "labs/lab09_robots" exists.
 
 + Pass: Change into directory "labs/lab09_robots".
 
-+ Fail: Check that make compiles.
++  _0_ / _5_ : Fail: Check that make compiles.
 
     Make compile fails with errors:.
 <pre>make -C src all
@@ -48,15 +48,11 @@ make: *** [proj01] Error 2
 
   This test was not run because of an earlier failing test.
 
-+ Skip: Check that make compiles.
++  _0_ / _10_ : Skip: Check that make compiles.
 
   This test was not run because of an earlier failing test.
 
-+ Skip: Check that directory "../build/bin" exists.
-
-  This test was not run because of an earlier failing test.
-
-+  _0_ / _15_ : Skip: Check that a GoogleTest test passes.
++  _0_ / _5_ : Skip: Check that directory "../build/bin" exists.
 
   This test was not run because of an earlier failing test.
 
@@ -72,5 +68,9 @@ make: *** [proj01] Error 2
 
   This test was not run because of an earlier failing test.
 
-#### Total score: _0_ / _60_
++  _0_ / _15_ : Skip: Check that a GoogleTest test passes.
+
+  This test was not run because of an earlier failing test.
+
+#### Total score: _20_ / _100_
 
