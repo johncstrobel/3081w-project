@@ -1,6 +1,6 @@
 ### Feedback for Proj 01
 
-Run on March 05, 14:30:21 PM.
+Run on March 05, 14:31:05 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -60,8 +60,8 @@ Link to full feedback: [Proj_01_Full_Feedback.md](Proj_01_Full_Feedback.md)
 make[1]: Entering directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_01_Basic_Feedback/repo-strob105/project/src'
 ==== Checking style is correct ====
 /class/grades/Spring-2019/csci3081/student-repos/Proj_01_Basic_Feedback/repo-strob105/cpplint/cpplint.py --root=.. *.cc *.h
-arena.cc:245:  Missing space after ,  [whitespace/comma] [3]
-arena.cc:48:  Add #include <string> for string  [build/include_what_you_use] [4]
+arena.cc:238:  Missing space after ,  [whitespace/comma] [3]
+arena.cc:46:  Add #include <string> for string  [build/include_what_you_use] [4]
 controller.cc:36:  Extra space for operator !   [whitespace/operators] [4]
 controller.cc:41:  An else should appear on the same line as the preceding }  [whitespace/newline] [4]
 controller.cc:41:  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
@@ -83,7 +83,16 @@ controller.h:72:  Should have a space between // and comment  [whitespace/commen
 controller.h:76:  Should have a space between // and comment  [whitespace/comments] [4]
 controller.h:80:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
 entity_type.h:14:  Found C++ system header after other header. Should be: entity_type.h, c system, c++ system, other.  [build/include_order] [4]
+factory.h:19:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+factory.h:19:  You don't need a ; after a }  [readability/braces] [4]
+factory.h:21:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+factory.h:21:  Missing space before {  [whitespace/braces] [5]
+factory.h:22:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+factory.h:22:  Missing space before {  [whitespace/braces] [5]
+factory.h:23:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+factory.h:23:  Missing space before {  [whitespace/braces] [5]
 graphics_arena_viewer.h:171:  "virtual" is redundant since function is already declared as "override"  [readability/inheritance] [4]
+pose.h:67:  Missing spaces around ==  [whitespace/operators] [3]
 Done processing arena.cc
 Done processing braitenberg_vehicle.cc
 Done processing controller.cc
@@ -104,6 +113,7 @@ Done processing braitenberg_vehicle.h
 Done processing common.h
 Done processing controller.h
 Done processing entity_type.h
+Done processing factory.h
 Done processing food.h
 Done processing graphics_arena_viewer.h
 Done processing light.h
@@ -113,7 +123,7 @@ Done processing params.h
 Done processing pose.h
 Done processing rgb_color.h
 Done processing wheel_velocity.h
-Total errors found: 24
+Total errors found: 33
 Makefile:162: recipe for target 'check-style' failed
 make[1]: *** [check-style] Error 1
 make[1]: Leaving directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_01_Basic_Feedback/repo-strob105/project/src'
