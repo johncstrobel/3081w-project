@@ -1,6 +1,6 @@
 ### Feedback for Proj 01
 
-Run on March 06, 19:02:15 PM.
+Run on March 06, 19:04:16 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -56,7 +56,7 @@ Link to full feedback: [Proj_01_Full_Feedback.md](Proj_01_Full_Feedback.md)
 
 + Fail: Ensuring code follows style guide.
 
-<pre>make: Warning: File 'Makefile' has modification time 0.0051 s in the future
+<pre>make: Warning: File 'Makefile' has modification time 0.013 s in the future
 cd src; make check-style
 make[1]: Entering directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_01_Basic_Feedback/repo-strob105/project/src'
 ==== Checking style is correct ====
@@ -73,11 +73,10 @@ arena_entity.h:141:  Is this a non-const reference? If so, make const or use a p
 arena.h:52:  Zero-parameter constructors should not be marked explicit.  [runtime/explicit] [5]
 arena.h:55:  Is this a non-const reference? If so, make const or use a pointer: json_object& arena_object  [runtime/references] [2]
 behavior_enum.h:37:  Add #include <string> for string  [build/include_what_you_use] [4]
-common.h:15:  <chrono> is an unapproved C++11 header.  [build/c++11] [5]
-common.h:22:  Is this a non-const reference? If so, make const or use a pointer: json_value& v  [runtime/references] [2]
-common.h:23:  Is this a non-const reference? If so, make const or use a pointer: json_value& v  [runtime/references] [2]
-common.h:24:  Tab found; better to use spaces  [whitespace/tab] [1]
-common.h:23:  Add #include <string> for string  [build/include_what_you_use] [4]
+common.h:19:  Is this a non-const reference? If so, make const or use a pointer: json_value& v  [runtime/references] [2]
+common.h:20:  Is this a non-const reference? If so, make const or use a pointer: json_value& v  [runtime/references] [2]
+common.h:21:  Tab found; better to use spaces  [whitespace/tab] [1]
+common.h:20:  Add #include <string> for string  [build/include_what_you_use] [4]
 controller.h:95:  #endif line should be "#endif  // SRC_CONTROLLER_H_"  [build/header_guard] [5]
 controller.h:69:  Should have a space between // and comment  [whitespace/comments] [4]
 controller.h:72:  Should have a space between // and comment  [whitespace/comments] [4]
@@ -124,7 +123,7 @@ Done processing params.h
 Done processing pose.h
 Done processing rgb_color.h
 Done processing wheel_velocity.h
-Total errors found: 33
+Total errors found: 32
 Makefile:162: recipe for target 'check-style' failed
 make[1]: *** [check-style] Error 1
 make[1]: Leaving directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_01_Basic_Feedback/repo-strob105/project/src'
