@@ -36,22 +36,9 @@ class BraitenbergTest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 
-TEST_F(BraitenbergTest, Constructor) {
-  EXPECT_EQ(Ken->get_light_behavior(),kNone)
-    << "Constructor: Light Behavior incorrect";
-  EXPECT_EQ(Ken->get_food_behavior(),kNone)
-    << "Constructor: Food Behavior incorrect";
-}
-
-TEST_F(BraitenbergTest, HandleCollision) {
+TEST_F(BraitenbergTest, UpdateTest){
   EXPECT_EQ(1,2) << "TODO";
-// void HandleCollision(EntityType ent_type,
-                     // ArenaEntity * object = NULL) override;
-}
-
-TEST_F(BraitenbergTest, LoadFromObject) {
-  EXPECT_EQ(1,2) << "TODO";
-// void LoadFromObject(json_object& entity_config) override;
+  //test update function, specifically for the new behaviors
 }
 
 #endif  // TESTS_BRAITENBERG_UNITTEST_CC

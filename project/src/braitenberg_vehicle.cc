@@ -154,17 +154,13 @@ void BraitenbergVehicle::Update() {
   }
 
   if (numBehaviors) {  // numBehaviors > 0
-    int food_influence, light_influence;
-    if(get_sensor_reading_left(closest_food_entity_) ||
-       get_sensor_reading_right(closest_food_entity_)){
-         std::cout << "food influence";
-         food_influence = 1;
-       }
-    if(get_sensor_reading_left(closest_light_entity_) ||
-       get_sensor_reading_right(closest_light_entity_)){
-         std::cout << "light influence" << std::endl;
-         light_influence = 1;
-       }
+    int food_influence = 1, light_influence = 1;
+    if(light_wheel_velocity.left == 0 && light_wheel_velocity.right == 0) {
+      light_influence = 0;
+    }
+    if(food_wheel_velocity.left == 0 && food_wheel_velocity.right == 0) {
+      food_influence = 0;
+    }
 
     if(food_influence && !light_influence){  // influenced by food only
       // blue (0,0,255)
@@ -181,6 +177,7 @@ void BraitenbergVehicle::Update() {
       (light_wheel_velocity.left + food_wheel_velocity.left)/numBehaviors,
       (light_wheel_velocity.right + food_wheel_velocity.right)/numBehaviors,
       defaultSpeed_);
+
   } else {
     wheel_velocity_ = WheelVelocity(0, 0);
   }
