@@ -93,6 +93,24 @@ void BraitenbergVehicle::Update() {
         1.0/get_sensor_reading_right(closest_light_entity_),
          1.0/get_sensor_reading_left(closest_light_entity_), defaultSpeed_);
       break;
+    case kCoward:
+      light_wheel_velocity = WheelVelocity(
+        get_sensor_reading_left(closest_light_entity_),
+        get_sensor_reading_right(closest_light_entity_),
+        defaultSpeed_);
+      break;
+    case kAggressive:
+      light_wheel_velocity = WheelVelocity(
+        get_sensor_reading_right(closest_light_entity_),
+        get_sensor_reading_left(closest_light_entity_),
+        defaultSpeed_);
+      break;
+    case kLove:
+      light_wheel_velocity = WheelVelocity(
+        1.0/get_sensor_reading_left(closest_light_entity_),
+        1.0/get_sensor_reading_right(closest_light_entity_),
+        defaultSpeed_);
+      break;
     case kNone:
     default:
       numBehaviors--;
@@ -105,7 +123,26 @@ void BraitenbergVehicle::Update() {
     case kExplore:
       food_wheel_velocity = WheelVelocity(
         1.0/get_sensor_reading_right(closest_food_entity_),
-        1.0/get_sensor_reading_left(closest_food_entity_), defaultSpeed_);
+        1.0/get_sensor_reading_left(closest_food_entity_),
+        defaultSpeed_);
+      break;
+    case kCoward:
+      food_wheel_velocity = WheelVelocity(
+        get_sensor_reading_left(closest_food_entity_),
+        get_sensor_reading_right(closest_food_entity_),
+        defaultSpeed_);
+      break;
+    case kAggressive:
+      food_wheel_velocity = WheelVelocity(
+        get_sensor_reading_right(closest_food_entity_),
+        get_sensor_reading_left(closest_food_entity_),
+        defaultSpeed_);
+      break;
+    case kLove:
+      food_wheel_velocity = WheelVelocity(
+        get_sensor_reading_left(closest_food_entity_),
+        get_sensor_reading_right(closest_food_entity_),
+        defaultSpeed_);
       break;
     case kNone:
     default:
@@ -113,7 +150,7 @@ void BraitenbergVehicle::Update() {
       break;
   }
 
-  if (numBehaviors) {
+  if (numBehaviors) {  // numBehaviors > 0
     wheel_velocity_ = WheelVelocity(
       (light_wheel_velocity.left + food_wheel_velocity.left)/numBehaviors,
       (light_wheel_velocity.right + food_wheel_velocity.right)/numBehaviors,
