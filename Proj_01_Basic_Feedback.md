@@ -1,6 +1,6 @@
 ### Feedback for Proj 01
 
-Run on March 06, 20:03:59 PM.
+Run on March 06, 20:49:34 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -56,8 +56,7 @@ Link to full feedback: [Proj_01_Full_Feedback.md](Proj_01_Full_Feedback.md)
 
 + Fail: Ensuring code follows style guide.
 
-<pre>make: Warning: File 'Makefile' has modification time 0.0073 s in the future
-cd src; make check-style
+<pre>cd src; make check-style
 make[1]: Entering directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_01_Basic_Feedback/repo-strob105/project/src'
 ==== Checking style is correct ====
 /class/grades/Spring-2019/csci3081/student-repos/Proj_01_Basic_Feedback/repo-strob105/cpplint/cpplint.py --root=.. *.cc *.h
