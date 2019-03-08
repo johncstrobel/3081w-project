@@ -18,9 +18,9 @@ class Factory {
  public:
    Factory(){};
 
-   BraitenbergVehicle* ConstructRobot(){return new BraitenbergVehicle();}
-   Food * ConstructFood(){return new Food();}
-   Light * ConstructLight(){return new Light();}
+   BraitenbergVehicle* ConstructRobot(json_object& entity_config);
+   Food * ConstructFood(json_object& entity_config);
+   Light * ConstructLight(json_object& entity_config);
 
  private:
 };
