@@ -58,7 +58,6 @@ void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
 
 void BraitenbergVehicle::HandleCollision(__unused EntityType ent_type,
                                          __unused ArenaEntity * object) {
-  // set_heading(static_cast<int>((get_pose().theta + 180)) % 360);
   set_is_moving(false);
   colliding_ = 20;
 }
@@ -95,7 +94,6 @@ void BraitenbergVehicle::Update() {
   WheelVelocity light_wheel_velocity = WheelVelocity(0, 0);
 
   int numBehaviors = 2;
-
   switch (light_behavior_) {
     case kExplore:
       light_wheel_velocity = WheelVelocity(
@@ -161,12 +159,15 @@ void BraitenbergVehicle::Update() {
   }
 
   if (numBehaviors) {  // numBehaviors > 0
-    int food_influence = 1, light_influence = 1;
-    if(light_wheel_velocity.left == 0 && light_wheel_velocity.right == 0) {
-      light_influence = 0;
+    int food_influence = 1, light_influence = 1, senslen = 1;
+    if((get_sensor_reading_left(closest_light_entity_) - senslen) <= 0 &&
+       (get_sensor_reading_right(closest_light_entity_) - senslen) <= 0) {
+         light_influence = 0;
     }
-    if(food_wheel_velocity.left == 0 && food_wheel_velocity.right == 0) {
-      food_influence = 0;
+
+    if((get_sensor_reading_left(closest_food_entity_) - senslen) <= 0 &&
+       (get_sensor_reading_right(closest_food_entity_) - senslen) <= 0) {
+         food_influence = 0;
     }
 
     if(food_influence && !light_influence){  // influenced by food only
