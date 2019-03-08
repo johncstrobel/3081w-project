@@ -103,6 +103,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   const ArenaEntity* closest_light_entity_;
   const ArenaEntity* closest_food_entity_;
   double defaultSpeed_;
+  double colliding_;  // tracks time until robot is done colliding
 };
 
 NAMESPACE_END(csci3081);

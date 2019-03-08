@@ -27,7 +27,7 @@ int BraitenbergVehicle::count = 0;
 BraitenbergVehicle::BraitenbergVehicle() :
   light_sensors_(), wheel_velocity_(), light_behavior_(kNone),
   food_behavior_(kNone), closest_light_entity_(NULL),
-  closest_food_entity_(NULL), defaultSpeed_(5.0) {
+  closest_food_entity_(NULL), defaultSpeed_(5.0), colliding_(0.0) {
   set_type(kBraitenberg);
   motion_behavior_ = new MotionBehaviorDifferential(this);
   light_sensors_.push_back(Pose());
@@ -45,15 +45,22 @@ BraitenbergVehicle::BraitenbergVehicle() :
 void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
   if (is_moving()) {
     motion_behavior_->UpdatePose(dt, wheel_velocity_);
+  } else { //is moving() returns something els
+    motion_behavior_->UpdatePose(dt,WheelVelocity(-2,-2));
+    colliding_ = colliding_ - dt;
+    if(colliding_ <= 0){
+      set_is_moving(true);
+      set_heading(static_cast<int>((get_pose().theta + 45)) % 360);
+    }
   }
   UpdateLightSensors();
 }
 
 void BraitenbergVehicle::HandleCollision(__unused EntityType ent_type,
                                          __unused ArenaEntity * object) {
-  set_heading(static_cast<int>((get_pose().theta + 180)) % 360);
-  TimestepUpdate(20);
-  set_heading(static_cast<int>((get_pose().theta + 45)) % 360);
+  // set_heading(static_cast<int>((get_pose().theta + 180)) % 360);
+  set_is_moving(false);
+  colliding_ = 20;
 }
 
 void BraitenbergVehicle::SenseEntity(const ArenaEntity& entity) {
