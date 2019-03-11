@@ -54,15 +54,15 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 | All BraitenbergVehicle entities in Arena created with a factory |  |  |  |  |
 | All Light entities in Arena created with a factory |  |  |  |  |
 | All Food entities in Arena created with a factory |  |  |  |  |
-| _Scenario 1_  visually inspected - Vehicle does not sense food (default) or light (default). |  |  |  |  |
-| _Scenario 2_  visually inspected - Vehicle aggressive toward food, default toward light. |  |  |  |  |
-| _Scenario 3_  visually inspected - Vehicle explore toward food, default toward light. |  |  |  |  |
-| _Scenario 4_  visually inspected - Vehicle love toward food, default toward light. |  |  |  |  |
-| _Scenario 5_  visually inspected - Vehicle coward toward food, default toward light. |  |  |  |  |
-| _Scenario 6_  visually inspected - Vehicle aggressive toward light, default toward food. |  |  |  |  |
-| _Scenario 7_  visually inspected - Vehicle explore toward light, default toward food. |  |  |  |  |
-| _Scenario 8_  visually inspected - Vehicle love toward light, default toward food. |  |  |  |  |
-| _Scenario 9_  visually inspected - Vehicle coward toward light, default toward food. |  |  |  |  | |
+| _Scenario 1_  visually inspected - Vehicle does not sense food (default) or light (default). |x|  |  |  |
+| _Scenario 2_  visually inspected - Vehicle aggressive toward food, default toward light. |x|  |  |  |
+| _Scenario 3_  visually inspected - Vehicle explore toward food, default toward light. |x|  |  |  |
+| _Scenario 4_  visually inspected - Vehicle love toward food, default toward light. |  |x|  |  |
+| _Scenario 5_  visually inspected - Vehicle coward toward food, default toward light. |x|  |  |  |
+| _Scenario 6_  visually inspected - Vehicle aggressive toward light, default toward food. |x|  |  |  |
+| _Scenario 7_  visually inspected - Vehicle explore toward light, default toward food. |x|  |  |  |
+| _Scenario 8_  visually inspected - Vehicle love toward light, default toward food. |x|  |  |  |
+| _Scenario 9_  visually inspected - Vehicle coward toward light, default toward food. |x|  |  |  | |
 
 
 ### Documentation
