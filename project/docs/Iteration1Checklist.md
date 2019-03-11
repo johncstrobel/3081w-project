@@ -8,12 +8,12 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 - [ ]  cloned **fresh** from github onto a cselabs machine to test compilation, style compliance, and execution
 - [ ] Submission is on the **master** branch in the project folder of your repo
-- [ ] _/project_ folder exists
+- [x] _/project_ folder exists
 - [ ] _/build_ is not in the repo
 - [ ] _/html_  and _/latex_ is not in _docs_
-- [ ] **__`make` from within _project_ completes without error.__**
-- [ ] `./../build/bin/arenaviewer` executes without assert or a seg fault
-- [ ] `./../build/bin/unittest` executes without a seg fault
+- [x] **__`make` from within _project_ completes without error.__**
+- [x] `./../build/bin/arenaviewer` executes without assert or a seg fault
+- [x] `./../build/bin/unittest` executes without a seg fault
 - [ ] **_"make check-style" reports no errors when run in the master branch._**
 - [ ] `doxygen docs/Doxyfile` compiles
 
@@ -31,20 +31,20 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 | Functionality | Good | Okay | Help | Time |
 | ------------- | ---- |----- | ---- | ---- |
 | **__Priority Level 2__** |
-| _Aggression_ Behavior implemented and operational for Braitenberg Vehicle behavior toward Lights. |  |  |  |  |
-| _Aggression_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Food. |  |  |  |  |
-| _Love_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Lights. |  |  |  |  |
-| _Love_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Food. |  |  |  |  |
-| _Coward_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Lights. |  |  |  |  |
-| _Coward_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Food. | | | | |
-|_Explore_  Behavior still operational for Braitenberg Vehicle behavior toward Lights. | | | | |
-| _Explore_  Behavior still operational for Braitenberg Vehicle behavior toward Food. |  |  |  | |
-| Braitenberg Vehicle _new collision avoidance behavior_ (turn 180, advance 20 time steps, turn 180 + or - 45 degrees and continue) implemented and operational. |  |  |  |  |
-| _Lights_ are colored white. |  |  |  |  |
-| _Food_ is colored green. |  |  |  |  |
-| _Vehicle_ is colored Maroon if both sensors are affecting vehicle behavior, or neither sensor is affecting vehicle behavior. |  |  |  |  |
-| _Vehicle_ is colored Gold if only the Light sensor is affecting vehicle behavior.  |  |  |  |  |
-| _Vehicle is colored Blue if only the Food sensor is affecting vehicle behavior. |  |  |  |  |
+| _Aggression_ Behavior implemented and operational for Braitenberg Vehicle behavior toward Lights. |x|  |  |  |
+| _Aggression_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Food. |x|  |  |  |
+| _Love_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Lights. |x|  |  |  |
+| _Love_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Food. |x|  |  |  |
+| _Coward_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Lights. |x|  |  |  |
+| _Coward_  Behavior implemented and operational for Braitenberg Vehicle behavior toward Food. |x| | | |
+|_Explore_  Behavior still operational for Braitenberg Vehicle behavior toward Lights. |x| | | |
+| _Explore_  Behavior still operational for Braitenberg Vehicle behavior toward Food. |x|  |  | |
+| Braitenberg Vehicle _new collision avoidance behavior_ (turn 180, advance 20 time steps, turn 180 + or - 45 degrees and continue) implemented and operational. |  |x|  |  |
+| _Lights_ are colored white. |x|  |  |  |
+| _Food_ is colored green. |x|  |  |  |
+| _Vehicle_ is colored Maroon if both sensors are affecting vehicle behavior, or neither sensor is affecting vehicle behavior. |x|  |  |  |
+| _Vehicle_ is colored Gold if only the Light sensor is affecting vehicle behavior.  |x|  |  |  |
+| _Vehicle is colored Blue if only the Food sensor is affecting vehicle behavior. |x|  |  |  |
 
 
 | Functionality | Good | Okay | Help | Time |
@@ -69,8 +69,8 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 #### Design Document
 
-- [ ] The final version of your design document for iteration 1 exists in _docs_ (named **__iteration1\_design.pdf__**).
-- [ ] The final version of your design document discusses the tradeoffs of different implementations of the Factory Pattern and discusses which version you implemented, which might be some variation/hybrid of the factory pattern you discussed in the document.
+- [x] The final version of your design document for iteration 1 exists in _docs_ (named **__iteration1\_design.pdf__**).
+- [x] The final version of your design document discusses the tradeoffs of different implementations of the Factory Pattern and discusses which version you implemented, which might be some variation/hybrid of the factory pattern you discussed in the document.
 
 #### UML
 
