@@ -1,6 +1,6 @@
 ### Feedback for Proj 01
 
-Run on March 11, 16:08:13 PM.
+Run on March 11, 18:39:46 PM.
 
 + Pass: Checkout devel branch.
 
@@ -61,14 +61,14 @@ Run on March 11, 16:08:13 PM.
 #### Git Usage
 
 + Pass: Check git commit history
-Sufficient commits (found=50,required=25)
+Sufficient commits (found=53,required=25)
 
 + Pass: Run git ls-remote to check for # of branches in repo
 Sufficient branches (found=6,required=4)
 
 + Pass: Run git ls-remote gather all branches in repo
 
-c5721c4fa268650f7d469e3ab9281df28847c71a	refs/heads/devel
+40e5e6f5f3b78d48213fd2dfc31ad53b86ce3fd6	refs/heads/devel
 
 00fe9f39d5682f2869f3a5e85e878961887e50cf	refs/heads/feature/03-adding-tests
 
@@ -78,7 +78,7 @@ c5721c4fa268650f7d469e3ab9281df28847c71a	refs/heads/devel
 
 10f491f1cc086f5bb9e8edc4e1683dad693de517	refs/heads/fix/02-robots-stuck-in-walls
 
-cabb88716d31a0519318f96eff4a1145b9800821	refs/heads/master
+6d114f01e2e6f5befbbf5cd426fec709c55a2b0e	refs/heads/master
 
 
 
