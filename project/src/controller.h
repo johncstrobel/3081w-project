@@ -66,6 +66,19 @@ class Controller {
   */
   void Reset();
 
+  //copy constructor
+  Controller(const Controller &other):
+  last_dt(other.last_dt), viewers_(other.viewers_), config_(other.config_) {
+    //normal params
+//    last_dt = other.last_dt;
+//    viewers_ = other.viewers_;
+
+    //copy reference for pointers?
+    arena_ = other.arena_;
+    *viewer_ = *other.viewer_;
+//    *config_ = *other.config_;
+
+  }
 
   Controller &operator=(const Controller &other) = delete;
 

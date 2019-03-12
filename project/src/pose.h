@@ -59,6 +59,24 @@ struct Pose {
   Pose &operator=(const Pose &other) = default;
 
   /**
+   * @brief Overloaded == operator.
+   *
+   * @return bool
+   **/
+  bool operator==(const Pose &other) const {
+    return (x==other.x && y==other.y);
+  }
+
+  /**
+   * @brief Overloaded != operator.
+   *
+   * @return bool
+   **/
+  bool operator!=(const Pose &other) const {
+    return (x!=other.x || y!=other.y);
+  }
+
+  /**
    * @brief Overloaded - operator. Treats the poses as vectors, returns the difference of the two.
    *
    * @param rhs The Pose object on the right hand side of the - operator.
