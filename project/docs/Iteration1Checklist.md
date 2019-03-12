@@ -9,8 +9,8 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 - [ ]  cloned **fresh** from github onto a cselabs machine to test compilation, style compliance, and execution
 - [ ] Submission is on the **master** branch in the project folder of your repo
 - [x] _/project_ folder exists
-- [ ] _/build_ is not in the repo
-- [ ] _/html_  and _/latex_ is not in _docs_
+- [x] _/build_ is not in the repo
+- [x] _/html_  and _/latex_ is not in _docs_
 - [x] **__`make` from within _project_ completes without error.__**
 - [x] `./../build/bin/arenaviewer` executes without assert or a seg fault
 - [x] `./../build/bin/unittest` executes without a seg fault
