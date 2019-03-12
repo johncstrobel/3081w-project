@@ -75,9 +75,9 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 #### UML
 
 - [ ] Final version of UML in a pdf file in the project/docs directory (named **__iteration1_UML.pdf__**).
-- [x] The Factory classes in the UML reflect what was implemented.
-- [x] The UML contains the BraitenbergVehicle, Light, and Food class.
-- [x] The UML contains the Arena class.
+- [ ] The Factory classes in the UML reflect what was implemented.
+- [ ] The UML contains the BraitenbergVehicle, Light, and Food class.
+- [ ] The UML contains the Arena class.
 - [ ] The UML contains the _design_ of the Strategy Pattern.
 
 #### Doxygen
