@@ -28,7 +28,7 @@ NAMESPACE_BEGIN(csci3081);
 Arena::Arena(): x_dim_(X_DIM),
       y_dim_(Y_DIM),
       entities_(),
-      mobile_entities_() {
+      mobile_entities_(), factory_(new Factory()) {
     AddEntity(new Light());
     AddEntity(new Food());
     AddEntity(new BraitenbergVehicle());
@@ -37,7 +37,7 @@ Arena::Arena(): x_dim_(X_DIM),
 Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
       y_dim_(Y_DIM),
       entities_(),
-      mobile_entities_() {
+      mobile_entities_(), factory_(new Factory()){
   x_dim_ = arena_object["width"].get<double>();
   y_dim_ = arena_object["height"].get<double>();
   json_array& entities = arena_object["entities"].get<json_array>();
@@ -50,7 +50,7 @@ Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
 
     switch (etype) {
       case (kLight):
-        entity = new Light();
+        entity = factory_->ConstructLight(entity_config);
         break;
       case (kFood):
         entity = new Food();

@@ -18,6 +18,7 @@
 #include "src/common.h"
 #include "src/food.h"
 #include "src/arena_mobile_entity.h"
+#include "src/factory.h"
 
 /*******************************************************************************
  * Namespaces
@@ -167,6 +168,8 @@ class Arena {
 
   // A subset of the entities -- only those that can move (only Robot for now).
   std::vector<class ArenaMobileEntity *> mobile_entities_;
+
+  Factory * factory_;
 };
 
 NAMESPACE_END(csci3081);
