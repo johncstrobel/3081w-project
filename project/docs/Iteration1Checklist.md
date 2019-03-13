@@ -74,11 +74,11 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 #### UML
 
-- [ ] Final version of UML in a pdf file in the project/docs directory (named **__iteration1_UML.pdf__**).
+- [x] Final version of UML in a pdf file in the project/docs directory (named **__iteration1_UML.pdf__**).
 - [x] The Factory classes in the UML reflect what was implemented.
 - [x] The UML contains the BraitenbergVehicle, Light, and Food class.
 - [x] The UML contains the Arena class.
-- [ ] The UML contains the _design_ of the Strategy Pattern.
+- [x] The UML contains the _design_ of the Strategy Pattern.
 
 #### Doxygen
 
@@ -91,15 +91,15 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 - [ ] All *.h and *.c files pass cpplint.
 - [ ] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
-- [ ] There exists a history of git commit messages to show effort.
-- [ ] There exists a history of issues and branches to show effort.
+- [x] There exists a history of git commit messages to show effort.
+- [x] There exists a history of issues and branches to show effort.
 - [ ] Github issues include current unresolved bugs.
 - [ ] Github issues include unresolved feature enhancements and refactoring that is due for this iteration.
 
 ### Testing
 
-- [ ] Unit tests are in the /project/tests folder.
-- [ ] Unit tests for different classes are in separate files.
+- [x] Unit tests are in the /project/tests folder.
+- [x] Unit tests for different classes are in separate files.
 - [ ] Unit tests exist to test the creation of a BraitenbergVehicle.
 - [ ] Unit tests exist to test the creation of a Light.
 - [ ] Unit tests exist to test the creation of a Food.
