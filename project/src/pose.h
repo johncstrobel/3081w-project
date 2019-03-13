@@ -64,7 +64,7 @@ struct Pose {
    * @return bool
    **/
   bool operator==(const Pose &other) const {
-    return (x==other.x && y==other.y);
+    return (x == other.x && y == other.y);
   }
 
   /**
@@ -73,7 +73,7 @@ struct Pose {
    * @return bool
    **/
   bool operator!=(const Pose &other) const {
-    return (x!=other.x || y!=other.y);
+    return (x != other.x || y != other.y);
   }
 
   /**

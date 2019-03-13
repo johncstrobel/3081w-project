@@ -20,11 +20,11 @@ NAMESPACE_BEGIN(csci3081);
  */
 class Factory {
  public:
-   Factory(){};
+  Factory();
 
-   BraitenbergVehicle* ConstructRobot(json_object& entity_config);
-   Food * ConstructFood(json_object& entity_config);
-   Light * ConstructLight(json_object& entity_config);
+  BraitenbergVehicle* ConstructRobot(json_object& entity_config);
+  Food * ConstructFood(json_object& entity_config);
+  Light * ConstructLight(json_object& entity_config);
 
  private:
 };
