@@ -14,6 +14,10 @@
 
 NAMESPACE_BEGIN(csci3081);
 
+/**
+ * @brief Constructor class for creating arena objects.
+ *
+ */
 class Factory {
  public:
    Factory(){};

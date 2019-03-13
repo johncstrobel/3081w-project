@@ -82,9 +82,9 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 #### Doxygen
 
-- [ ] All classes have a _brief_ description that appears in the doxygen web page class list.
-- [ ] The Arena class is fully documented with respect to methods and member variables. In other words, in the html generated pages of doxygen, the user can click on a class method and see more information about its purpose and parameters.
-- [ ] The BraitenbergVehicle class is fully documented with respect to methods and member variables.
+- [x] All classes have a _brief_ description that appears in the doxygen web page class list.
+- [x] The Arena class is fully documented with respect to methods and member variables. In other words, in the html generated pages of doxygen, the user can click on a class method and see more information about its purpose and parameters.
+- [x] The BraitenbergVehicle class is fully documented with respect to methods and member variables.
 - [ ] The factory classes are fully documented with respect to methods and member variables.
 
 ### Linter and Git

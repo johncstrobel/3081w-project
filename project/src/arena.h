@@ -71,6 +71,16 @@ class Arena {
    */
   void AdvanceTime(double dt);
 
+  /**
+  * @brief Adds an entity to entities_.
+  *
+  * @param entity The entity to be added. Must be a pointer.
+  *
+  * @detail Pushes back other entities in the vector, and updates the
+  *  braitenberg vehicle's light sensors (if the entity is a braitenberg
+  *  vehicle)
+  */
+
   void AddEntity(ArenaEntity* entity);
 
   /**
