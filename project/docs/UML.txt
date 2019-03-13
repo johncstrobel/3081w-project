@@ -2,8 +2,12 @@
 
 title Relationships - Class Diagram
 
-class MotionBehaviorDifferential
-
+abstract class MotionBehavior
+class BehaviorCoward
+class BehaviorAggressive
+class BehaviorLove
+class BehaviorExplore
+class BehaviorNone
 
 class Arena{
     -ArenaEntity * entities
@@ -23,8 +27,11 @@ abstract class ArenaEntity{
     +void RelativeChangeHeading(const double delta)
     +virtual void LoadFromObject(jsen_object& entity_config)
 }
+
 abstract class ArenaMobileEntity
+
 class Light
+
 class BraitenbergVehicle{
     +BraitenbergVehicle()
     +void TimestepUpdate(unsigned int dt)
@@ -34,7 +41,7 @@ class BraitenbergVehicle{
     +void UpdateLightSensors()
     +void LoadFromObject(json_object& entity_config)
     -vector light_sensors_
-    -MotionBehaviorDifferential * motion_behavior_
+    -MotionBehavior * motion_behavior_
     -WheelVelocity wheel_velocity_
     -Behavior light_behavior
     -Behavior food_behavior_
@@ -55,7 +62,13 @@ ArenaImmobileEntity <|-down- Food
 ArenaMobileEntity <|-down- Light
 ArenaMobileEntity <|-down- BraitenbergVehicle
 
-BraitenbergVehicle *-left- MotionBehaviorDifferential
+BraitenbergVehicle *-left- MotionBehavior
+
+MotionBehavior <|-down- BehaviorCoward
+MotionBehavior <|-down- BehaviorNone
+MotionBehavior <|-down- BehaviorAggressive
+MotionBehavior <|-down- BehaviorExplore
+MotionBehavior <|-down- BehaviorLove
 
 
 @enduml
