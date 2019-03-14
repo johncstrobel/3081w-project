@@ -6,7 +6,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 ### Compilation and Execution
 
-- [ ]  cloned **fresh** from github onto a cselabs machine to test compilation, style compliance, and execution
+- [x]  cloned **fresh** from github onto a cselabs machine to test compilation, style compliance, and execution
 - [ ] Submission is on the **master** branch in the project folder of your repo
 - [x] _/project_ folder exists
 - [x] _/build_ is not in the repo
