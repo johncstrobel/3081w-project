@@ -51,9 +51,9 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 | -------- | -------- | -------- | -------- | --------- |
 | **__Priority Level 3__** |
 | Factories instantiate entities using JSON |x|  |  |   |
-| All BraitenbergVehicle entities in Arena created with a factory |  |  |  |  |
-| All Light entities in Arena created with a factory |  |  |  |  |
-| All Food entities in Arena created with a factory |  |  |  |  |
+| All BraitenbergVehicle entities in Arena created with a factory |x|  |  |  |
+| All Light entities in Arena created with a factory |x|  |  |  |
+| All Food entities in Arena created with a factory |x|  |  |  |
 | _Scenario 1_  visually inspected - Vehicle does not sense food (default) or light (default). |x|  |  |  |
 | _Scenario 2_  visually inspected - Vehicle aggressive toward food, default toward light. |x|  |  |  |
 | _Scenario 3_  visually inspected - Vehicle explore toward food, default toward light. |x|  |  |  |
@@ -103,7 +103,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 - [x] Unit tests exist to test the creation of a BraitenbergVehicle.
 - [x] Unit tests exist to test the creation of a Light.
 - [x] Unit tests exist to test the creation of a Food.
-- [ ] Unit tests for the factories use JSON.
+- [x] Unit tests for the factories use JSON.
 - [x] Unit tests for the factories test initialization of the entity.
 
 ## Ready For Submission

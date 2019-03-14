@@ -2,6 +2,9 @@
  * @file arena.cc
  *
  * @copyright 2017 3081 Staff, All rights reserved.
+ *
+ * @TODO: change arena constructor from a switch statement on etype
+ *  to a function in the factory class
  */
 
 /*******************************************************************************
@@ -42,27 +45,21 @@ Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
   y_dim_ = arena_object["height"].get<double>();
   json_array& entities = arena_object["entities"].get<json_array>();
   for (unsigned int f = 0; f < entities.size(); f++) {
-    json_object& entity_config = entities[f].get<json_object>();
+    json_object * entity_config = &(entities[f].get<json_object>());
     EntityType etype = get_entity_type(
-      entity_config["type"].get<std::string>());
+      (*entity_config)["type"].get<std::string>());
 
     ArenaEntity* entity = NULL;
 
     switch (etype) {
       case (kLight):
-        std::cout << "light" << std::endl;
-        fflush(stdout);
         entity = factory_->ConstructLight(entity_config);
         break;
       case (kFood):
-        // entity = factory_->ConstructFood(entity_config);
-        entity = new Food();
+        entity = factory_->ConstructFood(entity_config);
         break;
       case (kBraitenberg):
-        // std::cout << "robet" << std::endl;
-        // fflush(stdout);
-        // entity = factory_->ConstructRobot(entity_config);
-        entity = new BraitenbergVehicle();
+        entity = factory_->ConstructRobot(entity_config);
         break;
       default:
         std::cout << "FATAL: Bad entity type on creation" << std::endl;

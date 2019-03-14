@@ -95,7 +95,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   *
   * @param entity_config JSON object that determines parameters for the object.
   */
-  void LoadFromObject(json_object& entity_config) override;
+  void LoadFromObject(json_object* entity_config) override;
 
   Behavior get_light_behavior() { return light_behavior_; }
 
