@@ -14,7 +14,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 - [x] **__`make` from within _project_ completes without error.__**
 - [x] `./../build/bin/arenaviewer` executes without assert or a seg fault
 - [x] `./../build/bin/unittest` executes without a seg fault
-- [ ] **_"make check-style" reports no errors when run in the master branch._**
+- [x] **_"make check-style" reports no errors when run in the master branch._**
 - [x] `doxygen docs/Doxyfile` compiles
 
 ### Primary Functionality
@@ -89,7 +89,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 ### Linter and Git
 
-- [ ] All *.h and *.c files pass cpplint.
+- [x] All *.h and *.c files pass cpplint.
 - [x] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
 - [x] There exists a history of git commit messages to show effort.
 - [x] There exists a history of issues and branches to show effort.
