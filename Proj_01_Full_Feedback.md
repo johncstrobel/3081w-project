@@ -1,6 +1,6 @@
 ### Feedback for Proj 01
 
-Run on March 13, 20:18:10 PM.
+Run on March 13, 22:24:17 PM.
 
 + Pass: Checkout devel branch.
 
@@ -47,10 +47,6 @@ Run on March 13, 20:18:10 PM.
 
      "docs/uml_design.pdf" not found.
 
-+ Fail: Check that file "docs/design.pdf" exists.
-
-     "docs/design.pdf" not found.
-
 + Pass: Documentation builds.
 
 
@@ -62,9 +58,6 @@ Run on March 13, 20:18:10 PM.
 
 + Pass: Check git commit history
 Sufficient commits (found=55,required=25)
-
-+ Pass: Run git ls-remote to check for # of branches in repo
-Sufficient branches (found=6,required=4)
 
 + Pass: Run git ls-remote gather all branches in repo
 
@@ -78,7 +71,34 @@ ae341a2c9d2acbb2f7f9e1cb4149f13fe316745c	refs/heads/feature/priority-level-2
 
 10f491f1cc086f5bb9e8edc4e1683dad693de517	refs/heads/fix/02-robots-stuck-in-walls
 
-635d5eb760c4cc4f6c19cabf12b7c2518d05dfc4	refs/heads/master
+68684b1121780498e55a9a076b695d4913db9486	refs/heads/master
+
+
+
+
+#### Git Issue Usage
+
++ Pass: Configuring GHI
+
++ Pass: Run ghi for total number of open issues in Github repo (Found: 3)
+
+[OPEN issue #5] :  feature/05-factory-test-json [enhancement]
+
+[OPEN issue #4] :  Feature/04-full-json-functionality [enhancement]
+
+[OPEN issue #3] :  bug/03-love-acts-like-explore [bug]
+
+
+
+
+
++ Pass: Run ghi for total number of closed issues in Github repo (Found: 2)
+
+[CLOSED issue #2] :  bug/02-robots-stuck-in-walls [bug] 1
+
+[CLOSED issue #1] :  bug/01-simulator-not-compiling [bug] 1
+
+
 
 
 
@@ -198,27 +218,6 @@ make: *** [check-style] Error 2
 #### Unit Tests
 
 + Pass: Check that file "build/bin/unittest" exists.
-
-+ Fail: Check that a GoogleTest test passes.
-    fails the test: InstBraitenbergVehicle.ColorMatchesBehavior.
-<pre>
-[ RUN      ] InstBraitenbergVehicle.ColorMatchesBehavior
-inst_braitenberg_vehicle.cc:48: Failure
-Expected equality of these values:
-  bv->get_color()
-    Which is: 12-byte object <7A-00 00-00 00-00 00-00 19-00 00-00>
-  csci3081::RgbColor(csci3081::kBlue)
-    Which is: 12-byte object <00-00 00-00 00-00 00-00 FF-00 00-00>
-The robot's color should be Blue when there is only a food behavior.
-inst_braitenberg_vehicle.cc:57: Failure
-Expected equality of these values:
-  bv->get_color()
-    Which is: 12-byte object <7A-00 00-00 00-00 00-00 19-00 00-00>
-  csci3081::RgbColor(csci3081::kGold)
-    Which is: 12-byte object <FF-00 00-00 CC-00 00-00 33-00 00-00>
-The robot's color should be Gold when there is only a light behavior.</pre>
-
-
 
 + Pass: Check that a GoogleTest test passes.
     passes the test: InstBraitenbergVehicle.RobotMovesInEmptyScene.
