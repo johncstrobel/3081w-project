@@ -50,6 +50,8 @@ Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
 
     switch (etype) {
       case (kLight):
+        std::cout << "light" << std::endl;
+        fflush(stdout);
         entity = factory_->ConstructLight(entity_config);
         break;
       case (kFood):
@@ -57,6 +59,8 @@ Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
         entity = new Food();
         break;
       case (kBraitenberg):
+        // std::cout << "robet" << std::endl;
+        // fflush(stdout);
         // entity = factory_->ConstructRobot(entity_config);
         entity = new BraitenbergVehicle();
         break;

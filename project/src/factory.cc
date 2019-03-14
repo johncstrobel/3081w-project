@@ -63,10 +63,11 @@ NAMESPACE_BEGIN(csci3081);
   */
   Light * Factory::ConstructLight(json_object& entity_config) {
      Light * Amanda = new Light();
-     double xpos = stod(entity_config["x"].get<std::string>());
-     double ypos = stod(entity_config["y"].get<std::string>());
-
-     Gavin->set_pose(Pose(xpos, ypos));
+     Amanda->LoadFromObject(entity_config);
+     // double xpos = stod(entity_config["x"].get<std::string>());
+     // double ypos = stod(entity_config["y"].get<std::string>());
+     //
+     // Gavin->set_pose(Pose(xpos, ypos));
      return Amanda;
   }
 
