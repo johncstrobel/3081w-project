@@ -14,9 +14,15 @@
 
 NAMESPACE_BEGIN(csci3081);
 
+/*******************************************************************************
+ * Class Definitions
+ ******************************************************************************/
 /**
- * @brief Constructor class for creating arena objects.
+ * @brief Class for constructing entities in the arena.
  *
+ * @detail Contains a different method for each type of entity in the
+ *  simulation. Each method takes in a json object and returns a pointer
+ *  to the object of the appropriate type.
  */
 class Factory {
  public:
@@ -25,8 +31,6 @@ class Factory {
   BraitenbergVehicle* ConstructRobot(json_object& entity_config);
   Food * ConstructFood(json_object& entity_config);
   Light * ConstructLight(json_object& entity_config);
-
- private:
 };
 
 NAMESPACE_END(csci3081);

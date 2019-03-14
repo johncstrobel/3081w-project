@@ -50,12 +50,16 @@ Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
 
     switch (etype) {
       case (kLight):
+        std::cout << "here" << std::endl;
+        fflush(stdout);
         entity = factory_->ConstructLight(entity_config);
         break;
       case (kFood):
+        // entity = factory_->ConstructFood(entity_config);
         entity = new Food();
         break;
       case (kBraitenberg):
+        // entity = factory_->ConstructRobot(entity_config);
         entity = new BraitenbergVehicle();
         break;
       default:
