@@ -1,6 +1,6 @@
 ### Feedback for Proj 01
 
-Run on March 14, 14:07:02 PM.
+Run on March 15, 10:33:27 AM.
 
 + Pass: Checkout devel branch.
 
@@ -57,21 +57,21 @@ Run on March 14, 14:07:02 PM.
 #### Git Usage
 
 + Pass: Check git commit history
-Sufficient commits (found=55,required=25)
+Sufficient commits (found=74,required=25)
 
 + Pass: Run git ls-remote gather all branches in repo
 
-c5221e5d87d86d9601cc01fb5e229e1202f6278b	refs/heads/devel
+6629d81c5c75c8e54ff7d64dd347f5f7bb612ef2	refs/heads/devel
 
 00fe9f39d5682f2869f3a5e85e878961887e50cf	refs/heads/feature/03-adding-tests
 
-ae341a2c9d2acbb2f7f9e1cb4149f13fe316745c	refs/heads/feature/priority-level-2
+6629d81c5c75c8e54ff7d64dd347f5f7bb612ef2	refs/heads/feature/priority-level-2
 
 1aafd986340a9c11cf0dc85e39d85551dec705e2	refs/heads/fix/01-simulator-not-compiling
 
 10f491f1cc086f5bb9e8edc4e1683dad693de517	refs/heads/fix/02-robots-stuck-in-walls
 
-7b174c8860330fb0911e0eaec2ab5a2fc1c800a6	refs/heads/master
+c656f4df91bb1badfc81222cbd5b37f13ca2a745	refs/heads/master
 
 
 
@@ -111,68 +111,7 @@ ae341a2c9d2acbb2f7f9e1cb4149f13fe316745c	refs/heads/feature/priority-level-2
 make[1]: Entering directory '/classes/grades/Spring-2019/csci3081/dtorban/csci3081-grading-env/grading-scripts/grading/Proj_01_Full_Feedback/repo-strob105/project/src'
 ==== Checking style is correct ====
 /classes/grades/Spring-2019/csci3081/dtorban/csci3081-grading-env/grading-scripts/grading/Proj_01_Full_Feedback/repo-strob105/cpplint/cpplint.py --root=.. *.cc *.h
-arena.cc:238:  Missing space after ,  [whitespace/comma] [3]
-arena.cc:46:  Add #include <string> for string  [build/include_what_you_use] [4]
-braitenberg_vehicle.cc:48:  At least two spaces is best between code and comments  [whitespace/comments] [2]
-braitenberg_vehicle.cc:48:  Should have a space between // and comment  [whitespace/comments] [4]
-braitenberg_vehicle.cc:49:  Missing space after ,  [whitespace/comma] [3]
-braitenberg_vehicle.cc:51:  Missing space before ( in if(  [whitespace/parens] [5]
-braitenberg_vehicle.cc:51:  Missing space before {  [whitespace/braces] [5]
-braitenberg_vehicle.cc:163:  Missing space before ( in if(  [whitespace/parens] [5]
-braitenberg_vehicle.cc:168:  Missing space before ( in if(  [whitespace/parens] [5]
-braitenberg_vehicle.cc:173:  Missing space before ( in if(  [whitespace/parens] [5]
-braitenberg_vehicle.cc:173:  Missing space before {  [whitespace/braces] [5]
-braitenberg_vehicle.cc:175:  Missing space after ,  [whitespace/comma] [3]
-braitenberg_vehicle.cc:176:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-braitenberg_vehicle.cc:178:  Missing space after ,  [whitespace/comma] [3]
-braitenberg_vehicle.cc:181:  Missing space after ,  [whitespace/comma] [3]
-controller.cc:36:  Extra space for operator !   [whitespace/operators] [4]
-controller.cc:41:  An else should appear on the same line as the preceding }  [whitespace/newline] [4]
-controller.cc:41:  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
-factory.cc:14:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-factory.cc:17:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.cc:17:  Missing space before {  [whitespace/braces] [5]
-factory.cc:19:  At least two spaces is best between code and comments  [whitespace/comments] [2]
-factory.cc:19:  Should have a space between // and comment  [whitespace/comments] [4]
-factory.cc:26:  Missing space after ,  [whitespace/comma] [3]
-factory.cc:28:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.cc:30:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.cc:30:  Missing space before {  [whitespace/braces] [5]
-factory.cc:35:  Missing space after ,  [whitespace/comma] [3]
-factory.cc:37:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.cc:39:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.cc:39:  Missing space before {  [whitespace/braces] [5]
-factory.cc:44:  Missing space after ,  [whitespace/comma] [3]
-factory.cc:46:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.cc:42:  Add #include <string> for string  [build/include_what_you_use] [4]
-graphics_arena_viewer.cc:39:  Missing spaces around =  [whitespace/operators] [4]
-graphics_arena_viewer.cc:46:  An else should appear on the same line as the preceding }  [whitespace/newline] [4]
-graphics_arena_viewer.cc:46:  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
-arena_entity.h:141:  Is this a non-const reference? If so, make const or use a pointer: json_object& entity_config  [runtime/references] [2]
-arena.h:52:  Zero-parameter constructors should not be marked explicit.  [runtime/explicit] [5]
-arena.h:55:  Is this a non-const reference? If so, make const or use a pointer: json_object& arena_object  [runtime/references] [2]
-behavior_enum.h:37:  Add #include <string> for string  [build/include_what_you_use] [4]
-common.h:19:  Is this a non-const reference? If so, make const or use a pointer: json_value& v  [runtime/references] [2]
-common.h:20:  Is this a non-const reference? If so, make const or use a pointer: json_value& v  [runtime/references] [2]
-common.h:21:  Tab found; better to use spaces  [whitespace/tab] [1]
-common.h:20:  Add #include <string> for string  [build/include_what_you_use] [4]
-controller.h:95:  #endif line should be "#endif  // SRC_CONTROLLER_H_"  [build/header_guard] [5]
-controller.h:69:  Should have a space between // and comment  [whitespace/comments] [4]
-controller.h:72:  Should have a space between // and comment  [whitespace/comments] [4]
-controller.h:76:  Should have a space between // and comment  [whitespace/comments] [4]
-controller.h:80:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
-entity_type.h:14:  Found C++ system header after other header. Should be: entity_type.h, c system, c++ system, other.  [build/include_order] [4]
-factory.h:19:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.h:19:  You don't need a ; after a }  [readability/braces] [4]
-factory.h:21:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.h:21:  Is this a non-const reference? If so, make const or use a pointer: json_object& entity_config  [runtime/references] [2]
-factory.h:22:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.h:22:  Is this a non-const reference? If so, make const or use a pointer: json_object& entity_config  [runtime/references] [2]
-factory.h:23:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-factory.h:23:  Is this a non-const reference? If so, make const or use a pointer: json_object& entity_config  [runtime/references] [2]
-graphics_arena_viewer.h:171:  "virtual" is redundant since function is already declared as "override"  [readability/inheritance] [4]
-pose.h:67:  Missing spaces around ==  [whitespace/operators] [3]
-pose.h:76:  Missing spaces around !=  [whitespace/operators] [3]
+arena.h:53:  Zero-parameter constructors should not be marked explicit.  [runtime/explicit] [5]
 Done processing arena.cc
 Done processing braitenberg_vehicle.cc
 Done processing controller.cc
@@ -204,7 +143,7 @@ Done processing params.h
 Done processing pose.h
 Done processing rgb_color.h
 Done processing wheel_velocity.h
-Total errors found: 62
+Total errors found: 1
 Makefile:162: recipe for target 'check-style' failed
 make[1]: *** [check-style] Error 1
 make[1]: Leaving directory '/classes/grades/Spring-2019/csci3081/dtorban/csci3081-grading-env/grading-scripts/grading/Proj_01_Full_Feedback/repo-strob105/project/src'
