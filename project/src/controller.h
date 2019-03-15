@@ -66,18 +66,17 @@ class Controller {
   */
   void Reset();
 
-  //copy constructor
+  // copy constructor
   Controller(const Controller &other):
   last_dt(other.last_dt), viewers_(other.viewers_), config_(other.config_) {
-    //normal params
+    // normal params
 //    last_dt = other.last_dt;
 //    viewers_ = other.viewers_;
 
-    //copy reference for pointers?
+    // copy reference for pointers?
     arena_ = other.arena_;
     *viewer_ = *other.viewer_;
 //    *config_ = *other.config_;
-
   }
 
   Controller &operator=(const Controller &other) = delete;
@@ -92,4 +91,4 @@ class Controller {
 
 NAMESPACE_END(csci3081);
 
-#endif /* SRC_CONTROLLER_H_ */
+#endif  // SRC_CONTROLLER_H_

@@ -45,10 +45,10 @@ BraitenbergVehicle::BraitenbergVehicle() :
 void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
   if (is_moving()) {
     motion_behavior_->UpdatePose(dt, wheel_velocity_);
-  } else { //is moving() returns something els
-    motion_behavior_->UpdatePose(dt,WheelVelocity(-2,-2));
+  } else {  // is moving() returns something else
+    motion_behavior_->UpdatePose(dt, WheelVelocity(-2, -2));
     colliding_ = colliding_ - dt;
-    if(colliding_ <= 0){
+    if (colliding_ <= 0) {
       set_is_moving(true);
       set_heading(static_cast<int>((get_pose().theta + 45)) % 360);
     }
@@ -160,25 +160,25 @@ void BraitenbergVehicle::Update() {
 
   if (numBehaviors) {  // numBehaviors > 0
     int food_influence = 1, light_influence = 1, senslen = 1;
-    if((get_sensor_reading_left(closest_light_entity_) - senslen) <= 0 &&
+    if ((get_sensor_reading_left(closest_light_entity_) - senslen) <= 0 &&
        (get_sensor_reading_right(closest_light_entity_) - senslen) <= 0) {
          light_influence = 0;
     }
 
-    if((get_sensor_reading_left(closest_food_entity_) - senslen) <= 0 &&
+    if ((get_sensor_reading_left(closest_food_entity_) - senslen) <= 0 &&
        (get_sensor_reading_right(closest_food_entity_) - senslen) <= 0) {
          food_influence = 0;
     }
 
-    if(food_influence && !light_influence){  // influenced by food only
+    if (food_influence && !light_influence) {  // influenced by food only
       // blue (0,0,255)
-      set_color(RgbColor(0,0,255));
-    } else if (!food_influence && light_influence) {  // influenced by light only
+      set_color(RgbColor(0, 0, 255));
+    } else if (!food_influence && light_influence) {  // light influence only
       // gold (255,204,51)
-      set_color(RgbColor(255,204,51));
+      set_color(RgbColor(255, 204, 51));
     } else {  // influenced by both or neither
       // maroon (122,0,25)
-      set_color(RgbColor(122,0,25));
+      set_color(RgbColor(122, 0, 25));
     }
 
     wheel_velocity_ = WheelVelocity(
@@ -234,16 +234,16 @@ void BraitenbergVehicle::UpdateLightSensors() {
   }
 }
 
-void BraitenbergVehicle::LoadFromObject(json_object& entity_config) {
+void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   ArenaEntity::LoadFromObject(entity_config);
 
-  if (entity_config.find("light_behavior") != entity_config.end()) {
+  if (entity_config->find("light_behavior") != entity_config->end()) {
       light_behavior_ = get_behavior_type(
-        entity_config["light_behavior"].get<std::string>());
+        (*entity_config)["light_behavior"].get<std::string>());
   }
-  if (entity_config.find("food_behavior") != entity_config.end()) {
+  if (entity_config->find("food_behavior") != entity_config->end()) {
       food_behavior_ = get_behavior_type(
-        entity_config["food_behavior"].get<std::string>());
+        (*entity_config)["food_behavior"].get<std::string>());
   }
 
   UpdateLightSensors();

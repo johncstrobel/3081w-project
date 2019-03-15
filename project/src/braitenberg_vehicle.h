@@ -29,9 +29,10 @@ NAMESPACE_BEGIN(csci3081);
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/
-/* @brief Entity class to represent a Braitenberg Vehicle
+/**
+ * @brief Entity class to represent a Braitenberg Vehicle
  *
- * A braitenberg vehicle is a simple machine that is used to show how simple
+ * @detail A braitenberg vehicle is a simple machine that is used to show how simple
  * concepts (in this case wiring) can give way to complex looking behavior. In
  * this simulation, Braitenberg vehicles contain sensors, which can be hooked
  * up in four different ways, and thus they can exhibit four different behaviors
@@ -68,6 +69,11 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   void HandleCollision(EntityType ent_type,
                        ArenaEntity * object = NULL) override;
 
+  /**
+  * @brief Compares in param with current closest entity.
+  *
+  * @param entity The entity to be compared to the current closest.
+  */
   void SenseEntity(const ArenaEntity& entity);
 
   std::string get_name() const override;
@@ -76,9 +82,20 @@ class BraitenbergVehicle : public ArenaMobileEntity {
 
   std::vector<Pose> get_light_sensors();
 
+  /**
+  * @brief Changes effective range of the light sensors.
+  *
+  * @detail Updates the vector for each of the light sensors based on the
+  *  current position of the vehicle.
+  */
   void UpdateLightSensors();
 
-  void LoadFromObject(json_object& entity_config) override;
+  /**
+  * @brief Updates settings based on JSON file.
+  *
+  * @param entity_config JSON object that determines parameters for the object.
+  */
+  void LoadFromObject(json_object* entity_config) override;
 
   Behavior get_light_behavior() { return light_behavior_; }
 

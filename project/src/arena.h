@@ -18,6 +18,7 @@
 #include "src/common.h"
 #include "src/food.h"
 #include "src/arena_mobile_entity.h"
+#include "src/factory.h"
 
 /*******************************************************************************
  * Namespaces
@@ -49,10 +50,10 @@ class Arena {
    *
    * Initialize all private variables and entities.
    */
-  explicit Arena();
+  Arena();
 
 
-  explicit Arena(json_object& arena_object);
+  explicit Arena(json_object* arena_object);
 
   /**
    * @brief Arena's destructor. `delete` all entities created.
@@ -70,6 +71,16 @@ class Arena {
    * Arena::UpdateEntitiesTimestep() once.
    */
   void AdvanceTime(double dt);
+
+  /**
+  * @brief Adds an entity to entities_.
+  *
+  * @param entity The entity to be added. Must be a pointer.
+  *
+  * @detail Pushes back other entities in the vector, and updates the
+  *  braitenberg vehicle's light sensors (if the entity is a braitenberg
+  *  vehicle)
+  */
 
   void AddEntity(ArenaEntity* entity);
 
@@ -157,6 +168,8 @@ class Arena {
 
   // A subset of the entities -- only those that can move (only Robot for now).
   std::vector<class ArenaMobileEntity *> mobile_entities_;
+
+  Factory * factory_;
 };
 
 NAMESPACE_END(csci3081);

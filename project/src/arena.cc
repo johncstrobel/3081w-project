@@ -2,6 +2,9 @@
  * @file arena.cc
  *
  * @copyright 2017 3081 Staff, All rights reserved.
+ *
+ * @TODO: change arena constructor from a switch statement on etype
+ *  to a function in the factory class
  */
 
 /*******************************************************************************
@@ -10,6 +13,7 @@
 #include <algorithm>
 #include <iostream>
 #include <cmath>
+#include <string>
 
 #include "src/arena.h"
 #include "src/light.h"
@@ -27,35 +31,35 @@ NAMESPACE_BEGIN(csci3081);
 Arena::Arena(): x_dim_(X_DIM),
       y_dim_(Y_DIM),
       entities_(),
-      mobile_entities_() {
+      mobile_entities_(), factory_(new Factory()) {
     AddEntity(new Light());
     AddEntity(new Food());
     AddEntity(new BraitenbergVehicle());
 }
 
-Arena::Arena(json_object& arena_object): x_dim_(X_DIM),
+Arena::Arena(json_object* arena_object): x_dim_(X_DIM),
       y_dim_(Y_DIM),
       entities_(),
-      mobile_entities_() {
-  x_dim_ = arena_object["width"].get<double>();
-  y_dim_ = arena_object["height"].get<double>();
-  json_array& entities = arena_object["entities"].get<json_array>();
+      mobile_entities_(), factory_(new Factory()) {
+  x_dim_ = (*arena_object)["width"].get<double>();
+  y_dim_ = (*arena_object)["height"].get<double>();
+  json_array& entities = (*arena_object)["entities"].get<json_array>();
   for (unsigned int f = 0; f < entities.size(); f++) {
-    json_object& entity_config = entities[f].get<json_object>();
+    json_object * entity_config = &(entities[f].get<json_object>());
     EntityType etype = get_entity_type(
-      entity_config["type"].get<std::string>());
+      (*entity_config)["type"].get<std::string>());
 
     ArenaEntity* entity = NULL;
 
     switch (etype) {
       case (kLight):
-        entity = new Light();
+        entity = factory_->ConstructLight(entity_config);
         break;
       case (kFood):
-        entity = new Food();
+        entity = factory_->ConstructFood(entity_config);
         break;
       case (kBraitenberg):
-        entity = new BraitenbergVehicle();
+        entity = factory_->ConstructRobot(entity_config);
         break;
       default:
         std::cout << "FATAL: Bad entity type on creation" << std::endl;
@@ -235,7 +239,7 @@ void Arena::AdjustEntityOverlap(ArenaMobileEntity * const mobile_e,
     double distance_between = sqrt(delta_x*delta_x + delta_y*delta_y);
     double distance_to_move =
       mobile_e->get_radius() + other_e->get_radius() - distance_between;
-    double angle = atan2(delta_y,delta_x);
+    double angle = atan2(delta_y, delta_x);
     mobile_e->set_position(
       mobile_e->get_pose().x+cos(angle)*distance_to_move,
       mobile_e->get_pose().y+sin(angle)*distance_to_move);
