@@ -1,6 +1,6 @@
 ### Feedback for Proj 01
 
-Run on March 15, 20:14:06 PM.
+Run on March 15, 23:08:38 PM.
 
 + Pass: Checkout devel branch.
 
@@ -57,7 +57,7 @@ Run on March 15, 20:14:06 PM.
 #### Git Usage
 
 + Pass: Check git commit history
-Sufficient commits (found=76,required=25)
+Commits found=76
 
 + Pass: Run git ls-remote gather all branches in repo
 
@@ -71,7 +71,7 @@ a744fddf2760036ad7d415132103c6727b725834	refs/heads/devel
 
 10f491f1cc086f5bb9e8edc4e1683dad693de517	refs/heads/fix/02-robots-stuck-in-walls
 
-c22dd1166db30dcde71f20f6cfa61be8a0f92d19	refs/heads/master
+b49e60106fb609837d92c019eb10ea0e3bb0e580	refs/heads/master
 
 
 
