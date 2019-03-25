@@ -148,8 +148,8 @@ void BraitenbergVehicle::Update() {
       break;
     case kLove:
       food_wheel_velocity = WheelVelocity(
-        get_sensor_reading_left(closest_food_entity_),
-        get_sensor_reading_right(closest_food_entity_),
+        1.0/get_sensor_reading_left(closest_food_entity_),
+        1.0/get_sensor_reading_right(closest_food_entity_),
         defaultSpeed_);
       break;
     case kNone:
