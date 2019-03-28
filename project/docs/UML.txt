@@ -2,12 +2,29 @@
 
 title Relationships - Class Diagram
 
-abstract class MotionBehavior
-class BehaviorCoward
-class BehaviorAggressive
-class BehaviorLove
-class BehaviorExplore
-class BehaviorNone
+abstract class MotionBehavior{
+    -WheelVelocity UpdateVelocity(double leftDist, 
+    double rightDist, defaultSpeed)
+}
+class BehaviorCoward{
+    +WheelVelocity UpdateVelocity(double leftDist, 
+    double rightDist, defaultSpeed)
+}    
+class BehaviorAggressive{
+    +WheelVelocity UpdateVelocity(double leftDist, 
+    double rightDist, defaultSpeed)
+}
+class BehaviorLove{
+    +WheelVelocity UpdateVelocity(double leftDist, 
+    double rightDist, defaultSpeed)
+}
+class BehaviorExplore{
+    +WheelVelocity UpdateVelocity(double leftDist, 
+    double rightDist, defaultSpeed)
+}
+class BehaviorNone{
+    +WheelVelocity UpdateVelocity()
+}
 
 class Arena{
     -ArenaEntity * entities
@@ -15,7 +32,8 @@ class Arena{
 }
 
 class Factory{
-    +BraitenbergVehicle * ConstructRobot(json_object& entity_config)
+    +BraitenbergVehicle * ConstructRobot(
+    json_object& entity_config)
     +Food * ConstructFood(json_object& entity_config)
     +Light * ConstructLight(json_object& entity_config)
 }
@@ -25,33 +43,43 @@ abstract class ArenaEntity{
     +virtual void Reset()
     +virtual void Update()
     +void RelativeChangeHeading(const double delta)
-    +virtual void LoadFromObject(jsen_object& entity_config)
+    +virtual void LoadFromObject(
+    jsen_object& entity_config)
 }
 
-abstract class ArenaMobileEntity
+abstract class ArenaMobileEntity{
+    +virtual void HandleCollision(EntityType ent_type, 
+    ArenaEntity * object)
+    -double speed_
+    -bool is_moving_
+}
 
-class Light
+class Light{
+    +void HandleCollision(EntityType ent_type, 
+    ArenaEntity * object)
+}
 
 class BraitenbergVehicle{
     +BraitenbergVehicle()
     +void TimestepUpdate(unsigned int dt)
     +void Update()
-    +void HandleCollision(EntityType ent_type, ArenaEntity * object)
+    +void HandleCollision(EntityType ent_type, 
+    ArenaEntity * object)
     +void SenseEntity(const ArenaEntity& entity)
     +void UpdateLightSensors()
     +void LoadFromObject(json_object& entity_config)
     -vector light_sensors_
-    -MotionBehavior * motion_behavior_
     -WheelVelocity wheel_velocity_
-    -Behavior light_behavior
-    -Behavior food_behavior_
+    -MotionBehavior* light_behavior
+    -MotionBehavior* food_behavior_
     -const ArenaEntity * closest_light_entity
     -const ArenaEntity* closest_food_entity_
     -double defaultSpeed_
     -double colliding_
 }
 
-abstract class ArenaImmobileEntity
+abstract class ArenaImmobileEntity{
+}
 class Food
 
 Arena *-left- Factory
