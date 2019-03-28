@@ -2,7 +2,7 @@
 
 title Relationships - Class Diagram
 
-abstract class MotionBehavior
+abstract class Behavior
 class BehaviorCoward
 class BehaviorAggressive
 class BehaviorLove
@@ -62,13 +62,13 @@ ArenaImmobileEntity <|-down- Food
 ArenaMobileEntity <|-down- Light
 ArenaMobileEntity <|-down- BraitenbergVehicle
 
-BraitenbergVehicle *-left- MotionBehavior
+BraitenbergVehicle *-left- Behavior
 
-MotionBehavior <|-down- BehaviorCoward
-MotionBehavior <|-down- BehaviorNone
-MotionBehavior <|-down- BehaviorAggressive
-MotionBehavior <|-down- BehaviorExplore
-MotionBehavior <|-down- BehaviorLove
+Behavior <|-down- BehaviorCoward
+Behavior <|-down- BehaviorNone
+Behavior <|-down- BehaviorAggressive
+Behavior <|-down- BehaviorExplore
+Behavior <|-down- BehaviorLove
 
 
 @enduml
