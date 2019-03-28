@@ -28,7 +28,7 @@ NAMESPACE_BEGIN(csci3081);
  *
  */
 
-enum Behavior {
+enum BehaviorEnum {
   kNone = 0,
   kAggressive,
   kCoward,
@@ -36,7 +36,7 @@ enum Behavior {
   kLove
 };
 
-inline Behavior get_behavior_type(const std::string& type) {
+inline BehaviorEnum get_behavior_type(const std::string& type) {
   if (type == "Aggressive") {
     return kAggressive;
   }

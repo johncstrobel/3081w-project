@@ -19,6 +19,7 @@
 #include "src/motion_behavior_differential.h"
 #include "src/wheel_velocity.h"
 #include "src/behavior_enum.h"
+#include "src/behavior.h"
 
 
 /*******************************************************************************
