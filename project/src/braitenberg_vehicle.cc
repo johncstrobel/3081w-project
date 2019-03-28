@@ -228,7 +228,7 @@ void BraitenbergVehicle::Update() {
       set_color(RgbColor(122, 0, 25));
     }
     if(braitenberg_influence) {
-      set_color(RgbColor(0,0,0));
+      set_color(RgbColor(255,0,0));
     }
 
     wheel_velocity_ = WheelVelocity(
@@ -297,7 +297,6 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
         (*entity_config)["food_behavior"].get<std::string>());
   }
   if (entity_config->find("braitenberg_behavior") != entity_config->end()) {
-    std::cout << "braitenberg behavior loading..." << std::endl;
       braitenberg_behavior_ = get_behavior_type(
         (*entity_config)["braitenberg_behavior"].get<std::string>());
   }
