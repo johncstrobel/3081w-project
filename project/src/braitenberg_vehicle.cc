@@ -237,13 +237,6 @@ void BraitenbergVehicle::Update() {
       (light_wheel_velocity.right + food_wheel_velocity.right +
         braitenberg_wheel_velocity.right)/numBehaviors,
       defaultSpeed_);
-      std::cout << "light wheel velocity: (" << light_wheel_velocity.left <<
-         "," << light_wheel_velocity.right << ")"<< std::endl;
-      std::cout << "bv wheel velocity: (" << braitenberg_wheel_velocity.left <<
-         "," << braitenberg_wheel_velocity.right << ")"<< std::endl;
-     std::cout << "food wheel velocity: (" << food_wheel_velocity.left <<
-        "," << food_wheel_velocity.right << ")"<< std::endl;
-
   } else {
     wheel_velocity_ = WheelVelocity(0, 0);
   }

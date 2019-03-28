@@ -3,9 +3,9 @@
   "height": 600,
   "entities": [
       {"type": "Braitenberg", "x":220, "y":50, "r":15, "theta": 90.0,
-        "light_behavior": "Explore", "food_behavior": "Love",
+        "light_behavior": "Explore", "food_behavior": "Coward",
         "braitenberg_behavior": "Aggressive"},
       {"type": "Braitenberg", "x":220, "y":400, "r":15, "theta": 270.0,
-        "light_behavior": "Explore", "food_behavior": "Love",
+        "light_behavior": "Explore", "food_behavior": "Coward",
         "braitenberg_behavior": "Coward"}]
 }
