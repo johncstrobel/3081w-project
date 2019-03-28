@@ -6,6 +6,7 @@
  * Includes
  ******************************************************************************/
  #include "src/wheel_velocity.h"
+ #include "src/behavior_enum.h"
 
 
 /*******************************************************************************
@@ -26,11 +27,17 @@ NAMESPACE_BEGIN(csci3081);
  */
 class Behavior {
  public:
-    virtual WheelVelocity * UpdateVelocity() = 0;
-   // in inherited classes, params:
-   // double leftDist, double rightDist, double defaultSpeed
+    Behavior();
+
+    virtual ~Behavior();
+
+    // in inherited classes, params:
+    // double leftDist, double rightDist, double defaultSpeed
+   virtual WheelVelocity * UpdateVelocity() = 0;
+
+   virtual Behavior * ChooseFromIndex();
  private:
-   std::string behavior_type_;
+   BehaviorEnum behavior_type_;
 };
 
 NAMESPACE_END(csci3081);

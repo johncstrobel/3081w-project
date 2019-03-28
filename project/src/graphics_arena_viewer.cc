@@ -14,6 +14,7 @@
 #include "src/graphics_arena_viewer.h"
 #include "src/rgb_color.h"
 #include "src/braitenberg_vehicle.h"
+#include "src/behavior.h"
 
 /*******************************************************************************
  * Namespaces
@@ -338,7 +339,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       this->arena_->get_entities()[entitySelect->selectedIndex()];
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_light_behavior(
-          static_cast<Behavior>(index));
+          static_cast<Behavior*>(index));
       }
     });
 
@@ -348,7 +349,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       this->arena_->get_entities()[entitySelect->selectedIndex()];
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_food_behavior(
-          static_cast<Behavior>(index));
+          static_cast<Behavior*>(index));
       }
     });
 
