@@ -27,6 +27,7 @@ NAMESPACE_BEGIN(csci3081);
  */
 class Behavior {
  public:
+    Behavior(int behaviortype){behavior_type_ = behaviortype};
     Behavior();
 
     virtual ~Behavior();
@@ -37,7 +38,7 @@ class Behavior {
 
    virtual Behavior * ChooseFromIndex();
  private:
-   BehaviorEnum behavior_type_;
+   int behavior_type_;
 };
 
 NAMESPACE_END(csci3081);

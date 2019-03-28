@@ -339,7 +339,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       this->arena_->get_entities()[entitySelect->selectedIndex()];
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_light_behavior(
-          static_cast<Behavior*>(index));
+          static_cast<Behavior>(index));
       }
     });
 
@@ -349,7 +349,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       this->arena_->get_entities()[entitySelect->selectedIndex()];
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_food_behavior(
-          static_cast<Behavior*>(index));
+          new Behavior(index));
       }
     });
 
