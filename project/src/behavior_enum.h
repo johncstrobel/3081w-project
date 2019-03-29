@@ -28,13 +28,33 @@ NAMESPACE_BEGIN(csci3081);
  *
  */
 
-enum BehaviorEnum {
-  kNone = 0,
-  kAggressive,
-  kCoward,
-  kExplore,
-  kLove
-};
+
+inline BehaviorEnum get_behavior_type_int(int behavior){
+  switch(behavior){
+    case 1:
+      return kAggressive;
+      break;
+    case 2:
+      return kCoward;
+      break;
+    case 3:
+      return kExplore;
+      break;
+    case 4:
+      return kLove;
+      break;
+    case 0:
+    default:
+      return kNone;
+      break;
+  }
+  enum BehaviorEnum {
+    kNone = 0,
+    kAggressive,
+    kCoward,
+    kExplore,
+    kLove
+}
 
 inline BehaviorEnum get_behavior_type(const std::string& type) {
   if (type == "Aggressive") {
