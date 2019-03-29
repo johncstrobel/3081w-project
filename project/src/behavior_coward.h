@@ -35,7 +35,7 @@ class BehaviorCoward : public Behavior {
 
     ~BehaviorCoward(){delete velocity_;};
 
-   WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed);
+   WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
 
  private:
    // BehaviorEnum type_;

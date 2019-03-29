@@ -33,7 +33,7 @@ class Behavior {
 
     // in inherited classes, params:
     // double leftDist, double rightDist, double defaultSpeed
-   virtual WheelVelocity * UpdateVelocity() = 0;
+   virtual WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) = 0;
 
    BehaviorEnum get_type(){return type_;}
 
