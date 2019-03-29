@@ -1,5 +1,5 @@
-#ifndef SRC_BEHAVIOR_H_
-#define SRC_BEHAVIOR_H_
+#ifndef SRC_BEHAVIOR_COWARD_H_
+#define SRC_BEHAVIOR_COWARD_H_
 
 
 /*******************************************************************************
@@ -7,6 +7,7 @@
  ******************************************************************************/
  #include "src/wheel_velocity.h"
  #include "src/behavior_enum.h"
+ #include "src/behavior.h"
 
 
 /*******************************************************************************
@@ -25,22 +26,22 @@ NAMESPACE_BEGIN(csci3081);
  * @TODO
  *
  */
-class Behavior {
+class BehaviorCoward : public Behavior {
  public:
-    Behavior();
+    BehaviorCoward();
 
-    virtual ~Behavior();
+    void operator=(const BehaviorCoward &b2) = delete;
+    BehaviorCoward(const BehaviorCoward &b2) = delete;
 
-    // in inherited classes, params:
-    // double leftDist, double rightDist, double defaultSpeed
-   virtual WheelVelocity * UpdateVelocity() = 0;
+    ~BehaviorCoward(){delete velocity_;};
 
-   BehaviorEnum get_type(){return type_;}
+   WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed);
 
  private:
-   BehaviorEnum type_;
+   // BehaviorEnum type_;
+   WheelVelocity * velocity_;
 };
 
 NAMESPACE_END(csci3081);
 
-#endif  // SRC_BEHAVIOR_H_
+#endif  // SRC_BEHAVIOR_COWARD_H_

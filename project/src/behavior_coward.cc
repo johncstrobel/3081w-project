@@ -1,5 +1,5 @@
-#ifndef SRC_BEHAVIOR_H_
-#define SRC_BEHAVIOR_H_
+#ifndef SRC_BEHAVIOR_COWARD_CC_
+#define SRC_BEHAVIOR_COWARD_CC_
 
 
 /*******************************************************************************
@@ -7,6 +7,7 @@
  ******************************************************************************/
  #include "src/wheel_velocity.h"
  #include "src/behavior_enum.h"
+ #include "src/behavior.h"
 
 
 /*******************************************************************************
@@ -25,22 +26,27 @@ NAMESPACE_BEGIN(csci3081);
  * @TODO
  *
  */
-class Behavior {
- public:
-    Behavior();
+BehaviorCoward::BehaviorCoward(){
+  velocity_ = new WheelVelocity(0,0);
+}
 
-    virtual ~Behavior();
+WheelVelocity * BehaviorCoward::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+  return velocity_;
+}
 
-    // in inherited classes, params:
-    // double leftDist, double rightDist, double defaultSpeed
-   virtual WheelVelocity * UpdateVelocity() = 0;
-
-   BehaviorEnum get_type(){return type_;}
-
- private:
-   BehaviorEnum type_;
-};
+// class BehaviorCoward : public Behavior {
+//  public:
+//     BehaviorCoward();
+//
+//     ~BehaviorCoward(){delete velocity_;};
+//
+//    WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed);
+//
+//  private:
+//    // BehaviorEnum type_;
+//    WheelVelocity * velocity_;
+// };
 
 NAMESPACE_END(csci3081);
 
-#endif  // SRC_BEHAVIOR_H_
+#endif  // SRC_BEHAVIOR_COWARD_CC_

@@ -20,6 +20,7 @@
 #include "src/wheel_velocity.h"
 #include "src/behavior_enum.h"
 #include "src/behavior.h"
+#include "src/behavior_coward.h"
 
 
 /*******************************************************************************
@@ -98,13 +99,70 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   */
   void LoadFromObject(json_object* entity_config) override;
 
-  Behavior * get_light_behavior() { return light_behavior_; }
+  void set_behavior(Behavior * behavior,std::string type){
+    if(type.compare("food")==0) {
+      food_behavior_ = behavior;
+    } else if(type.compare("light")==0){
+      light_behavior_ = behavior;
+    } else {
+      std::cout << "ya done goofed" << std::endl;
+    }
+  }
 
-  void set_light_behavior(Behavior * behavior) { light_behavior_ = behavior; }
+  Behavior * get_light_behavior() { return light_behavior_; }
+  BehaviorEnum  get_light_behavior_enum() { return light_behavior_enum_; }
+
+  void set_light_behavior(BehaviorEnum behavior) {
+    switch(behavior){
+      case 1:
+        // set_behavior(new BehaviorAggressive(),"light");
+        std::cout << "todo" << std::endl;
+        break;
+      case 2:
+        set_behavior(new BehaviorCoward(),"light");
+        break;
+      case 3:
+        // set_behavior(new BehaviorExplore(), "light");
+        std::cout << "todo" << std::endl;
+        break;
+      case 4:
+        // set_behavior(new BehaviorLove(),"light");
+        std::cout << "todo" << std::endl;
+        break;
+      case 0:
+      default:
+        // set_behavior(new BehaviorNone(),"light");
+        std::cout << "todo" << std::endl;
+    }
+  }
 
   Behavior * get_food_behavior() { return food_behavior_; }
+  BehaviorEnum  get_food_behavior_enum() { return food_behavior_enum_; }
 
-  void set_food_behavior(Behavior * behavior) { food_behavior_ = behavior; }
+  void set_food_behavior(BehaviorEnum behavior) {
+     food_behavior_enum_ = behavior;
+     switch(behavior){
+       case 1:
+         // set_behavior(new BehaviorAggressive(),"food");
+         std::cout << "todo" << std::endl;
+         break;
+       case 2:
+         set_behavior(new BehaviorCoward(),"food");
+         break;
+       case 3:
+         // set_behavior(new BehaviorExplore(), "food");
+         std::cout << "todo" << std::endl;
+         break;
+       case 4:
+         // set_behavior(new BehaviorLove(),"food");
+         std::cout << "todo" << std::endl;
+         break;
+       case 0:
+       default:
+         // set_behavior(new BehaviorNone(),"food");
+         std::cout << "todo" << std::endl;
+     }
+  }
 
   double get_sensor_reading_left(const ArenaEntity* entity);
 
@@ -116,8 +174,12 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   std::vector<Pose> light_sensors_;
   MotionBehaviorDifferential * motion_behavior_{nullptr};
   WheelVelocity wheel_velocity_;
+  BehaviorEnum light_behavior_enum_;
+  BehaviorEnum food_behavior_enum_;
+  BehaviorEnum braitenberg_behavior_enum_;
   Behavior * light_behavior_;
   Behavior * food_behavior_;
+  Behavior * braitenberg_behavior_;
   const ArenaEntity* closest_light_entity_;
   const ArenaEntity* closest_food_entity_;
   double defaultSpeed_;

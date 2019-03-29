@@ -28,6 +28,29 @@ NAMESPACE_BEGIN(csci3081);
  *
  */
 
+  enum BehaviorEnum {
+    kNone = 0,
+    kAggressive,
+    kCoward,
+    kExplore,
+    kLove
+};
+
+inline BehaviorEnum get_behavior_type(const std::string& type) {
+  if (type == "Aggressive") {
+    return kAggressive;
+  }
+  if (type == "Love") {
+    return kLove;
+  }
+  if (type == "Coward") {
+    return kCoward;
+  }
+  if (type == "Explore") {
+    return kExplore;
+  }
+  return kNone;
+}
 
 inline BehaviorEnum get_behavior_type_int(int behavior){
   switch(behavior){
@@ -48,29 +71,6 @@ inline BehaviorEnum get_behavior_type_int(int behavior){
       return kNone;
       break;
   }
-  enum BehaviorEnum {
-    kNone = 0,
-    kAggressive,
-    kCoward,
-    kExplore,
-    kLove
-}
-
-inline BehaviorEnum get_behavior_type(const std::string& type) {
-  if (type == "Aggressive") {
-    return kAggressive;
-  }
-  if (type == "Love") {
-    return kLove;
-  }
-  if (type == "Coward") {
-    return kCoward;
-  }
-  if (type == "Explore") {
-    return kExplore;
-  }
-  return kNone;
-}
 
 NAMESPACE_END(csci3081);
 
