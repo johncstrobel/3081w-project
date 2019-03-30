@@ -35,7 +35,9 @@ class BehaviorNone : public Behavior {
 
     ~BehaviorNone(){delete velocity_;};
 
-   WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
+   WheelVelocity * CalculateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
+
+   WheelVelocity * CalculateVelocity(double leftDist, double rightDist);
 
  private:
    // BehaviorEnum type_;

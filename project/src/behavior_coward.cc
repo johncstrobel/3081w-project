@@ -30,7 +30,7 @@ BehaviorCoward::BehaviorCoward() {
   Behavior::velocity_ = new WheelVelocity(0,0);
 }
 
-WheelVelocity * BehaviorCoward::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+WheelVelocity * BehaviorCoward::CalculateVelocity(double leftDist, double rightDist, double defaultSpeed){
   velocity_ = new WheelVelocity(leftDist, rightDist, defaultSpeed);
   return velocity_;
 }

@@ -26,12 +26,18 @@ NAMESPACE_BEGIN(csci3081);
  *
  */
 BehaviorNone::BehaviorNone() {
-  Behavior::type_ = kCoward;
+  Behavior::type_ = kNone;
   Behavior::velocity_ = new WheelVelocity(0,0);
 }
 
-WheelVelocity * BehaviorNone::UpdateVelocity(__unused double leftDist,
+WheelVelocity * BehaviorNone::CalculateVelocity(__unused double leftDist,
   __unused double rightDist, __unused double defaultSpeed){
+  velocity_ = new WheelVelocity(0,0);
+  return velocity_;
+}
+
+WheelVelocity * BehaviorNone::CalculateVelocity(__unused double leftDist,
+  __unused double rightDist){
   velocity_ = new WheelVelocity(0,0);
   return velocity_;
 }

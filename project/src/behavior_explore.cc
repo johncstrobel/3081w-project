@@ -30,7 +30,8 @@ BehaviorExplore::BehaviorExplore() {
   Behavior::velocity_ = new WheelVelocity(0,0);
 }
 
-WheelVelocity * BehaviorExplore::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+WheelVelocity * BehaviorExplore::CalculateVelocity(double leftDist,
+  double rightDist, double defaultSpeed){
   velocity_ = new WheelVelocity(1.0/rightDist, 1.0/leftDist, defaultSpeed);
   return velocity_;
 }

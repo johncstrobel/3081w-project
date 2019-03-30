@@ -30,11 +30,10 @@ BehaviorAggressive::BehaviorAggressive() {
   Behavior::velocity_ = new WheelVelocity(0,0);
 }
 
-WheelVelocity * BehaviorAggressive::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+WheelVelocity * BehaviorAggressive::CalculateVelocity(double leftDist, double rightDist, double defaultSpeed){
   velocity_ = new WheelVelocity(rightDist, leftDist, defaultSpeed);
   return velocity_;
 }
-
 
 NAMESPACE_END(csci3081);
 

@@ -21,6 +21,10 @@
 #include "src/behavior_enum.h"
 #include "src/behavior.h"
 #include "src/behavior_coward.h"
+#include "src/behavior_aggressive.h"
+#include "src/behavior_love.h"
+#include "src/behavior_none.h"
+#include "src/behavior_explore.h"
 #include "src/params.h"
 
 
@@ -118,24 +122,20 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   void set_light_behavior(BehaviorEnum behavior) {
     switch(behavior){
       case 1:
-        // set_behavior(new BehaviorAggressive(),"light");
-        std::cout << "todo" << std::endl;
+        set_behavior(new BehaviorAggressive(),"light");
         break;
       case 2:
         set_behavior(new BehaviorCoward(),"light");
         break;
       case 3:
-        // set_behavior(new BehaviorExplore(), "light");
-        std::cout << "todo" << std::endl;
+        set_behavior(new BehaviorExplore(), "light");
         break;
       case 4:
-        // set_behavior(new BehaviorLove(),"light");
-        std::cout << "todo" << std::endl;
+        set_behavior(new BehaviorLove(),"light");
         break;
       case 0:
       default:
-        // set_behavior(new BehaviorNone(),"light");
-        std::cout << "todo" << std::endl;
+        set_behavior(new BehaviorNone(),"light");
     }
   }
 
@@ -146,24 +146,20 @@ class BraitenbergVehicle : public ArenaMobileEntity {
      food_behavior_enum_ = behavior;
      switch(behavior){
        case 1:
-         // set_behavior(new BehaviorAggressive(),"food");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorAggressive(),"food");
          break;
        case 2:
          set_behavior(new BehaviorCoward(),"food");
          break;
        case 3:
-         // set_behavior(new BehaviorExplore(), "food");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorExplore(), "food");
          break;
        case 4:
-         // set_behavior(new BehaviorLove(),"food");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorLove(),"food");
          break;
        case 0:
        default:
-         // set_behavior(new BehaviorNone(),"food");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorNone(),"food");
      }
   }
 
@@ -176,24 +172,20 @@ class BraitenbergVehicle : public ArenaMobileEntity {
      braitenberg_behavior_enum_ = behavior;
      switch(behavior){
        case 1:
-         // set_behavior(new BehaviorAggressive(),"braitenberg");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorAggressive(),"braitenberg");
          break;
        case 2:
          set_behavior(new BehaviorCoward(),"braitenberg");
          break;
        case 3:
-         // set_behavior(new BehaviorExplore(), "braitenberg");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorExplore(), "braitenberg");
          break;
        case 4:
-         // set_behavior(new BehaviorLove(),"braitenberg");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorLove(),"braitenberg");
          break;
        case 0:
        default:
-         // set_behavior(new BehaviorNone(),"braitenberg");
-         std::cout << "todo" << std::endl;
+         set_behavior(new BehaviorNone(),"braitenberg");
      }
   }
 

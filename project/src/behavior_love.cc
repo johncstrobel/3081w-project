@@ -30,7 +30,7 @@ BehaviorLove::BehaviorLove() {
   Behavior::velocity_ = new WheelVelocity(0,0);
 }
 
-WheelVelocity * BehaviorLove::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+WheelVelocity * BehaviorLove::CalculateVelocity(double leftDist, double rightDist, double defaultSpeed){
   velocity_ = new WheelVelocity(1.0/leftDist, 1.0/rightDist, defaultSpeed);
   return velocity_;
 }
