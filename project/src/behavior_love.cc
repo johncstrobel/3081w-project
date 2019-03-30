@@ -1,13 +1,12 @@
-#ifndef SRC_BEHAVIOR_COWARD_H_
-#define SRC_BEHAVIOR_COWARD_H_
+#ifndef SRC_BEHAVIOR_LOVE_CC_
+#define SRC_BEHAVIOR_LOVE_CC_
 
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "src/wheel_velocity.h"
- #include "src/behavior_enum.h"
- #include "src/behavior.h"
+
+ #include "src/behavior_love.h"
 
 
 /*******************************************************************************
@@ -26,22 +25,16 @@ NAMESPACE_BEGIN(csci3081);
  * @TODO
  *
  */
-class BehaviorCoward : public Behavior {
- public:
-    BehaviorCoward();
+BehaviorLove::BehaviorLove() {
+  Behavior::type_ = kLove;
+  Behavior::velocity_ = new WheelVelocity(0,0);
+}
 
-    void operator=(const BehaviorCoward &b2) = delete;
-    BehaviorCoward(const BehaviorCoward &b2) = delete;
-
-    ~BehaviorCoward(){delete velocity_;};
-
-   WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
-
- private:
-   // BehaviorEnum type_;
-   // WheelVelocity * velocity_;
-};
+WheelVelocity * BehaviorLove::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+  velocity_ = new WheelVelocity(1.0/leftDist, 1.0/rightDist, defaultSpeed);
+  return velocity_;
+}
 
 NAMESPACE_END(csci3081);
 
-#endif  // SRC_BEHAVIOR_COWARD_H_
+#endif  // SRC_BEHAVIOR_COWARD_CC_

@@ -1,13 +1,12 @@
-#ifndef SRC_BEHAVIOR_COWARD_H_
-#define SRC_BEHAVIOR_COWARD_H_
+#ifndef SRC_BEHAVIOR_EXPLORE_CC_
+#define SRC_BEHAVIOR_EXPLORE_CC_
 
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "src/wheel_velocity.h"
- #include "src/behavior_enum.h"
- #include "src/behavior.h"
+
+ #include "src/behavior_explore.h"
 
 
 /*******************************************************************************
@@ -26,22 +25,16 @@ NAMESPACE_BEGIN(csci3081);
  * @TODO
  *
  */
-class BehaviorCoward : public Behavior {
- public:
-    BehaviorCoward();
+BehaviorExplore::BehaviorExplore() {
+  Behavior::type_ = kExplore;
+  Behavior::velocity_ = new WheelVelocity(0,0);
+}
 
-    void operator=(const BehaviorCoward &b2) = delete;
-    BehaviorCoward(const BehaviorCoward &b2) = delete;
-
-    ~BehaviorCoward(){delete velocity_;};
-
-   WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
-
- private:
-   // BehaviorEnum type_;
-   // WheelVelocity * velocity_;
-};
+WheelVelocity * BehaviorExplore::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+  velocity_ = new WheelVelocity(1.0/rightDist, 1.0/leftDist, defaultSpeed);
+  return velocity_;
+}
 
 NAMESPACE_END(csci3081);
 
-#endif  // SRC_BEHAVIOR_COWARD_H_
+#endif  // SRC_BEHAVIOR_EXPLORE_CC_

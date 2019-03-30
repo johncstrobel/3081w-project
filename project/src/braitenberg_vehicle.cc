@@ -9,7 +9,7 @@
 #include <iostream>
 #include <ctime>
 #include "src/braitenberg_vehicle.h"
-#include "src/params.h"
+// #include "src/params.h"
 
 class SensorLightLove;
 
@@ -24,11 +24,12 @@ int BraitenbergVehicle::count = 0;
  * Constructors/Destructor
  ******************************************************************************/
 
-
 BraitenbergVehicle::BraitenbergVehicle() :
   light_sensors_(), wheel_velocity_(),
-  light_behavior_(kNone), food_behavior_(kNone),
-  braitenberg_behavior_(kNone), closest_light_entity_(NULL),
+  light_behavior_enum_(kNone), food_behavior_enum_(kNone),
+  braitenberg_behavior_enum_(kNone),
+  light_behavior_(NULL), food_behavior_(NULL),
+  braitenberg_behavior_(NULL), closest_light_entity_(NULL),
   closest_food_entity_(NULL), closest_braitenberg_entity_(NULL),
   defaultSpeed_(5.0), colliding_(0.0) {
   set_type(kBraitenberg);
@@ -99,7 +100,7 @@ void BraitenbergVehicle::Update() {
   WheelVelocity light_wheel_velocity = WheelVelocity(0, 0);
 
   int numBehaviors = 3;
-  switch (light_behavior_) {
+  switch (light_behavior_enum_) {
     case kExplore:
       light_wheel_velocity = WheelVelocity(
         1.0/get_sensor_reading_right(closest_light_entity_),
@@ -132,7 +133,7 @@ void BraitenbergVehicle::Update() {
 
   WheelVelocity food_wheel_velocity = WheelVelocity(0, 0);
 
-  switch (food_behavior_) {
+  switch (food_behavior_enum_) {
     case kExplore:
       food_wheel_velocity = WheelVelocity(
         1.0/get_sensor_reading_right(closest_food_entity_),
@@ -165,7 +166,7 @@ void BraitenbergVehicle::Update() {
 
   WheelVelocity braitenberg_wheel_velocity = WheelVelocity(0,0);
 
-  switch (braitenberg_behavior_) {
+  switch (braitenberg_behavior_enum_) {
     case kExplore:
       braitenberg_wheel_velocity = WheelVelocity(
         1.0/get_sensor_reading_right(closest_braitenberg_entity_),
@@ -289,16 +290,19 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   ArenaEntity::LoadFromObject(entity_config);
 
   if (entity_config->find("light_behavior") != entity_config->end()) {
-      light_behavior_ = get_behavior_type(
+      light_behavior_enum_ = get_behavior_type(
         (*entity_config)["light_behavior"].get<std::string>());
+      set_light_behavior(light_behavior_enum_);
   }
   if (entity_config->find("food_behavior") != entity_config->end()) {
-      food_behavior_ = get_behavior_type(
+      food_behavior_enum_ = get_behavior_type(
         (*entity_config)["food_behavior"].get<std::string>());
+      set_food_behavior(food_behavior_enum_);
   }
   if (entity_config->find("braitenberg_behavior") != entity_config->end()) {
-      braitenberg_behavior_ = get_behavior_type(
+      braitenberg_behavior_enum_ = get_behavior_type(
         (*entity_config)["braitenberg_behavior"].get<std::string>());
+      set_braitenberg_behavior(braitenberg_behavior_enum_);
   }
 
   UpdateLightSensors();

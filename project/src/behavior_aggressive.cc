@@ -1,13 +1,12 @@
-#ifndef SRC_BEHAVIOR_COWARD_H_
-#define SRC_BEHAVIOR_COWARD_H_
+#ifndef SRC_BEHAVIOR_AGGRESSIVE_CC_
+#define SRC_BEHAVIOR_AGGRESSIVE_CC_
 
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "src/wheel_velocity.h"
- #include "src/behavior_enum.h"
- #include "src/behavior.h"
+
+ #include "src/behavior_aggressive.h"
 
 
 /*******************************************************************************
@@ -26,22 +25,17 @@ NAMESPACE_BEGIN(csci3081);
  * @TODO
  *
  */
-class BehaviorCoward : public Behavior {
- public:
-    BehaviorCoward();
+BehaviorAggressive::BehaviorAggressive() {
+  Behavior::type_ = kAggressive;
+  Behavior::velocity_ = new WheelVelocity(0,0);
+}
 
-    void operator=(const BehaviorCoward &b2) = delete;
-    BehaviorCoward(const BehaviorCoward &b2) = delete;
+WheelVelocity * BehaviorAggressive::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+  velocity_ = new WheelVelocity(rightDist, leftDist, defaultSpeed);
+  return velocity_;
+}
 
-    ~BehaviorCoward(){delete velocity_;};
-
-   WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
-
- private:
-   // BehaviorEnum type_;
-   // WheelVelocity * velocity_;
-};
 
 NAMESPACE_END(csci3081);
 
-#endif  // SRC_BEHAVIOR_COWARD_H_
+#endif  // SRC_BEHAVIOR_AGGRESSIVE_CC_

@@ -71,6 +71,7 @@ inline BehaviorEnum get_behavior_type_int(int behavior){
       return kNone;
       break;
   }
+}
 
 NAMESPACE_END(csci3081);
 

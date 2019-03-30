@@ -5,9 +5,8 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "src/wheel_velocity.h"
- #include "src/behavior_enum.h"
- #include "src/behavior.h"
+
+ #include "src/behavior_coward.h"
 
 
 /*******************************************************************************
@@ -26,26 +25,15 @@ NAMESPACE_BEGIN(csci3081);
  * @TODO
  *
  */
-BehaviorCoward::BehaviorCoward(){
-  velocity_ = new WheelVelocity(0,0);
+BehaviorCoward::BehaviorCoward() {
+  Behavior::type_ = kCoward;
+  Behavior::velocity_ = new WheelVelocity(0,0);
 }
 
 WheelVelocity * BehaviorCoward::UpdateVelocity(double leftDist, double rightDist, double defaultSpeed){
+  velocity_ = new WheelVelocity(leftDist, rightDist, defaultSpeed);
   return velocity_;
 }
-
-// class BehaviorCoward : public Behavior {
-//  public:
-//     BehaviorCoward();
-//
-//     ~BehaviorCoward(){delete velocity_;};
-//
-//    WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed);
-//
-//  private:
-//    // BehaviorEnum type_;
-//    WheelVelocity * velocity_;
-// };
 
 NAMESPACE_END(csci3081);
 

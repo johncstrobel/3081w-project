@@ -21,6 +21,7 @@
 #include "src/behavior_enum.h"
 #include "src/behavior.h"
 #include "src/behavior_coward.h"
+#include "src/params.h"
 
 
 /*******************************************************************************
@@ -104,6 +105,8 @@ class BraitenbergVehicle : public ArenaMobileEntity {
       food_behavior_ = behavior;
     } else if(type.compare("light")==0){
       light_behavior_ = behavior;
+    } else if(type.compare("braitenberg")==0) {
+      braitenberg_behavior_ = behavior;
     } else {
       std::cout << "ya done goofed" << std::endl;
     }
@@ -164,9 +167,35 @@ class BraitenbergVehicle : public ArenaMobileEntity {
      }
   }
 
-  Behavior get_braitenberg_behavior() { return braitenberg_behavior_; }
+  Behavior * get_braitenberg_behavior() { return braitenberg_behavior_; }
+  BehaviorEnum get_braitenberg_behavior_enum() {return braitenberg_behavior_enum_; }
 
-  void set_braitenberg_behavior(Behavior behavior) { braitenberg_behavior_ = behavior; }
+  void set_braitenberg_behavior(Behavior * behavior) { braitenberg_behavior_ = behavior; }
+
+  void set_braitenberg_behavior(BehaviorEnum behavior) {
+     braitenberg_behavior_enum_ = behavior;
+     switch(behavior){
+       case 1:
+         // set_behavior(new BehaviorAggressive(),"braitenberg");
+         std::cout << "todo" << std::endl;
+         break;
+       case 2:
+         set_behavior(new BehaviorCoward(),"braitenberg");
+         break;
+       case 3:
+         // set_behavior(new BehaviorExplore(), "braitenberg");
+         std::cout << "todo" << std::endl;
+         break;
+       case 4:
+         // set_behavior(new BehaviorLove(),"braitenberg");
+         std::cout << "todo" << std::endl;
+         break;
+       case 0:
+       default:
+         // set_behavior(new BehaviorNone(),"braitenberg");
+         std::cout << "todo" << std::endl;
+     }
+  }
 
   double get_sensor_reading_left(const ArenaEntity* entity);
 

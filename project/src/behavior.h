@@ -27,18 +27,22 @@ NAMESPACE_BEGIN(csci3081);
  */
 class Behavior {
  public:
-    Behavior();
+    Behavior() : type_(kNone), velocity_(NULL){};
 
-    virtual ~Behavior();
+    virtual ~Behavior(){};
 
+    Behavior(const Behavior &other) = delete;
+
+    int operator=(const Behavior &other) = delete;
     // in inherited classes, params:
     // double leftDist, double rightDist, double defaultSpeed
    virtual WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) = 0;
 
    BehaviorEnum get_type(){return type_;}
 
- private:
+ protected:
    BehaviorEnum type_;
+   WheelVelocity * velocity_;
 };
 
 NAMESPACE_END(csci3081);

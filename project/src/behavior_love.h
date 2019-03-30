@@ -1,5 +1,5 @@
-#ifndef SRC_BEHAVIOR_COWARD_H_
-#define SRC_BEHAVIOR_COWARD_H_
+#ifndef SRC_BEHAVIOR_LOVE_H_
+#define SRC_BEHAVIOR_LOVE_H_
 
 
 /*******************************************************************************
@@ -26,14 +26,14 @@ NAMESPACE_BEGIN(csci3081);
  * @TODO
  *
  */
-class BehaviorCoward : public Behavior {
+class BehaviorLove : public Behavior {
  public:
-    BehaviorCoward();
+    BehaviorLove();
 
-    void operator=(const BehaviorCoward &b2) = delete;
-    BehaviorCoward(const BehaviorCoward &b2) = delete;
+    void operator=(const BehaviorLove &b2) = delete;
+    BehaviorLove(const BehaviorLove &b2) = delete;
 
-    ~BehaviorCoward(){delete velocity_;};
+    ~BehaviorLove(){delete velocity_;};
 
    WheelVelocity * UpdateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
 
@@ -44,4 +44,4 @@ class BehaviorCoward : public Behavior {
 
 NAMESPACE_END(csci3081);
 
-#endif  // SRC_BEHAVIOR_COWARD_H_
+#endif  // SRC_BEHAVIOR_LOVE_H_
