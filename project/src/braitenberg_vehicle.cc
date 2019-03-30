@@ -32,6 +32,9 @@ BraitenbergVehicle::BraitenbergVehicle() :
   braitenberg_behavior_(NULL), closest_light_entity_(NULL),
   closest_food_entity_(NULL), closest_braitenberg_entity_(NULL),
   defaultSpeed_(5.0), colliding_(0.0) {
+  food_behavior_ = new BehaviorNone();
+  light_behavior_ = new BehaviorNone();
+  braitenberg_behavior_ = new BehaviorNone();
   set_type(kBraitenberg);
   motion_behavior_ = new MotionBehaviorDifferential(this);
   light_sensors_.push_back(Pose());
@@ -97,150 +100,8 @@ void BraitenbergVehicle::SenseEntity(const ArenaEntity& entity) {
 }
 
 void BraitenbergVehicle::Update() {
-  WheelVelocity light_wheel_velocity = WheelVelocity(0, 0);
-
-  int numBehaviors = 3;
-  switch (light_behavior_enum_) {
-    case kExplore:
-      light_wheel_velocity = WheelVelocity(
-        1.0/get_sensor_reading_right(closest_light_entity_),
-        1.0/get_sensor_reading_left(closest_light_entity_),
-        defaultSpeed_);
-      break;
-    case kCoward:
-      light_wheel_velocity = WheelVelocity(
-        get_sensor_reading_left(closest_light_entity_),
-        get_sensor_reading_right(closest_light_entity_),
-        defaultSpeed_);
-      break;
-    case kAggressive:
-      light_wheel_velocity = WheelVelocity(
-        get_sensor_reading_right(closest_light_entity_),
-        get_sensor_reading_left(closest_light_entity_),
-        defaultSpeed_);
-      break;
-    case kLove:
-      light_wheel_velocity = WheelVelocity(
-        1.0/get_sensor_reading_left(closest_light_entity_),
-        1.0/get_sensor_reading_right(closest_light_entity_),
-        defaultSpeed_);
-      break;
-    case kNone:
-    default:
-      numBehaviors--;
-      break;
-  }
-
-  WheelVelocity food_wheel_velocity = WheelVelocity(0, 0);
-
-  switch (food_behavior_enum_) {
-    case kExplore:
-      food_wheel_velocity = WheelVelocity(
-        1.0/get_sensor_reading_right(closest_food_entity_),
-        1.0/get_sensor_reading_left(closest_food_entity_),
-        defaultSpeed_);
-      break;
-    case kCoward:
-      food_wheel_velocity = WheelVelocity(
-        get_sensor_reading_left(closest_food_entity_),
-        get_sensor_reading_right(closest_food_entity_),
-        defaultSpeed_);
-      break;
-    case kAggressive:
-      food_wheel_velocity = WheelVelocity(
-        get_sensor_reading_right(closest_food_entity_),
-        get_sensor_reading_left(closest_food_entity_),
-        defaultSpeed_);
-      break;
-    case kLove:
-      food_wheel_velocity = WheelVelocity(
-        1.0/get_sensor_reading_left(closest_food_entity_),
-        1.0/get_sensor_reading_right(closest_food_entity_),
-        defaultSpeed_);
-      break;
-    case kNone:
-    default:
-      numBehaviors--;
-      break;
-  }
-
-  WheelVelocity braitenberg_wheel_velocity = WheelVelocity(0,0);
-
-  switch (braitenberg_behavior_enum_) {
-    case kExplore:
-      braitenberg_wheel_velocity = WheelVelocity(
-        1.0/get_sensor_reading_right(closest_braitenberg_entity_),
-        1.0/get_sensor_reading_left(closest_braitenberg_entity_),
-        defaultSpeed_);
-      break;
-    case kCoward:
-      braitenberg_wheel_velocity = WheelVelocity(
-        get_sensor_reading_left(closest_braitenberg_entity_),
-        get_sensor_reading_right(closest_braitenberg_entity_),
-        defaultSpeed_);
-      break;
-    case kAggressive:
-      braitenberg_wheel_velocity = WheelVelocity(
-        get_sensor_reading_right(closest_braitenberg_entity_),
-        get_sensor_reading_left(closest_braitenberg_entity_),
-        defaultSpeed_);
-      break;
-    case kLove:
-      braitenberg_wheel_velocity = WheelVelocity(
-        1.0/get_sensor_reading_left(closest_braitenberg_entity_),
-        1.0/get_sensor_reading_right(closest_braitenberg_entity_),
-        defaultSpeed_);
-      break;
-    case kNone:
-    default:
-      numBehaviors--;
-      break;
-  }
-
-  if (numBehaviors) {  // numBehaviors > 0
-    int food_influence = 1, light_influence = 1;
-    int braitenberg_influence = 0;
-    double lefttol = 0.0002;
-    double righttol = 0.0002;
-    if (get_sensor_reading_left(closest_light_entity_) < lefttol &&
-       get_sensor_reading_right(closest_light_entity_) < righttol) {
-         light_influence = 0;
-    }
-
-    if (get_sensor_reading_left(closest_food_entity_) < lefttol &&
-       get_sensor_reading_right(closest_food_entity_) < righttol) {
-         food_influence = 0;
-    }
-
-    if (get_sensor_reading_left(closest_braitenberg_entity_) <= lefttol &&
-       get_sensor_reading_right(closest_braitenberg_entity_) <= righttol) {
-         braitenberg_influence = 0;
-    }
-
-    if (food_influence && !light_influence) {  // influenced by food only
-      // blue (0,0,255)
-      set_color(RgbColor(0, 0, 255));
-    }
-    if (!food_influence && light_influence) {  // light influence only
-      // gold (255,204,51)
-      set_color(RgbColor(255, 204, 51));
-    } else {  // influenced by both or neither
-      // maroon (122,0,25)
-      set_color(RgbColor(122, 0, 25));
-    }
-    if(braitenberg_influence) {
-      set_color(RgbColor(255,0,0));
-    }
-
-    wheel_velocity_ = WheelVelocity(
-      (light_wheel_velocity.left + food_wheel_velocity.left +
-        braitenberg_wheel_velocity.left)/numBehaviors,
-      (light_wheel_velocity.right + food_wheel_velocity.right +
-        braitenberg_wheel_velocity.right)/numBehaviors,
-      defaultSpeed_);
-  } else {
-    wheel_velocity_ = WheelVelocity(0, 0);
-  }
+  CalculateWheelVelocity();
+  DynamicColor();
 }
 
 std::string BraitenbergVehicle::get_name() const {
@@ -283,6 +144,75 @@ void BraitenbergVehicle::UpdateLightSensors() {
       pos.x = get_pose().x + get_radius() * cos(deg2rad(get_pose().theta + 40));
       pos.y = get_pose().y + get_radius() * sin(deg2rad(get_pose().theta + 40));
     }
+  }
+}
+
+void BraitenbergVehicle::DynamicColor(){  // colors the robot
+  // @TODO: change these so they depend on actual distance from the robot
+  int food_influence = 1;
+  int light_influence = 1;
+  int braitenberg_influence = 1;
+  double lefttol = 0.0002;
+  double righttol = 0.0002;
+  int r=0,g=0,b=0;
+  if (get_sensor_reading_left(closest_light_entity_) < lefttol &&
+     get_sensor_reading_right(closest_light_entity_) < righttol) {
+       light_influence = 0;
+  }
+
+  if (get_sensor_reading_left(closest_food_entity_) < lefttol &&
+     get_sensor_reading_right(closest_food_entity_) < righttol) {
+       food_influence = 0;
+  }
+
+  if (get_sensor_reading_left(closest_braitenberg_entity_) <= lefttol &&
+     get_sensor_reading_right(closest_braitenberg_entity_) <= righttol) {
+       braitenberg_influence = 0;
+  }
+
+  if (food_influence) {b+=100;}
+  if (light_influence) {r+=100;}
+  if (braitenberg_influence) {g+=100;}
+  if (!food_influence && !light_influence && !braitenberg_influence) {
+    r=122;g=0,b=25;
+  }
+  set_color(RgbColor(r,g,b));
+}
+
+void BraitenbergVehicle::CalculateWheelVelocity(){
+
+  WheelVelocity * light_wheel_velocity =
+    light_behavior_->CalculateVelocity(
+      get_sensor_reading_left(closest_light_entity_),
+      get_sensor_reading_right(closest_light_entity_),
+      defaultSpeed_);
+
+  WheelVelocity *food_wheel_velocity =
+    food_behavior_->CalculateVelocity(
+      get_sensor_reading_left(closest_food_entity_),
+      get_sensor_reading_right(closest_food_entity_),
+      defaultSpeed_);
+
+  WheelVelocity * braitenberg_wheel_velocity =
+    braitenberg_behavior_->CalculateVelocity(
+      get_sensor_reading_left(closest_braitenberg_entity_),
+      get_sensor_reading_right(closest_braitenberg_entity_),
+      defaultSpeed_);
+
+  int numBehaviors = 0;
+  if(braitenberg_behavior_enum_) numBehaviors++;
+  if(light_behavior_enum_) numBehaviors++;
+  if(food_behavior_enum_) numBehaviors++;
+
+  if (numBehaviors) {  // numBehaviors > 0
+    wheel_velocity_ = WheelVelocity(
+      (light_wheel_velocity->left + food_wheel_velocity->left +
+        braitenberg_wheel_velocity->left)/numBehaviors,
+      (light_wheel_velocity->right + food_wheel_velocity->right +
+        braitenberg_wheel_velocity->right)/numBehaviors,
+      defaultSpeed_);
+  } else {
+    wheel_velocity_ = WheelVelocity(0, 0);
   }
 }
 

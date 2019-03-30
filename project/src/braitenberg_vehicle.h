@@ -120,6 +120,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   BehaviorEnum  get_light_behavior_enum() { return light_behavior_enum_; }
 
   void set_light_behavior(BehaviorEnum behavior) {
+    light_behavior_enum_ = behavior;
     switch(behavior){
       case 1:
         set_behavior(new BehaviorAggressive(),"light");
@@ -166,8 +167,6 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   Behavior * get_braitenberg_behavior() { return braitenberg_behavior_; }
   BehaviorEnum get_braitenberg_behavior_enum() {return braitenberg_behavior_enum_; }
 
-  void set_braitenberg_behavior(Behavior * behavior) { braitenberg_behavior_ = behavior; }
-
   void set_braitenberg_behavior(BehaviorEnum behavior) {
      braitenberg_behavior_enum_ = behavior;
      switch(behavior){
@@ -192,6 +191,9 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   double get_sensor_reading_left(const ArenaEntity* entity);
 
   double get_sensor_reading_right(const ArenaEntity* entity);
+
+  void DynamicColor();
+  void CalculateWheelVelocity();
 
   static int count;
 
