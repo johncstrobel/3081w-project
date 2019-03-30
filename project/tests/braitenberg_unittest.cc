@@ -37,7 +37,7 @@ class BraitenbergTest : public ::testing::Test {
  ******************************************************************************/
 
 TEST_F(BraitenbergTest, UpdateTest){
-  EXPECT_EQ(1,2) << "TODO";
+  //no longer necessary
   //test update function, specifically for the new behaviors
 }
 

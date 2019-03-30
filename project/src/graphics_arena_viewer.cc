@@ -14,6 +14,8 @@
 #include "src/graphics_arena_viewer.h"
 #include "src/rgb_color.h"
 #include "src/braitenberg_vehicle.h"
+#include "src/behavior.h"
+#include "src/behavior_enum.h"
 
 /*******************************************************************************
  * Namespaces
@@ -301,9 +303,11 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
 
   if (defaultEntity->get_type() == kBraitenberg) {
     lightBehaviorSelect->setSelectedIndex(
-      static_cast<BraitenbergVehicle*>(defaultEntity)->get_light_behavior());
+      static_cast<BraitenbergVehicle*>(defaultEntity)->
+        get_light_behavior_enum());
     foodBehaviorSelect->setSelectedIndex(
-      static_cast<BraitenbergVehicle*>(defaultEntity)->get_food_behavior());
+      static_cast<BraitenbergVehicle*>(defaultEntity)->
+        get_food_behavior_enum());
   }
 
   entitySelect->setCallback(
@@ -324,9 +328,11 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
 
       if (entity->get_type() == kBraitenberg) {
         lightBehaviorSelect->setSelectedIndex(
-          static_cast<BraitenbergVehicle*>(entity)->get_light_behavior());
+          static_cast<BraitenbergVehicle*>(entity)->
+            get_light_behavior_enum());
         foodBehaviorSelect->setSelectedIndex(
-          static_cast<BraitenbergVehicle*>(entity)->get_food_behavior());
+          static_cast<BraitenbergVehicle*>(entity)->
+            get_food_behavior_enum());
       }
 
       screen()->performLayout();
@@ -338,7 +344,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       this->arena_->get_entities()[entitySelect->selectedIndex()];
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_light_behavior(
-          static_cast<Behavior>(index));
+           static_cast<BehaviorEnum>(index));
       }
     });
 
@@ -348,7 +354,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       this->arena_->get_entities()[entitySelect->selectedIndex()];
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_food_behavior(
-          static_cast<Behavior>(index));
+           static_cast<BehaviorEnum>(index));
       }
     });
 

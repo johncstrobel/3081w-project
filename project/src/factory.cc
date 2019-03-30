@@ -3,7 +3,6 @@
  *
  * @copyright John Strobel 2019
  *
- * @TODO: add identical construction methods but without json support
 */
 
 #ifndef SRC_FACTORY_CC_

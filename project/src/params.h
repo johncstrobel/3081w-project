@@ -55,6 +55,7 @@
 #define BRAITENBERG_VEHICLE_COUNT 1
 #define BRAITENBERG_RATIO .5
 #define BRAITENBERG_MAROON {122, 0, 25}
+#define MIN_DISTANCE 0.0001
 
 // light_sensor
 #define SENSOR_LIGHT_RAD 4
