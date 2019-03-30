@@ -174,7 +174,7 @@ void BraitenbergVehicle::DynamicColor(){  // colors the robot
   if (light_influence) {r+=100;}
   if (braitenberg_influence) {g+=100;}
   if (!food_influence && !light_influence && !braitenberg_influence) {
-    r=122;g=0,b=25;
+    r=0;g=0,b=0;
   }
   set_color(RgbColor(r,g,b));
 }
