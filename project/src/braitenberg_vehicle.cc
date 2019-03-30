@@ -24,10 +24,13 @@ int BraitenbergVehicle::count = 0;
  * Constructors/Destructor
  ******************************************************************************/
 
+
 BraitenbergVehicle::BraitenbergVehicle() :
-  light_sensors_(), wheel_velocity_(), light_behavior_enum_(kNone),
-  food_behavior_enum_(kNone), closest_light_entity_(NULL),
-  closest_food_entity_(NULL), defaultSpeed_(5.0), colliding_(0.0) {
+  light_sensors_(), wheel_velocity_(),
+  light_behavior_(kNone), food_behavior_(kNone),
+  braitenberg_behavior_(kNone), closest_light_entity_(NULL),
+  closest_food_entity_(NULL), closest_braitenberg_entity_(NULL),
+  defaultSpeed_(5.0), colliding_(0.0) {
   set_type(kBraitenberg);
   motion_behavior_ = new MotionBehaviorDifferential(this);
   light_sensors_.push_back(Pose());
@@ -68,6 +71,8 @@ void BraitenbergVehicle::SenseEntity(const ArenaEntity& entity) {
     closest_entity_ = &closest_light_entity_;
   } else if (entity.get_type() == kFood) {
     closest_entity_ = &closest_food_entity_;
+  } else if (entity.get_type() == kBraitenberg) {
+    closest_entity_ = &closest_braitenberg_entity_;
   }
 
   if (!closest_entity_) {
@@ -93,7 +98,7 @@ void BraitenbergVehicle::SenseEntity(const ArenaEntity& entity) {
 void BraitenbergVehicle::Update() {
   WheelVelocity light_wheel_velocity = WheelVelocity(0, 0);
 
-  int numBehaviors = 2;
+  int numBehaviors = 3;
   switch (light_behavior_) {
     case kExplore:
       light_wheel_velocity = WheelVelocity(
@@ -158,34 +163,80 @@ void BraitenbergVehicle::Update() {
       break;
   }
 
+  WheelVelocity braitenberg_wheel_velocity = WheelVelocity(0,0);
+
+  switch (braitenberg_behavior_) {
+    case kExplore:
+      braitenberg_wheel_velocity = WheelVelocity(
+        1.0/get_sensor_reading_right(closest_braitenberg_entity_),
+        1.0/get_sensor_reading_left(closest_braitenberg_entity_),
+        defaultSpeed_);
+      break;
+    case kCoward:
+      braitenberg_wheel_velocity = WheelVelocity(
+        get_sensor_reading_left(closest_braitenberg_entity_),
+        get_sensor_reading_right(closest_braitenberg_entity_),
+        defaultSpeed_);
+      break;
+    case kAggressive:
+      braitenberg_wheel_velocity = WheelVelocity(
+        get_sensor_reading_right(closest_braitenberg_entity_),
+        get_sensor_reading_left(closest_braitenberg_entity_),
+        defaultSpeed_);
+      break;
+    case kLove:
+      braitenberg_wheel_velocity = WheelVelocity(
+        1.0/get_sensor_reading_left(closest_braitenberg_entity_),
+        1.0/get_sensor_reading_right(closest_braitenberg_entity_),
+        defaultSpeed_);
+      break;
+    case kNone:
+    default:
+      numBehaviors--;
+      break;
+  }
+
   if (numBehaviors) {  // numBehaviors > 0
-    int food_influence = 1, light_influence = 1, senslen = 1;
-    if ((get_sensor_reading_left(closest_light_entity_) - senslen) <= 0 &&
-       (get_sensor_reading_right(closest_light_entity_) - senslen) <= 0) {
+    int food_influence = 1, light_influence = 1;
+    int braitenberg_influence = 0;
+    double lefttol = 0.0002;
+    double righttol = 0.0002;
+    if (get_sensor_reading_left(closest_light_entity_) < lefttol &&
+       get_sensor_reading_right(closest_light_entity_) < righttol) {
          light_influence = 0;
     }
 
-    if ((get_sensor_reading_left(closest_food_entity_) - senslen) <= 0 &&
-       (get_sensor_reading_right(closest_food_entity_) - senslen) <= 0) {
+    if (get_sensor_reading_left(closest_food_entity_) < lefttol &&
+       get_sensor_reading_right(closest_food_entity_) < righttol) {
          food_influence = 0;
+    }
+
+    if (get_sensor_reading_left(closest_braitenberg_entity_) <= lefttol &&
+       get_sensor_reading_right(closest_braitenberg_entity_) <= righttol) {
+         braitenberg_influence = 0;
     }
 
     if (food_influence && !light_influence) {  // influenced by food only
       // blue (0,0,255)
       set_color(RgbColor(0, 0, 255));
-    } else if (!food_influence && light_influence) {  // light influence only
+    }
+    if (!food_influence && light_influence) {  // light influence only
       // gold (255,204,51)
       set_color(RgbColor(255, 204, 51));
     } else {  // influenced by both or neither
       // maroon (122,0,25)
       set_color(RgbColor(122, 0, 25));
     }
+    if(braitenberg_influence) {
+      set_color(RgbColor(255,0,0));
+    }
 
     wheel_velocity_ = WheelVelocity(
-      (light_wheel_velocity.left + food_wheel_velocity.left)/numBehaviors,
-      (light_wheel_velocity.right + food_wheel_velocity.right)/numBehaviors,
+      (light_wheel_velocity.left + food_wheel_velocity.left +
+        braitenberg_wheel_velocity.left)/numBehaviors,
+      (light_wheel_velocity.right + food_wheel_velocity.right +
+        braitenberg_wheel_velocity.right)/numBehaviors,
       defaultSpeed_);
-
   } else {
     wheel_velocity_ = WheelVelocity(0, 0);
   }
@@ -244,6 +295,10 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   if (entity_config->find("food_behavior") != entity_config->end()) {
       food_behavior_ = get_behavior_type(
         (*entity_config)["food_behavior"].get<std::string>());
+  }
+  if (entity_config->find("braitenberg_behavior") != entity_config->end()) {
+      braitenberg_behavior_ = get_behavior_type(
+        (*entity_config)["braitenberg_behavior"].get<std::string>());
   }
 
   UpdateLightSensors();

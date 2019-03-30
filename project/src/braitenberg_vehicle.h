@@ -164,6 +164,10 @@ class BraitenbergVehicle : public ArenaMobileEntity {
      }
   }
 
+  Behavior get_braitenberg_behavior() { return braitenberg_behavior_; }
+
+  void set_braitenberg_behavior(Behavior behavior) { braitenberg_behavior_ = behavior; }
+
   double get_sensor_reading_left(const ArenaEntity* entity);
 
   double get_sensor_reading_right(const ArenaEntity* entity);
@@ -182,6 +186,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   Behavior * braitenberg_behavior_;
   const ArenaEntity* closest_light_entity_;
   const ArenaEntity* closest_food_entity_;
+  const ArenaEntity* closest_braitenberg_entity_;
   double defaultSpeed_;
   double colliding_;  // tracks time until robot is done colliding
 };
