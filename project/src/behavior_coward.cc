@@ -31,6 +31,12 @@ BehaviorCoward::BehaviorCoward() {
 }
 
 WheelVelocity * BehaviorCoward::CalculateVelocity(double leftDist, double rightDist, double defaultSpeed){
+  if(leftDist<MIN_DISTANCE){
+    leftDist = MIN_DISTANCE;
+  }
+  if(rightDist<MIN_DISTANCE){
+    rightDist = MIN_DISTANCE;
+  }
   velocity_ = new WheelVelocity(leftDist, rightDist, defaultSpeed);
   return velocity_;
 }

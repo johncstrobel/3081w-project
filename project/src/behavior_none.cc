@@ -32,12 +32,7 @@ BehaviorNone::BehaviorNone() {
 
 WheelVelocity * BehaviorNone::CalculateVelocity(__unused double leftDist,
   __unused double rightDist, __unused double defaultSpeed){
-  velocity_ = new WheelVelocity(0,0);
-  return velocity_;
-}
-
-WheelVelocity * BehaviorNone::CalculateVelocity(__unused double leftDist,
-  __unused double rightDist){
+    
   velocity_ = new WheelVelocity(0,0);
   return velocity_;
 }

@@ -32,6 +32,12 @@ BehaviorExplore::BehaviorExplore() {
 
 WheelVelocity * BehaviorExplore::CalculateVelocity(double leftDist,
   double rightDist, double defaultSpeed){
+  if(leftDist<MIN_DISTANCE){
+    leftDist = MIN_DISTANCE;
+  }
+  if(rightDist<MIN_DISTANCE){
+    rightDist = MIN_DISTANCE;
+  }
   velocity_ = new WheelVelocity(1.0/rightDist, 1.0/leftDist, defaultSpeed);
   return velocity_;
 }
