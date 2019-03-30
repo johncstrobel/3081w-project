@@ -25,8 +25,8 @@ int BraitenbergVehicle::count = 0;
  ******************************************************************************/
 
 BraitenbergVehicle::BraitenbergVehicle() :
-  light_sensors_(), wheel_velocity_(), light_behavior_(kNone),
-  food_behavior_(kNone), closest_light_entity_(NULL),
+  light_sensors_(), wheel_velocity_(), light_behavior_enum_(kNone),
+  food_behavior_enum_(kNone), closest_light_entity_(NULL),
   closest_food_entity_(NULL), defaultSpeed_(5.0), colliding_(0.0) {
   set_type(kBraitenberg);
   motion_behavior_ = new MotionBehaviorDifferential(this);
