@@ -163,7 +163,9 @@ void Arena::UpdateEntitiesTimestep() {
     if (ent1->get_type() == kBraitenberg) {
       BraitenbergVehicle* bv = static_cast<BraitenbergVehicle*>(ent1);
       for (unsigned int f = 0; f < entities_.size(); f++) {
-        if(entities_[f]->get_id() != ent1->get_id()) {
+        //if entity is both a different type and a different ID
+        if((entities_[f]->get_id() != ent1->get_id()) ||
+           (entities_[f]->get_type() != ent1->get_type())) {
             bv->SenseEntity(*entities_[f]);
         }
       }

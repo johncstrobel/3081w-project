@@ -119,74 +119,74 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   Behavior * get_light_behavior() { return light_behavior_; }
   BehaviorEnum  get_light_behavior_enum() { return light_behavior_enum_; }
 
-  void set_light_behavior(BehaviorEnum behavior) {
-    light_behavior_enum_ = behavior;
-    switch(behavior){
-      case 1:
-        set_behavior(new BehaviorAggressive(),"light");
-        break;
-      case 2:
-        set_behavior(new BehaviorCoward(),"light");
-        break;
-      case 3:
-        set_behavior(new BehaviorExplore(), "light");
-        break;
-      case 4:
-        set_behavior(new BehaviorLove(),"light");
-        break;
-      case 0:
-      default:
-        set_behavior(new BehaviorNone(),"light");
-    }
+void set_light_behavior(BehaviorEnum behavior) {
+  light_behavior_enum_ = behavior;
+  switch(behavior){
+    case 1:
+      set_behavior(new BehaviorAggressive(),"light");
+      break;
+    case 2:
+      set_behavior(new BehaviorCoward(),"light");
+      break;
+    case 3:
+      set_behavior(new BehaviorExplore(), "light");
+      break;
+    case 4:
+      set_behavior(new BehaviorLove(),"light");
+      break;
+    case 0:
+    default:
+      set_behavior(new BehaviorNone(),"light");
   }
+}
 
   Behavior * get_food_behavior() { return food_behavior_; }
   BehaviorEnum  get_food_behavior_enum() { return food_behavior_enum_; }
 
-  void set_food_behavior(BehaviorEnum behavior) {
-     food_behavior_enum_ = behavior;
-     switch(behavior){
-       case 1:
-         set_behavior(new BehaviorAggressive(),"food");
-         break;
-       case 2:
-         set_behavior(new BehaviorCoward(),"food");
-         break;
-       case 3:
-         set_behavior(new BehaviorExplore(), "food");
-         break;
-       case 4:
-         set_behavior(new BehaviorLove(),"food");
-         break;
-       case 0:
-       default:
-         set_behavior(new BehaviorNone(),"food");
-     }
+void set_food_behavior(BehaviorEnum behavior) {
+  food_behavior_enum_ = behavior;
+  switch(behavior){
+    case 1:
+      set_behavior(new BehaviorAggressive(),"food");
+      break;
+    case 2:
+      set_behavior(new BehaviorCoward(),"food");
+      break;
+    case 3:
+      set_behavior(new BehaviorExplore(), "food");
+      break;
+    case 4:
+      set_behavior(new BehaviorLove(),"food");
+      break;
+    case 0:
+    default:
+      set_behavior(new BehaviorNone(),"food");
   }
+}
 
   Behavior * get_braitenberg_behavior() { return braitenberg_behavior_; }
   BehaviorEnum get_braitenberg_behavior_enum() {return braitenberg_behavior_enum_; }
 
-  void set_braitenberg_behavior(BehaviorEnum behavior) {
-     braitenberg_behavior_enum_ = behavior;
-     switch(behavior){
-       case 1:
-         set_behavior(new BehaviorAggressive(),"braitenberg");
-         break;
-       case 2:
-         set_behavior(new BehaviorCoward(),"braitenberg");
-         break;
-       case 3:
-         set_behavior(new BehaviorExplore(), "braitenberg");
-         break;
-       case 4:
-         set_behavior(new BehaviorLove(),"braitenberg");
-         break;
-       case 0:
-       default:
-         set_behavior(new BehaviorNone(),"braitenberg");
-     }
+void set_braitenberg_behavior(BehaviorEnum behavior) {
+  braitenberg_behavior_enum_ = behavior;
+  switch(behavior){
+    case 1:
+      set_behavior(new BehaviorAggressive(),"braitenberg");
+      break;
+    case 2:
+      set_behavior(new BehaviorCoward(),"braitenberg");
+      break;
+    case 3:
+      set_behavior(new BehaviorExplore(), "braitenberg");
+      break;
+    case 4:
+      set_behavior(new BehaviorLove(),"braitenberg");
+      break;
+    case 0:
+    default:
+      set_behavior(new BehaviorNone(),"braitenberg");
   }
+}
 
   double get_sensor_reading_left(const ArenaEntity* entity);
 
