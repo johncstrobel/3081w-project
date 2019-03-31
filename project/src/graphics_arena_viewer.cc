@@ -330,11 +330,14 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
     foodBehaviorSelect->setSelectedIndex(
       static_cast<BraitenbergVehicle*>(defaultEntity)->
         get_food_behavior_enum());
+    bvBehaviorSelect->setSelectedIndex(
+      static_cast<BraitenbergVehicle*>(defaultEntity)->
+        get_braitenberg_behavior_enum());
   }
 
   entitySelect->setCallback(
     [this, isMobile, robotWidgets, lightBehaviorSelect,
-    foodBehaviorSelect](int index) {
+    foodBehaviorSelect, bvBehaviorSelect](int index) {
       ArenaEntity* entity = this->arena_->get_entities()[index];
       if (entity->is_mobile()) {
         ArenaMobileEntity* mobileEntity =
@@ -355,6 +358,9 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
         foodBehaviorSelect->setSelectedIndex(
           static_cast<BraitenbergVehicle*>(entity)->
             get_food_behavior_enum());
+        bvBehaviorSelect->setSelectedIndex(
+          static_cast<BraitenbergVehicle*>(entity)->
+            get_braitenberg_behavior_enum());
       }
 
       screen()->performLayout();
@@ -376,6 +382,16 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       this->arena_->get_entities()[entitySelect->selectedIndex()];
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_food_behavior(
+           static_cast<BehaviorEnum>(index));
+      }
+    });
+
+  bvBehaviorSelect->setCallback(
+    [this, entitySelect](int index) {
+      ArenaEntity* entity =
+      this->arena_->get_entities()[entitySelect->selectedIndex()];
+      if (entity->get_type() == kBraitenberg) {
+        static_cast<BraitenbergVehicle*>(entity)->set_braitenberg_behavior(
            static_cast<BehaviorEnum>(index));
       }
     });
