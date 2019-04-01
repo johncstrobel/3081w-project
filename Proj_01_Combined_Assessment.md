@@ -1,16 +1,13 @@
 ### Partial Assessment for Project Iteration 01 - Combined (Graded By: 3081 TA's)
 
-#### Total score: _9.5_ / _15_
+#### Total score: _13.875_ / _15_
 
-Run on April 01, 12:50:38 PM.
+Run on April 01, 16:30:02 PM.
 
 
 ### Partial Combined Scores (15% of the Iteration 1 Grade)
 
-+  _0_ / _5_ : Fail: [Design & Documentation + Features](Proj_01_DesignDoc_Assessment.md) - 5%
-
-<pre>Not Graded
-</pre>
++  _4.375_ / _5_ : Pass: [Design & Documentation + Features](Proj_01_DesignDoc_Assessment.md) - 5%
 
 
 
@@ -21,5 +18,5 @@ Run on April 01, 12:50:38 PM.
 
 [View Git Partial Feedback](Proj_01_GitPartial_Assessment.md)
 
-#### Total score: _9.5_ / _15_
+#### Total score: _13.875_ / _15_
 
