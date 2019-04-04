@@ -35,8 +35,7 @@ class Behavior {
     Behavior(const Behavior &other) = delete;
 
     int operator=(const Behavior &other) = delete;
-    // in inherited classes, params:
-    // double leftDist, double rightDist, double defaultSpeed
+    
    virtual WheelVelocity * CalculateVelocity(double leftDist, double rightDist, double defaultSpeed) = 0;
 
    BehaviorEnum get_type(){return type_;}

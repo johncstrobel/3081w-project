@@ -26,6 +26,8 @@
 #include "src/behavior_none.h"
 #include "src/behavior_explore.h"
 #include "src/params.h"
+#include "src/braitenberg_observer.h"
+#include "src/observer.h"
 
 
 /*******************************************************************************
@@ -197,10 +199,18 @@ void set_braitenberg_behavior(BehaviorEnum behavior) {
 
   static int count;
 
+  void RegisterObserver(Observer * other);
+  void RemoveObserver(Observer * other);
+  void NotifyObservers(WheelVelocity * lightvel, WheelVelocity * foodvel,
+      WheelVelocity * bvvel);
+
  private:
   std::vector<Pose> light_sensors_;
   MotionBehaviorDifferential * motion_behavior_{nullptr};
   WheelVelocity wheel_velocity_;
+  WheelVelocity * light_wheel_velocity_;
+  WheelVelocity * food_wheel_velocity_;
+  WheelVelocity * bv_wheel_velocity_;
   BehaviorEnum light_behavior_enum_;
   BehaviorEnum food_behavior_enum_;
   BehaviorEnum braitenberg_behavior_enum_;
@@ -211,7 +221,9 @@ void set_braitenberg_behavior(BehaviorEnum behavior) {
   const ArenaEntity* closest_food_entity_;
   const ArenaEntity* closest_braitenberg_entity_;
   double defaultSpeed_;
-  double colliding_;  // tracks time until robot is done colliding
+  double colliding_;  // tracks time until robot is done backing up
+  std::vector<BraitenbergObserver*> observers_;
+
 };
 
 NAMESPACE_END(csci3081);

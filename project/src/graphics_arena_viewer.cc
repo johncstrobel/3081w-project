@@ -37,7 +37,8 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     xOffset_(0),
     nanogui_intialized_(false),
     gui(nullptr),
-    window() {
+    window(),
+    observers_() {
       xOffset_ = GUI_MENU_WIDTH + GUI_MENU_GAP;
 }
 

@@ -249,6 +249,9 @@ class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer {
   bool nanogui_intialized_;
   nanogui::FormHelper* gui;
   nanogui::ref<nanogui::Window> window;
+
+
+  std::vector<Observer*> observers_;
 };
 
 NAMESPACE_END(csci3081);
