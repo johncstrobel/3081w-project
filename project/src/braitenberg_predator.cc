@@ -42,7 +42,9 @@ Predator::~Predator(){}
 
 void Predator::HandleCollision(__unused EntityType ent_type,
   ArenaEntity * object){
-  if(object->get_type() == kBraitenberg){
+  if(object == nullptr){
+    BraitenbergVehicle::HandleCollision(ent_type, object);
+  } else if(object->get_type() == kBraitenberg){
     static_cast<BraitenbergVehicle*>(object)->kill();
   } else {
     BraitenbergVehicle::HandleCollision(ent_type, object);
