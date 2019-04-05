@@ -320,6 +320,41 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
   space->setVisible(false);
   sliderPanel->setVisible(false);
 
+  robotWidgets.push_back(new nanogu::Label(
+    panel, "Wheel Velocities", "sans-bold"));
+  nanogui::Widget* grid = new nanogui::Widget(panel)
+  grid->setLayout(new nanogui::GridLayout(
+     nanogui::orientation::Horizontal, 3, nanogui::Alignment::Middle,0,0));
+  robotWidgets.push_back(grid);
+
+  // Columns Headers Row
+  // assigns items to grid locations row by row
+  new nanogui::Label(grid, "", "sans-bold");
+  new nanogui::Label(grid, "Left", "sans-bold");
+  new nanogui::Label(grid, "Right", "sans-bold");
+
+  // Rows: light behavior, food behavior, BV behavior
+  new nanogui::Label(grid, "Light", "sans-bold");
+  nanogui::TextBox* light_value_left = new nanogui::TextBox(grid, "0.0");
+  light_value_left->setFixedWidth(75);
+  nanogui::TextBox* light_value_right = new nanogui::TextBox(grid, "0.0");
+  light_value_right->setFixedWidth(75);
+  
+  // TODO: store numbers from observer class in some stort of storage
+  //       container
+
+  new nanogui::Label(grid, "Food", "sans-bold");
+  nanogui::TextBox* food_value_left = new nanogui::TextBox(grid, "0.0");
+  food_value_left->setFixedWidth(75);
+  nanogui::TextBox* food_value_right = new nanogui::TextBox(grid, "0.0");
+  food_value_right->setFixedWidth(75);
+
+  new nanogui::Label(grid,"BV", "sans-bold");
+  nanogui::TextBox* bv_value_left = new nanogui::TextBox(grid, "0.0");
+  bv_value_left->setFixedWidth(75);
+  nanogui::TextBox* bv_value_right = new nanogui::TextBox(grid, "0.0");
+  bv_value_right->setFixedWidth(75);
+  
   for (unsigned int f = 0; f < robotWidgets.size(); f++) {
     robotWidgets[f]->setVisible(defaultEntity->get_type() == kBraitenberg);
   }
@@ -374,7 +409,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_light_behavior(
            static_cast<BehaviorEnum>(index));
-      }
+     }
     });
 
   foodBehaviorSelect->setCallback(
