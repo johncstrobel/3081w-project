@@ -12,7 +12,7 @@
  ******************************************************************************/
 #include <vector>
 #include "src/observer.h"
-
+#include "src/braitenberg_vehicle.h"
 
 /*******************************************************************************
  * Namespaces
@@ -29,11 +29,12 @@ NAMESPACE_BEGIN(csci3081);
 
 class BraitenbergObserver : public Observer {
  public:
-   void update(WheelVelocity * lightvel, WheelVelocity * foodvel,
+   void Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
      WheelVelocity * bvvel) override;
    BraitenbergObserver();
 
-   std::vector<double> * getVelocities();
+   std::vector<double> * GetVelocities();
+   void RequestUnsubscribe() override;
 
  private:
    std::vector<double> velocities_;

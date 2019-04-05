@@ -30,12 +30,14 @@ NAMESPACE_BEGIN(csci3081);
  */
 
 
-BraitenbergObserver::BraitenbergObserver(): velocities_(), num_velocities_(6){
+
+BraitenbergObserver::BraitenbergObserver(): Observer(),velocities_(),
+  num_velocities_(6){
   for(int i = 0; i < num_velocities_; i++)
    velocities_.push_back(0.0); //guarantee there are always 6 velocities
 }
 
-void BraitenbergObserver::update(WheelVelocity * lightvel, WheelVelocity * foodvel,
+void BraitenbergObserver::Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
   WheelVelocity * bvvel){
     velocities_.erase(velocities_.begin(),velocities_.end());
     velocities_.push_back(lightvel->right);
@@ -46,7 +48,11 @@ void BraitenbergObserver::update(WheelVelocity * lightvel, WheelVelocity * foodv
     velocities_.push_back(bvvel->left);
 }
 
-std::vector<double> * BraitenbergObserver::getVelocities(){
+void BraitenbergObserver::RequestUnsubscribe() {
+  static_cast<BraitenbergVehicle*>(subject_)->RemoveObserver(this);
+}
+
+std::vector<double> * BraitenbergObserver::GetVelocities(){
   return &velocities_;
 }
 

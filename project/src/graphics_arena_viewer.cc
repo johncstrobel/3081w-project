@@ -17,6 +17,7 @@
 #include "src/behavior.h"
 #include "src/behavior_enum.h"
 
+
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -38,8 +39,9 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     nanogui_intialized_(false),
     gui(nullptr),
     window(),
-    observers_() {
+    bvObserver_() {
       xOffset_ = GUI_MENU_WIDTH + GUI_MENU_GAP;
+      bvObserver_ = new BraitenbergObserver();
 }
 
 void GraphicsArenaViewer::InitNanoGUI() {
@@ -224,6 +226,7 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
 }
 
 void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
+  std::cout << "a" << std::endl;
   if (arena_->get_entities().size() == 0) {
     return;
   }
@@ -320,11 +323,11 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
   space->setVisible(false);
   sliderPanel->setVisible(false);
 
-  robotWidgets.push_back(new nanogu::Label(
+  robotWidgets.push_back(new nanogui::Label(
     panel, "Wheel Velocities", "sans-bold"));
-  nanogui::Widget* grid = new nanogui::Widget(panel)
+  nanogui::Widget* grid = new nanogui::Widget(panel);
   grid->setLayout(new nanogui::GridLayout(
-     nanogui::orientation::Horizontal, 3, nanogui::Alignment::Middle,0,0));
+     nanogui::Orientation::Horizontal, 3, nanogui::Alignment::Middle,0,0));
   robotWidgets.push_back(grid);
 
   // Columns Headers Row
@@ -339,9 +342,6 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
   light_value_left->setFixedWidth(75);
   nanogui::TextBox* light_value_right = new nanogui::TextBox(grid, "0.0");
   light_value_right->setFixedWidth(75);
-  
-  // TODO: store numbers from observer class in some stort of storage
-  //       container
 
   new nanogui::Label(grid, "Food", "sans-bold");
   nanogui::TextBox* food_value_left = new nanogui::TextBox(grid, "0.0");
@@ -354,7 +354,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
   bv_value_left->setFixedWidth(75);
   nanogui::TextBox* bv_value_right = new nanogui::TextBox(grid, "0.0");
   bv_value_right->setFixedWidth(75);
-  
+
   for (unsigned int f = 0; f < robotWidgets.size(); f++) {
     robotWidgets[f]->setVisible(defaultEntity->get_type() == kBraitenberg);
   }
@@ -369,12 +369,32 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
     bvBehaviorSelect->setSelectedIndex(
       static_cast<BraitenbergVehicle*>(defaultEntity)->
         get_braitenberg_behavior_enum());
+
+    //get all the bvObserver values
+    double light_right = (*bvObserver_->GetVelocities())[0];
+    double light_left = (*bvObserver_->GetVelocities())[1];
+    double food_right = (*bvObserver_->GetVelocities())[2];
+    double food_left = (*bvObserver_->GetVelocities())[3];
+    double bv_right = (*bvObserver_->GetVelocities())[4];
+    double bv_left = (*bvObserver_->GetVelocities())[5];
+
+    light_value_right->setValue(formatValue(light_right));
+    light_value_left->setValue(formatValue(light_left));
+    food_value_right->setValue(formatValue(food_right));
+    food_value_left->setValue(formatValue(food_left));
+    bv_value_right->setValue(formatValue(bv_right));
+    bv_value_left->setValue(formatValue(bv_left));
   }
 
   entitySelect->setCallback(
     [this, isMobile, robotWidgets, lightBehaviorSelect,
     foodBehaviorSelect, bvBehaviorSelect](int index) {
       ArenaEntity* entity = this->arena_->get_entities()[index];
+
+      if(bvObserver_->IsSubscribed()) {
+        bvObserver_->RequestUnsubscribe();
+      }
+
       if (entity->is_mobile()) {
         ArenaMobileEntity* mobileEntity =
         static_cast<ArenaMobileEntity*>(entity);
@@ -397,6 +417,9 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
         bvBehaviorSelect->setSelectedIndex(
           static_cast<BraitenbergVehicle*>(entity)->
             get_braitenberg_behavior_enum());
+
+        static_cast<BraitenbergVehicle*>(entity)->
+          RegisterObserver(bvObserver_);
       }
 
       screen()->performLayout();

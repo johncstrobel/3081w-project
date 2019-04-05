@@ -11,10 +11,15 @@
  * Includes
  ******************************************************************************/
 #include <MinGfx-1.0/mingfx.h>
+#include <sstream>
+#include <iomanip>
+
 
 #include "src/arena.h"
 #include "src/controller.h"
 #include "src/common.h"
+#include "src/observer.h"
+#include "src/braitenberg_observer.h"
 
 /*******************************************************************************
  * Namespaces
@@ -220,6 +225,11 @@ class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer {
    */
   GraphicsArenaViewer(const GraphicsArenaViewer &other) = delete;
 
+  std::string formatValue(float val) {
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(2) << val;
+    return ss.str();
+  }
  private:
   void DrawArena(NVGcontext *ctx);
 
@@ -251,7 +261,7 @@ class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer {
   nanogui::ref<nanogui::Window> window;
 
 
-  std::vector<Observer*> observers_;
+  BraitenbergObserver * bvObserver_;
 };
 
 NAMESPACE_END(csci3081);

@@ -244,6 +244,7 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
 
 void BraitenbergVehicle::RegisterObserver(Observer * other){
   observers_.push_back(static_cast<BraitenbergObserver*>(other));
+  other->SetSubscribed(true);
 }
 
 void BraitenbergVehicle::RemoveObserver(Observer * other){
@@ -257,7 +258,7 @@ void BraitenbergVehicle::RemoveObserver(Observer * other){
 void BraitenbergVehicle::NotifyObservers(WheelVelocity * lightvel,
   WheelVelocity * foodvel,  WheelVelocity * bvvel){
   for(unsigned int i = 0; i < observers_.size();i++){
-    observers_[i]->update(lightvel,foodvel,bvvel);
+    observers_[i]->Update(lightvel,foodvel,bvvel);
   }
 }; //for o in observers o-> update();
 
