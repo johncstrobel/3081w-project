@@ -1,3 +1,9 @@
+/*
+* Copyright 2019 John Strobel
+*
+* @file: behavior_love.cc
+*/
+
 #ifndef SRC_BEHAVIOR_LOVE_CC_
 #define SRC_BEHAVIOR_LOVE_CC_
 
@@ -6,7 +12,7 @@
  * Includes
  ******************************************************************************/
 
- #include "src/behavior_love.h"
+#include "src/behavior_love.h"
 
 
 /*******************************************************************************
@@ -27,14 +33,15 @@ NAMESPACE_BEGIN(csci3081);
  */
 BehaviorLove::BehaviorLove() {
   Behavior::type_ = kLove;
-  Behavior::velocity_ = new WheelVelocity(0,0);
+  Behavior::velocity_ = new WheelVelocity(0, 0);
 }
 
-WheelVelocity * BehaviorLove::CalculateVelocity(double leftDist, double rightDist, double defaultSpeed){
-  if(leftDist<MIN_DISTANCE){
+WheelVelocity * BehaviorLove::CalculateVelocity(double leftDist,
+  double rightDist, double defaultSpeed) {
+  if (leftDist < MIN_DISTANCE) {
     leftDist = MIN_DISTANCE;
   }
-  if(rightDist<MIN_DISTANCE){
+  if (rightDist < MIN_DISTANCE) {
     rightDist = MIN_DISTANCE;
   }
   velocity_ = new WheelVelocity(1.0/leftDist, 1.0/rightDist, defaultSpeed);

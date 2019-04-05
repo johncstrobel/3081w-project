@@ -1,3 +1,9 @@
+/*
+* Copyright 2019 John Strobel
+*
+* @file: behavior_explore.cc
+*/
+
 #ifndef SRC_BEHAVIOR_EXPLORE_CC_
 #define SRC_BEHAVIOR_EXPLORE_CC_
 
@@ -6,7 +12,7 @@
  * Includes
  ******************************************************************************/
 
- #include "src/behavior_explore.h"
+#include "src/behavior_explore.h"
 
 
 /*******************************************************************************
@@ -27,15 +33,15 @@ NAMESPACE_BEGIN(csci3081);
  */
 BehaviorExplore::BehaviorExplore() {
   Behavior::type_ = kExplore;
-  Behavior::velocity_ = new WheelVelocity(0,0);
+  Behavior::velocity_ = new WheelVelocity(0, 0);
 }
 
 WheelVelocity * BehaviorExplore::CalculateVelocity(double leftDist,
-  double rightDist, double defaultSpeed){
-  if(leftDist<MIN_DISTANCE){
+  double rightDist, double defaultSpeed) {
+  if (leftDist < MIN_DISTANCE) {
     leftDist = MIN_DISTANCE;
   }
-  if(rightDist<MIN_DISTANCE){
+  if (rightDist < MIN_DISTANCE) {
     rightDist = MIN_DISTANCE;
   }
   velocity_ = new WheelVelocity(1.0/rightDist, 1.0/leftDist, defaultSpeed);

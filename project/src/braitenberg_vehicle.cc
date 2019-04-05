@@ -147,14 +147,14 @@ void BraitenbergVehicle::UpdateLightSensors() {
   }
 }
 
-void BraitenbergVehicle::DynamicColor(){  // colors the robot
+void BraitenbergVehicle::DynamicColor() {  // colors the robot
   // @TODO: change these so they depend on actual distance from the robot
   int food_influence = 1;
   int light_influence = 1;
   int braitenberg_influence = 1;
   double lefttol = 0.0002;
   double righttol = 0.0002;
-  int r=0,g=0,b=0;
+  int r = 0, g = 0, b = 0;
   if (get_sensor_reading_left(closest_light_entity_) < lefttol &&
      get_sensor_reading_right(closest_light_entity_) < righttol) {
        light_influence = 0;
@@ -174,13 +174,14 @@ void BraitenbergVehicle::DynamicColor(){  // colors the robot
   if (light_influence) {r+=100;}
   if (braitenberg_influence) {g+=100;}
   if (!food_influence && !light_influence && !braitenberg_influence) {
-    r=0;g=0,b=0;
+    r = 0;
+    g = 0;
+    b = 0;
   }
-  set_color(RgbColor(r,g,b));
+  set_color(RgbColor(r, g, b));
 }
 
-void BraitenbergVehicle::CalculateWheelVelocity(){
-
+void BraitenbergVehicle::CalculateWheelVelocity() {
   WheelVelocity * light_wheel_velocity =
     light_behavior_->CalculateVelocity(
       get_sensor_reading_left(closest_light_entity_),
@@ -200,9 +201,9 @@ void BraitenbergVehicle::CalculateWheelVelocity(){
       defaultSpeed_);
 
   int numBehaviors = 0;
-  if(braitenberg_behavior_enum_) numBehaviors++;
-  if(light_behavior_enum_) numBehaviors++;
-  if(food_behavior_enum_) numBehaviors++;
+  if (braitenberg_behavior_enum_) numBehaviors++;
+  if (light_behavior_enum_) numBehaviors++;
+  if (food_behavior_enum_) numBehaviors++;
 
   if (numBehaviors) {  // numBehaviors > 0
     wheel_velocity_ = WheelVelocity(

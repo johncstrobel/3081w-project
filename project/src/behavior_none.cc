@@ -1,3 +1,9 @@
+/*
+* Copyright 2019 John Strobel
+*
+* @file: behavior_none.cc
+*/
+
 #ifndef SRC_BEHAVIOR_NONE_CC_
 #define SRC_BEHAVIOR_NONE_CC_
 
@@ -6,7 +12,7 @@
  * Includes
  ******************************************************************************/
 
- #include "src/behavior_none.h"
+#include "src/behavior_none.h"
 
 
 /*******************************************************************************
@@ -27,13 +33,12 @@ NAMESPACE_BEGIN(csci3081);
  */
 BehaviorNone::BehaviorNone() {
   Behavior::type_ = kNone;
-  Behavior::velocity_ = new WheelVelocity(0,0);
+  Behavior::velocity_ = new WheelVelocity(0, 0);
 }
 
 WheelVelocity * BehaviorNone::CalculateVelocity(__unused double leftDist,
-  __unused double rightDist, __unused double defaultSpeed){
-    
-  velocity_ = new WheelVelocity(0,0);
+  __unused double rightDist, __unused double defaultSpeed) {
+  velocity_ = new WheelVelocity(0, 0);
   return velocity_;
 }
 

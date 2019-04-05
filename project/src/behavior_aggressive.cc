@@ -1,3 +1,9 @@
+/*
+* Copyright 2019 John Strobel
+*
+* @file: behavior_aggressive.cc
+*/
+
 #ifndef SRC_BEHAVIOR_AGGRESSIVE_CC_
 #define SRC_BEHAVIOR_AGGRESSIVE_CC_
 
@@ -6,7 +12,7 @@
  * Includes
  ******************************************************************************/
 
- #include "src/behavior_aggressive.h"
+#include "src/behavior_aggressive.h"
 
 
 /*******************************************************************************
@@ -27,14 +33,15 @@ NAMESPACE_BEGIN(csci3081);
  */
 BehaviorAggressive::BehaviorAggressive() {
   Behavior::type_ = kAggressive;
-  Behavior::velocity_ = new WheelVelocity(0,0);
+  Behavior::velocity_ = new WheelVelocity(0, 0);
 }
 
-WheelVelocity * BehaviorAggressive::CalculateVelocity(double leftDist, double rightDist, double defaultSpeed){
-  if(leftDist<MIN_DISTANCE){
+WheelVelocity * BehaviorAggressive::CalculateVelocity(double leftDist,
+  double rightDist, double defaultSpeed) {
+  if (leftDist < MIN_DISTANCE) {
     leftDist = MIN_DISTANCE;
   }
-  if(rightDist<MIN_DISTANCE){
+  if (rightDist < MIN_DISTANCE) {
     rightDist = MIN_DISTANCE;
   }
   velocity_ = new WheelVelocity(rightDist, leftDist, defaultSpeed);
