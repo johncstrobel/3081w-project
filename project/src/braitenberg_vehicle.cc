@@ -50,9 +50,10 @@ BraitenbergVehicle::BraitenbergVehicle() :
 }
 
 void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
+
   if (is_moving()) {
     motion_behavior_->UpdatePose(dt, wheel_velocity_);
-  } else {  // is moving() returns something else
+  } else if (!dead) {  // is moving() returns something else
     motion_behavior_->UpdatePose(dt, WheelVelocity(-2, -2));
     colliding_ = colliding_ - dt;
     if (colliding_ <= 0) {
@@ -60,6 +61,7 @@ void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
       set_heading(static_cast<int>((get_pose().theta + 45)) % 360);
     }
   }
+  // else do nothing
   UpdateLightSensors();
 }
 
@@ -244,6 +246,8 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
 void BraitenbergVehicle::kill(){
   dead = true;
   set_is_moving(false);
+  set_color(RgbColor(255,255,255));
+
 
 }
 

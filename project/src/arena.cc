@@ -157,7 +157,10 @@ void Arena::UpdateEntitiesTimestep() {
         // nothing collides with food, but bv's call consume() if they do
         if ((ent2->get_type() == kBraitenberg && ent1->get_type() == kLight) ||
             (ent2->get_type() == kLight && ent1->get_type() == kBraitenberg) ||
-            (ent2->get_type() == kFood) || (ent1->get_type() == kFood)     ) {
+            (ent2->get_type() == kFood) || (ent1->get_type() == kFood) ||
+            (ent1->get_type() == kPredator && ent2->get_type() == kBraitenberg) ||
+            (ent1->get_type() == kBraitenberg && ent2->get_type() == kPredator)) {
+              std::cout << "here" << std::endl;
           continue;
         }
         AdjustEntityOverlap(ent1, ent2);
@@ -235,12 +238,6 @@ bool Arena::IsColliding(
 */
 /* @TODO: Add to Pose distance distance_between (e.g. overload operator -)
 */
-/* @BUG: The robot will pass through the home food on occasion. The problem
- * is likely due to the adjustment being in the wrong direction. This could
- * be because the cos/sin generate the wrong sign of the distance_to_move
- * when the collision is in a specific quadrant relative to the center of the
- * colliding entities..
- */
 void Arena::AdjustEntityOverlap(ArenaMobileEntity * const mobile_e,
   ArenaEntity *const other_e) {
     double delta_x = mobile_e->get_pose().x - other_e->get_pose().x;
