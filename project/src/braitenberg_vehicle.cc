@@ -243,7 +243,7 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
 }
 
 void BraitenbergVehicle::RegisterObserver(Observer * other){
-  observers_.push_back(other)
+  observers_.push_back(static_cast<BraitenbergObserver*>(other));
 }
 
 void BraitenbergVehicle::RemoveObserver(Observer * other){
