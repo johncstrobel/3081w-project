@@ -35,6 +35,7 @@ Predator::Predator(): BraitenbergVehicle(), killcount_(0){
   BraitenbergVehicle::set_light_behavior(kCoward);
   BraitenbergVehicle::set_food_behavior(kNone);
   BraitenbergVehicle::set_braitenberg_behavior(kAggressive);
+  // set_type(kPredator);
 }
 
 
@@ -46,15 +47,21 @@ void Predator::HandleCollision(__unused EntityType ent_type,
     BraitenbergVehicle::HandleCollision(ent_type, object);
   } else if(object->get_type() == kBraitenberg){
     static_cast<BraitenbergVehicle*>(object)->kill();
+    killcount_++;
   } else {
     BraitenbergVehicle::HandleCollision(ent_type, object);
   }
+}
+
+void Predator::LoadFromObject(json_object* entity_config) {
+  ArenaEntity::LoadFromObject(entity_config);
+  UpdateLightSensors();
 }
    /* things it needs to do differently:
     * behaviors (ez)
     * when colliding with a BV, kill it
     *  -overload handlecollision
-    *
+    *  -remove BV from collidable objects
     */
 
 NAMESPACE_END(csci3081);

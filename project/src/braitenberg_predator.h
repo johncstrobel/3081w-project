@@ -42,6 +42,9 @@ class Predator : public BraitenbergVehicle {
 
    void HandleCollision(EntityType ent_type, ArenaEntity * object) override;
 
+   void LoadFromObject(json_object* entity_config) override;
+
+   bool IsPredator() override {return true;}
 
    /* things it needs to do differently:
     * behaviors (ez)

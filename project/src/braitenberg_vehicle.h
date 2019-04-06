@@ -194,6 +194,8 @@ class BraitenbergVehicle : public ArenaMobileEntity {
 
   void kill();
 
+  bool IsDead(){return dead;}
+
   static int count;
 
  private:
