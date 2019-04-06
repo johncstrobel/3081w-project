@@ -73,7 +73,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   /**
    * @brief Change the movement state of the BraitenbergVehicle.
    */
-  void HandleCollision(EntityType ent_type,
+  virtual void HandleCollision(EntityType ent_type,
                        ArenaEntity * object = NULL) override;
 
   /**
@@ -118,8 +118,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
 
   Behavior * get_light_behavior() { return light_behavior_; }
   BehaviorEnum  get_light_behavior_enum() { return light_behavior_enum_; }
-
-void set_light_behavior(BehaviorEnum behavior) {
+  void set_light_behavior(BehaviorEnum behavior) {
   light_behavior_enum_ = behavior;
   switch(behavior){
     case 1:
@@ -142,8 +141,7 @@ void set_light_behavior(BehaviorEnum behavior) {
 
   Behavior * get_food_behavior() { return food_behavior_; }
   BehaviorEnum  get_food_behavior_enum() { return food_behavior_enum_; }
-
-void set_food_behavior(BehaviorEnum behavior) {
+  void set_food_behavior(BehaviorEnum behavior) {
   food_behavior_enum_ = behavior;
   switch(behavior){
     case 1:
@@ -166,8 +164,7 @@ void set_food_behavior(BehaviorEnum behavior) {
 
   Behavior * get_braitenberg_behavior() { return braitenberg_behavior_; }
   BehaviorEnum get_braitenberg_behavior_enum() {return braitenberg_behavior_enum_; }
-
-void set_braitenberg_behavior(BehaviorEnum behavior) {
+  void set_braitenberg_behavior(BehaviorEnum behavior) {
   braitenberg_behavior_enum_ = behavior;
   switch(behavior){
     case 1:
@@ -189,11 +186,15 @@ void set_braitenberg_behavior(BehaviorEnum behavior) {
 }
 
   double get_sensor_reading_left(const ArenaEntity* entity);
-
   double get_sensor_reading_right(const ArenaEntity* entity);
 
   void DynamicColor();
+
   void CalculateWheelVelocity();
+
+  void kill();
+
+  bool IsDead(){return dead;}
 
   static int count;
 
@@ -212,6 +213,7 @@ void set_braitenberg_behavior(BehaviorEnum behavior) {
   const ArenaEntity* closest_braitenberg_entity_;
   double defaultSpeed_;
   double colliding_;  // tracks time until robot is done colliding
+  bool dead; //marks if the robot is alive
 };
 
 NAMESPACE_END(csci3081);

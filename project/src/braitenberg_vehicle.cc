@@ -31,7 +31,7 @@ BraitenbergVehicle::BraitenbergVehicle() :
   light_behavior_(NULL), food_behavior_(NULL),
   braitenberg_behavior_(NULL), closest_light_entity_(NULL),
   closest_food_entity_(NULL), closest_braitenberg_entity_(NULL),
-  defaultSpeed_(5.0), colliding_(0.0) {
+  defaultSpeed_(5.0), colliding_(0.0), dead(false) {
   food_behavior_ = new BehaviorNone();
   light_behavior_ = new BehaviorNone();
   braitenberg_behavior_ = new BehaviorNone();
@@ -50,9 +50,10 @@ BraitenbergVehicle::BraitenbergVehicle() :
 }
 
 void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
+
   if (is_moving()) {
     motion_behavior_->UpdatePose(dt, wheel_velocity_);
-  } else {  // is moving() returns something else
+  } else if (!dead) {  // is moving() returns something else
     motion_behavior_->UpdatePose(dt, WheelVelocity(-2, -2));
     colliding_ = colliding_ - dt;
     if (colliding_ <= 0) {
@@ -60,13 +61,16 @@ void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
       set_heading(static_cast<int>((get_pose().theta + 45)) % 360);
     }
   }
+  // else do nothing
   UpdateLightSensors();
 }
 
 void BraitenbergVehicle::HandleCollision(__unused EntityType ent_type,
                                          __unused ArenaEntity * object) {
-  set_is_moving(false);
-  colliding_ = 20;
+  if(!dead){
+    set_is_moving(false);
+    colliding_ = 20;
+  }
 }
 
 void BraitenbergVehicle::SenseEntity(const ArenaEntity& entity) {
@@ -100,8 +104,10 @@ void BraitenbergVehicle::SenseEntity(const ArenaEntity& entity) {
 }
 
 void BraitenbergVehicle::Update() {
-  CalculateWheelVelocity();
-  DynamicColor();
+  if(!dead){
+    CalculateWheelVelocity();
+    DynamicColor();
+  }
 }
 
 std::string BraitenbergVehicle::get_name() const {
@@ -235,8 +241,15 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
         (*entity_config)["braitenberg_behavior"].get<std::string>());
       set_braitenberg_behavior(braitenberg_behavior_enum_);
   }
-
   UpdateLightSensors();
+}
+
+void BraitenbergVehicle::kill(){
+  dead = true;
+  set_is_moving(false);
+  set_color(RgbColor(255,255,255));
+
+
 }
 
 NAMESPACE_END(csci3081);

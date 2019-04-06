@@ -58,7 +58,6 @@ class ArenaMobileEntity: public ArenaEntity {
   bool is_moving() { return is_moving_; }
   void set_is_moving(bool moving) { is_moving_ = moving; }
 
-
  private:
   double speed_;
   bool is_moving_;
