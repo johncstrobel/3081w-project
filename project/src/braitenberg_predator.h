@@ -36,25 +36,24 @@ NAMESPACE_BEGIN(csci3081);
 
 class Predator : public BraitenbergVehicle {
  public:
-   Predator();
+  Predator();
 
-   ~Predator();
+  ~Predator();
 
-   void HandleCollision(EntityType ent_type, ArenaEntity * object) override;
+  void HandleCollision(EntityType ent_type, ArenaEntity * object) override;
 
-   void LoadFromObject(json_object* entity_config) override;
+  void LoadFromObject(json_object* entity_config) override;
 
-   bool IsPredator() override {return true;}
+  bool IsPredator() override {return true;}
 
-   /* things it needs to do differently:
-    * behaviors (ez)
-    * when colliding with a BV, kill it
-    *  -overload handlecollision
-    *
-    */
+  /* things it needs to do differently:
+   * behaviors (ez)
+   * when colliding with a BV, kill it
+   *  -overload handlecollision
+   *
+   */
  private:
-   int killcount_;
-
+    int killcount_;
 };
 
 NAMESPACE_END(csci3081);

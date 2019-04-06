@@ -31,7 +31,7 @@ NAMESPACE_BEGIN(csci3081);
  * @detail
  */
 
-Predator::Predator(): BraitenbergVehicle(), killcount_(0){
+Predator::Predator(): BraitenbergVehicle(), killcount_(0) {
   BraitenbergVehicle::set_light_behavior(kCoward);
   BraitenbergVehicle::set_food_behavior(kNone);
   BraitenbergVehicle::set_braitenberg_behavior(kAggressive);
@@ -39,13 +39,13 @@ Predator::Predator(): BraitenbergVehicle(), killcount_(0){
 }
 
 
-Predator::~Predator(){}
+Predator::~Predator() {}
 
 void Predator::HandleCollision(__unused EntityType ent_type,
-  ArenaEntity * object){
-  if(object == nullptr){
+  ArenaEntity * object) {
+  if (object == nullptr) {
     BraitenbergVehicle::HandleCollision(ent_type, object);
-  } else if(object->get_type() == kBraitenberg){
+  } else if (object->get_type() == kBraitenberg) {
     static_cast<BraitenbergVehicle*>(object)->kill();
     killcount_++;
   } else {

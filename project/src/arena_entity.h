@@ -149,7 +149,7 @@ class ArenaEntity {
     }
   }
 
-  virtual bool IsPredator(){return false;}
+  virtual bool IsPredator() {return false;}
 
  private:
   double radius_{DEFAULT_RADIUS};

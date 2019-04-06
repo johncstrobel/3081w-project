@@ -67,7 +67,7 @@ struct WheelVelocity {
 
   bool operator==(const WheelVelocity other) const {
      return((left == other.left) && (right == other.right));
-   }
+  }
 
   double left;
   double right;

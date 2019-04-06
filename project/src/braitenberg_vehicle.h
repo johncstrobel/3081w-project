@@ -73,8 +73,8 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   /**
    * @brief Change the movement state of the BraitenbergVehicle.
    */
-  virtual void HandleCollision(EntityType ent_type,
-                       ArenaEntity * object = NULL) override;
+  void HandleCollision(EntityType ent_type,
+    ArenaEntity * object = NULL) override;
 
   /**
   * @brief Compares in param with current closest entity.
@@ -104,12 +104,12 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   */
   void LoadFromObject(json_object* entity_config) override;
 
-  void set_behavior(Behavior * behavior,std::string type){
-    if(type.compare("food")==0) {
+  void set_behavior(Behavior * behavior, std::string type) {
+    if (type.compare("food") == 0) {
       food_behavior_ = behavior;
-    } else if(type.compare("light")==0){
+    } else if (type.compare("light") == 0) {
       light_behavior_ = behavior;
-    } else if(type.compare("braitenberg")==0) {
+    } else if (type.compare("braitenberg") == 0) {
       braitenberg_behavior_ = behavior;
     } else {
       std::cout << "ya done goofed" << std::endl;
@@ -120,22 +120,22 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   BehaviorEnum  get_light_behavior_enum() { return light_behavior_enum_; }
   void set_light_behavior(BehaviorEnum behavior) {
   light_behavior_enum_ = behavior;
-  switch(behavior){
+  switch (behavior) {
     case 1:
-      set_behavior(new BehaviorAggressive(),"light");
+      set_behavior (new BehaviorAggressive(), "light");
       break;
     case 2:
-      set_behavior(new BehaviorCoward(),"light");
+      set_behavior(new BehaviorCoward(), "light");
       break;
     case 3:
       set_behavior(new BehaviorExplore(), "light");
       break;
     case 4:
-      set_behavior(new BehaviorLove(),"light");
+      set_behavior(new BehaviorLove(), "light");
       break;
     case 0:
     default:
-      set_behavior(new BehaviorNone(),"light");
+      set_behavior(new BehaviorNone(), "light");
   }
 }
 
@@ -143,45 +143,46 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   BehaviorEnum  get_food_behavior_enum() { return food_behavior_enum_; }
   void set_food_behavior(BehaviorEnum behavior) {
   food_behavior_enum_ = behavior;
-  switch(behavior){
+  switch (behavior) {
     case 1:
-      set_behavior(new BehaviorAggressive(),"food");
+      set_behavior(new BehaviorAggressive(), "food");
       break;
     case 2:
-      set_behavior(new BehaviorCoward(),"food");
+      set_behavior(new BehaviorCoward(), "food");
       break;
     case 3:
       set_behavior(new BehaviorExplore(), "food");
       break;
     case 4:
-      set_behavior(new BehaviorLove(),"food");
+      set_behavior(new BehaviorLove(), "food");
       break;
     case 0:
     default:
-      set_behavior(new BehaviorNone(),"food");
+      set_behavior(new BehaviorNone(), "food");
   }
 }
 
   Behavior * get_braitenberg_behavior() { return braitenberg_behavior_; }
-  BehaviorEnum get_braitenberg_behavior_enum() {return braitenberg_behavior_enum_; }
+  BehaviorEnum get_braitenberg_behavior_enum()
+    {return braitenberg_behavior_enum_;}
   void set_braitenberg_behavior(BehaviorEnum behavior) {
   braitenberg_behavior_enum_ = behavior;
-  switch(behavior){
+  switch (behavior) {
     case 1:
-      set_behavior(new BehaviorAggressive(),"braitenberg");
+      set_behavior(new BehaviorAggressive(), "braitenberg");
       break;
     case 2:
-      set_behavior(new BehaviorCoward(),"braitenberg");
+      set_behavior(new BehaviorCoward(), "braitenberg");
       break;
     case 3:
       set_behavior(new BehaviorExplore(), "braitenberg");
       break;
     case 4:
-      set_behavior(new BehaviorLove(),"braitenberg");
+      set_behavior(new BehaviorLove(), "braitenberg");
       break;
     case 0:
     default:
-      set_behavior(new BehaviorNone(),"braitenberg");
+      set_behavior(new BehaviorNone(), "braitenberg");
   }
 }
 
@@ -194,7 +195,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
 
   void kill();
 
-  bool IsDead(){return dead;}
+  bool IsDead() {return dead;}
 
   static int count;
 
@@ -212,8 +213,8 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   const ArenaEntity* closest_food_entity_;
   const ArenaEntity* closest_braitenberg_entity_;
   double defaultSpeed_;
-  double colliding_;  // tracks time until robot is done colliding
-  bool dead; //marks if the robot is alive
+  double colliding_;   // tracks time until robot is done colliding
+  bool dead;  // marks if the robot is alive
 };
 
 NAMESPACE_END(csci3081);

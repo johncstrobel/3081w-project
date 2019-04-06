@@ -50,7 +50,6 @@ BraitenbergVehicle::BraitenbergVehicle() :
 }
 
 void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
-
   if (is_moving()) {
     motion_behavior_->UpdatePose(dt, wheel_velocity_);
   } else if (!dead) {  // is moving() returns something else
@@ -67,7 +66,7 @@ void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
 
 void BraitenbergVehicle::HandleCollision(__unused EntityType ent_type,
                                          __unused ArenaEntity * object) {
-  if(!dead){
+  if (!dead) {
     set_is_moving(false);
     colliding_ = 20;
   }
@@ -104,7 +103,7 @@ void BraitenbergVehicle::SenseEntity(const ArenaEntity& entity) {
 }
 
 void BraitenbergVehicle::Update() {
-  if(!dead){
+  if (!dead) {
     CalculateWheelVelocity();
     DynamicColor();
   }
@@ -244,12 +243,10 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   UpdateLightSensors();
 }
 
-void BraitenbergVehicle::kill(){
+void BraitenbergVehicle::kill() {
   dead = true;
   set_is_moving(false);
-  set_color(RgbColor(255,255,255));
-
-
+  set_color(RgbColor(255, 255, 255));
 }
 
 NAMESPACE_END(csci3081);

@@ -143,8 +143,10 @@ void Arena::UpdateEntitiesTimestep() {
     */
     for (auto &ent2 : entities_) {
       if (ent2 == ent1) { continue; }
-      if ((ent1->get_type() == kBraitenberg && static_cast<BraitenbergVehicle*>(ent1)->IsDead()) ||
-          (ent2->get_type() == kBraitenberg && static_cast<BraitenbergVehicle*>(ent2)->IsDead()))
+      if ((ent1->get_type() == kBraitenberg &&
+            static_cast<BraitenbergVehicle*>(ent1)->IsDead()) ||
+          (ent2->get_type() == kBraitenberg &&
+            static_cast<BraitenbergVehicle*>(ent2)->IsDead()))
          { continue; }
 
       if (IsColliding(ent1, ent2)) {
@@ -164,10 +166,9 @@ void Arena::UpdateEntitiesTimestep() {
             (ent2->get_type() == kFood) || (ent1->get_type() == kFood)) {
           continue;
         }
-        if((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
-        (ent1->get_type() == kBraitenberg && ent2->IsPredator())){
-          ent1->HandleCollision(ent2->get_type(),ent2);
-          std::cout << "here" << std::endl;
+        if ((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
+        (ent1->get_type() == kBraitenberg && ent2->IsPredator())) {
+          ent1->HandleCollision(ent2->get_type(), ent2);
           continue;
         }
         AdjustEntityOverlap(ent1, ent2);
@@ -178,8 +179,8 @@ void Arena::UpdateEntitiesTimestep() {
     if (ent1->get_type() == kBraitenberg) {
       BraitenbergVehicle* bv = static_cast<BraitenbergVehicle*>(ent1);
       for (unsigned int f = 0; f < entities_.size(); f++) {
-        //if entity is both a different type and a different ID
-        if((entities_[f]->get_id() != ent1->get_id()) ||
+        // if entity is both a different type and a different ID
+        if ((entities_[f]->get_id() != ent1->get_id()) ||
            (entities_[f]->get_type() != ent1->get_type())) {
             bv->SenseEntity(*entities_[f]);
         }

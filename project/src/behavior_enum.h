@@ -52,8 +52,8 @@ inline BehaviorEnum get_behavior_type(const std::string& type) {
   return kNone;
 }
 
-inline BehaviorEnum get_behavior_type_int(int behavior){
-  switch(behavior){
+inline BehaviorEnum get_behavior_type_int(int behavior) {
+  switch (behavior) {
     case 1:
       return kAggressive;
       break;

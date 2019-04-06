@@ -1,3 +1,9 @@
+/*
+* Copyright 2019 John Strobel
+*
+* @file: behavior_explore.h
+*/
+
 #ifndef SRC_BEHAVIOR_EXPLORE_H_
 #define SRC_BEHAVIOR_EXPLORE_H_
 
@@ -5,9 +11,9 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
- #include "src/wheel_velocity.h"
- #include "src/behavior_enum.h"
- #include "src/behavior.h"
+#include "src/wheel_velocity.h"
+#include "src/behavior_enum.h"
+#include "src/behavior.h"
 
 
 /*******************************************************************************
@@ -33,14 +39,15 @@ class BehaviorExplore : public Behavior {
     void operator=(const BehaviorExplore &b2) = delete;
     BehaviorExplore(const BehaviorExplore &b2) = delete;
 
-    ~BehaviorExplore(){delete velocity_;};
+    ~BehaviorExplore() {delete velocity_;}
 
-    WheelVelocity * CalculateVelocity(double leftDist, double rightDist, double defaultSpeed) override;
+    WheelVelocity * CalculateVelocity(double leftDist, double rightDist,
+      double defaultSpeed) override;
 
 
  private:
-   // BehaviorEnum type_;
-   // WheelVelocity * velocity_;
+  // BehaviorEnum type_;
+  // WheelVelocity * velocity_;
 };
 
 NAMESPACE_END(csci3081);
