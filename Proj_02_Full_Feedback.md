@@ -1,6 +1,6 @@
 ### Feedback for Proj 02
 
-Run on April 08, 10:57:23 AM.
+Run on April 08, 14:18:20 PM.
 
 + Pass: Checkout devel branch.
 
@@ -57,7 +57,7 @@ Commits found=76
 
 + Pass: Run git ls-remote gather all branches in repo
 
-8ca4d8a0ab7cafd06e92d2e66f4f11ab2265e395	refs/heads/devel
+952fa9bf47f164823b8fe1b164d6f082fb8b24f3	refs/heads/devel
 
 378b0f72709749d7896d104e552f1b698a823eb5	refs/heads/feature/02-BV-sensor
 
@@ -67,7 +67,7 @@ edc2eecd5d74f74cbfb3d5fdb60ee5b4edf8bf9d	refs/heads/feature/04-strategy-pattern-
 
 d32cde48fe964f60f12fd6c550752b2da0dd698d	refs/heads/feature/05-dynamic-color-additions
 
-f34303ccbdd7dbf4ff453614ae89ab042871afbf	refs/heads/feature/06-observer-pattern
+06f3fa356b6fe8faa2e68c42199b3eff9d6e860b	refs/heads/feature/06-observer-pattern
 
 fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
@@ -79,7 +79,7 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 3204c5dde8d0ebc09252cf7db0c690c819983576	refs/heads/fix/05-predators-segfault-on-wall-collision
 
-0a064acddbe080e5a8e57b28c2e144f05fc4810a	refs/heads/master
+dd59801f12c2e3bb5f54b1672db7719d0617a980	refs/heads/master
 
 a744fddf2760036ad7d415132103c6727b725834	refs/heads/pre-release/iteration1
 
@@ -133,7 +133,101 @@ a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
 
 #### Style Tests
 
-+ Pass: Ensuring code follows style guide.
++ Fail: Ensuring code follows style guide.
+
+<pre>cd src; make check-style
+make[1]: Entering directory '/classes/grades/Spring-2019/csci3081/dtorban/csci3081-grading-env/grading-scripts/grading/Proj_02_Full_Feedback/repo-strob105/project/src'
+==== Checking style is correct ====
+/classes/grades/Spring-2019/csci3081/dtorban/csci3081-grading-env/grading-scripts/grading/Proj_02_Full_Feedback/repo-strob105/cpplint/cpplint.py --root=.. *.cc *.h
+braitenberg_vehicle.cc:190:  Missing space before {  [whitespace/braces] [5]
+braitenberg_vehicle.cc:191:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
+braitenberg_vehicle.cc:226:  Missing space after ,  [whitespace/comma] [3]
+braitenberg_vehicle.cc:257:  Missing space before {  [whitespace/braces] [5]
+braitenberg_vehicle.cc:262:  Missing space before {  [whitespace/braces] [5]
+braitenberg_vehicle.cc:263:  Missing space before ( in for(  [whitespace/parens] [5]
+braitenberg_vehicle.cc:263:  Missing space before {  [whitespace/braces] [5]
+braitenberg_vehicle.cc:264:  Missing space before ( in if(  [whitespace/parens] [5]
+braitenberg_vehicle.cc:264:  Missing space before {  [whitespace/braces] [5]
+braitenberg_vehicle.cc:275:  You don't need a ; after a }  [readability/braces] [4]
+braitenberg_vehicle.cc:272:  Missing space before ( in for(  [whitespace/parens] [5]
+braitenberg_vehicle.cc:272:  Missing space after ;  [whitespace/semicolon] [3]
+braitenberg_vehicle.cc:273:  Missing space after ,  [whitespace/comma] [3]
+braitenberg_vehicle.cc:275:  At least two spaces is best between code and comments  [whitespace/comments] [2]
+braitenberg_vehicle.cc:275:  Should have a space between // and comment  [whitespace/comments] [4]
+graphics_arena_viewer.cc:44:  Missing space before {  [whitespace/braces] [5]
+graphics_arena_viewer.cc:330:  Missing space after ,  [whitespace/comma] [3]
+graphics_arena_viewer.cc:352:  Missing space after ,  [whitespace/comma] [3]
+graphics_arena_viewer.cc:455:  Missing space before {  [whitespace/braces] [5]
+braitenberg_vehicle.h:229:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+graphics_arena_viewer.h:59:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+graphics_arena_viewer.h:232:  "private:" should be preceded by a blank line  [whitespace/blank_line] [3]
+graphics_arena_viewer.h:233:  Do not leave a blank line after "private:"  [whitespace/blank_line] [3]
+graphics_arena_viewer.h:227:  Add #include <string> for string  [build/include_what_you_use] [4]
+observer.h:32:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:32:  You don't need a ; after a }  [readability/braces] [4]
+observer.h:33:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:33:  You don't need a ; after a }  [readability/braces] [4]
+observer.h:35:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:36:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:38:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:41:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:41:  You don't need a ; after a }  [readability/braces] [4]
+observer.h:43:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:44:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:47:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+observer.h:49:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
+Done processing arena.cc
+Done processing behavior_aggressive.cc
+Done processing behavior_coward.cc
+Done processing behavior_explore.cc
+Done processing behavior_love.cc
+Done processing behavior_none.cc
+Done processing braitenberg_predator.cc
+Done processing braitenberg_vehicle.cc
+Done processing controller.cc
+Done processing factory.cc
+Done processing food.cc
+Done processing graphics_arena_viewer.cc
+Done processing light.cc
+Done processing main.cc
+Done processing motion_behavior.cc
+Done processing motion_behavior_differential.cc
+Done processing rgb_color.cc
+Done processing arena_entity.h
+Done processing arena.h
+Done processing arena_immobile_entity.h
+Done processing arena_mobile_entity.h
+Done processing arena_viewer.h
+Done processing behavior_aggressive.h
+Done processing behavior_coward.h
+Done processing behavior_enum.h
+Done processing behavior_explore.h
+Done processing behavior.h
+Done processing behavior_love.h
+Done processing behavior_none.h
+Done processing braitenberg_predator.h
+Done processing braitenberg_vehicle.h
+Done processing common.h
+Done processing controller.h
+Done processing entity_type.h
+Done processing factory.h
+Done processing food.h
+Done processing graphics_arena_viewer.h
+Done processing light.h
+Done processing motion_behavior_differential.h
+Done processing motion_behavior.h
+Done processing observer.h
+Done processing params.h
+Done processing pose.h
+Done processing rgb_color.h
+Done processing wheel_velocity.h
+Total errors found: 37
+Makefile:162: recipe for target 'check-style' failed
+make[1]: *** [check-style] Error 1
+make[1]: Leaving directory '/classes/grades/Spring-2019/csci3081/dtorban/csci3081-grading-env/grading-scripts/grading/Proj_02_Full_Feedback/repo-strob105/project/src'
+Makefile:8: recipe for target 'check-style' failed
+make: *** [check-style] Error 2
+</pre>
 
 
 
