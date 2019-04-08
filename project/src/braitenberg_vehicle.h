@@ -226,7 +226,6 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   double colliding_;  // tracks time until robot is done backing up
   bool dead;  // marks if the robot is alive
   std::vector<Observer*> observers_;
-
 };
 
 NAMESPACE_END(csci3081);

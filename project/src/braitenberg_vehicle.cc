@@ -187,8 +187,7 @@ void BraitenbergVehicle::DynamicColor() {  // colors the robot
   set_color(RgbColor(r, g, b));
 }
 
-void BraitenbergVehicle::CalculateWheelVelocity(){
-
+void BraitenbergVehicle::CalculateWheelVelocity() {
   light_wheel_velocity_ =
     light_behavior_->CalculateVelocity(
       get_sensor_reading_left(closest_light_entity_),
@@ -223,7 +222,7 @@ void BraitenbergVehicle::CalculateWheelVelocity(){
     wheel_velocity_ = WheelVelocity(0, 0);
   }
 
-  NotifyObservers(light_wheel_velocity_,food_wheel_velocity_,
+  NotifyObservers(light_wheel_velocity_, food_wheel_velocity_,
     bv_wheel_velocity_);
 }
 
@@ -240,7 +239,7 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
         (*entity_config)["food_behavior"].get<std::string>());
       set_food_behavior(food_behavior_enum_);
   }
-  if (entity_config->find("braitenberg_behavior") != entity_config->end()) {
+  if (entity_config->find("robot_behavior") != entity_config->end()) {
       braitenberg_behavior_enum_ = get_behavior_type(
         (*entity_config)["braitenberg_behavior"].get<std::string>());
       set_braitenberg_behavior(braitenberg_behavior_enum_);
@@ -254,25 +253,25 @@ void BraitenbergVehicle::kill() {
   set_color(RgbColor(255, 255, 255));
 }
 
-void BraitenbergVehicle::RegisterObserver(Observer * other){
+void BraitenbergVehicle::RegisterObserver(Observer * other) {
   observers_.push_back(other);
   other->SetSubscribed(true);
 }
 
-void BraitenbergVehicle::RemoveObserver(Observer * other){
-  for(unsigned int i = 0; i < observers_.size(); i++){
-    if(observers_[i] == other){
+void BraitenbergVehicle::RemoveObserver(Observer * other) {
+  for (unsigned int i = 0; i < observers_.size(); i++) {
+    if (observers_[i] == other) {
       observers_.erase(observers_.begin()+i);
     }
   }
 }
 
 void BraitenbergVehicle::NotifyObservers(WheelVelocity * lightvel,
-  WheelVelocity * foodvel,  WheelVelocity * bvvel){
-  for(unsigned int i = 0; i < observers_.size();i++){
-    observers_[i]->Update(lightvel,foodvel,bvvel);
+  WheelVelocity * foodvel,  WheelVelocity * bvvel) {
+  for (unsigned int i = 0; i < observers_.size(); i++) {
+    observers_[i]->Update(lightvel, foodvel, bvvel);
   }
-}; //for o in observers o-> update();
+}  // for o in observers o-> update();
 
 
 NAMESPACE_END(csci3081);

@@ -41,7 +41,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     window(),
     light_value_right_(), light_value_left_(),
     food_value_right_(), food_value_left_(),
-    bv_value_right_(), bv_value_left_(){
+    bv_value_right_(), bv_value_left_() {
       xOffset_ = GUI_MENU_WIDTH + GUI_MENU_GAP;
 }
 
@@ -327,7 +327,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
     panel, "Wheel Velocities", "sans-bold"));
   nanogui::Widget* grid = new nanogui::Widget(panel);
   grid->setLayout(new nanogui::GridLayout(
-     nanogui::Orientation::Horizontal, 3, nanogui::Alignment::Middle,0,0));
+     nanogui::Orientation::Horizontal, 3, nanogui::Alignment::Middle, 0, 0));
   robotWidgets.push_back(grid);
 
   // Columns Headers Row
@@ -349,7 +349,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
   food_value_right_ = new nanogui::TextBox(grid, "0.0");
   food_value_right_->setFixedWidth(75);
 
-  new nanogui::Label(grid,"BV", "sans-bold");
+  new nanogui::Label(grid, "BV", "sans-bold");
   bv_value_left_ = new nanogui::TextBox(grid, "0.0");
   bv_value_left_->setFixedWidth(75);
   bv_value_right_ = new nanogui::TextBox(grid, "0.0");
@@ -452,7 +452,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
 }
 
 void GraphicsArenaViewer::Update(WheelVelocity * lightvel,
-  WheelVelocity * foodvel, WheelVelocity * bvvel){
+  WheelVelocity * foodvel, WheelVelocity * bvvel) {
   light_value_right_->setValue(formatValue(lightvel->right));
   light_value_left_->setValue(formatValue(lightvel->left));
   food_value_right_->setValue(formatValue(foodvel->right));

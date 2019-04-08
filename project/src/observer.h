@@ -29,24 +29,24 @@ NAMESPACE_BEGIN(csci3081);
 
 class Observer {
  public:
-   Observer():subscribed_(false), subject_(NULL){};
-   virtual ~Observer(){};
+  Observer():subscribed_(false), subject_(NULL) {}
+  virtual ~Observer() {}
 
-   int operator=(const Observer &other) = delete;
-   Observer(const Observer &other) = delete;
+  int operator=(const Observer &other) = delete;
+  Observer(const Observer &other) = delete;
 
-   virtual void Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
-     WheelVelocity * bvvel) = 0;  // called by entity to pass info to observer
+  virtual void Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
+    WheelVelocity * bvvel) = 0;  // called by entity to pass info to observer
 
-   virtual void RequestUnsubscribe(){};
+  virtual void RequestUnsubscribe() {}
 
-   void SetSubscribed(bool t) {subscribed_ = t;}
-   bool IsSubscribed() {return subscribed_;}
+  void SetSubscribed(bool t) {subscribed_ = t;}
+  bool IsSubscribed() {return subscribed_;}
 
  private:
-   bool subscribed_;
+  bool subscribed_;
  protected:
-   ArenaEntity * subject_;
+  ArenaEntity * subject_;
 };
 
 NAMESPACE_END(csci3081);

@@ -13,6 +13,7 @@
 #include <MinGfx-1.0/mingfx.h>
 #include <sstream>
 #include <iomanip>
+#include <string>
 
 
 #include "src/arena.h"
@@ -56,7 +57,8 @@ class Controller;
  *  Fill in the `Draw*()` methods to draw graphics on the screen using
  *  either the `nanovg` library or raw `OpenGL`.
  */
-class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer, public Observer {
+class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer,
+  public Observer {
  public:
   /**
    * @brief Constructor.
@@ -229,8 +231,8 @@ class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer, publ
     ss << std::fixed << std::setprecision(2) << val;
     return ss.str();
   }
- private:
 
+ private:
   void DrawArena(NVGcontext *ctx);
 
   /**
