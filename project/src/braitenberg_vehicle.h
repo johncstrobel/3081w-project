@@ -26,7 +26,6 @@
 #include "src/behavior_none.h"
 #include "src/behavior_explore.h"
 #include "src/params.h"
-#include "src/braitenberg_observer.h"
 #include "src/observer.h"
 
 

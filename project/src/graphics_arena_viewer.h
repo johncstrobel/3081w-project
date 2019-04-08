@@ -19,7 +19,6 @@
 #include "src/controller.h"
 #include "src/common.h"
 #include "src/observer.h"
-#include "src/braitenberg_observer.h"
 
 /*******************************************************************************
  * Namespaces
