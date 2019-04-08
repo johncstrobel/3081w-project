@@ -40,9 +40,15 @@ class Behavior {
 
   Behavior(const Behavior &other) = delete;
 
+<<<<<<< HEAD
   int operator=(const Behavior &other) = delete;
     // in inherited classes, params:
     // double leftDist, double rightDist, double defaultSpeed
+=======
+    int operator=(const Behavior &other) = delete;
+    
+   virtual WheelVelocity * CalculateVelocity(double leftDist, double rightDist, double defaultSpeed) = 0;
+>>>>>>> feature/06-observer-pattern
 
   virtual WheelVelocity * CalculateVelocity(double leftDist, double rightDist,
     double defaultSpeed) = 0;

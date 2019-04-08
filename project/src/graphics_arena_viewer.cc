@@ -17,6 +17,7 @@
 #include "src/behavior.h"
 #include "src/behavior_enum.h"
 
+
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -37,7 +38,10 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     xOffset_(0),
     nanogui_intialized_(false),
     gui(nullptr),
-    window() {
+    window(),
+    light_value_right_(), light_value_left_(),
+    food_value_right_(), food_value_left_(),
+    bv_value_right_(), bv_value_left_(){
       xOffset_ = GUI_MENU_WIDTH + GUI_MENU_GAP;
 }
 
@@ -319,6 +323,38 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
   space->setVisible(false);
   sliderPanel->setVisible(false);
 
+  robotWidgets.push_back(new nanogui::Label(
+    panel, "Wheel Velocities", "sans-bold"));
+  nanogui::Widget* grid = new nanogui::Widget(panel);
+  grid->setLayout(new nanogui::GridLayout(
+     nanogui::Orientation::Horizontal, 3, nanogui::Alignment::Middle,0,0));
+  robotWidgets.push_back(grid);
+
+  // Columns Headers Row
+  // assigns items to grid locations row by row
+  new nanogui::Label(grid, "", "sans-bold");
+  new nanogui::Label(grid, "Left", "sans-bold");
+  new nanogui::Label(grid, "Right", "sans-bold");
+
+  // Rows: light behavior, food behavior, BV behavior
+  new nanogui::Label(grid, "Light", "sans-bold");
+  light_value_left_ = new nanogui::TextBox(grid, "0.0");
+  light_value_left_->setFixedWidth(75);
+  light_value_right_ = new nanogui::TextBox(grid, "0.0");
+  light_value_right_->setFixedWidth(75);
+
+  new nanogui::Label(grid, "Food", "sans-bold");
+  food_value_left_ = new nanogui::TextBox(grid, "0.0");
+  food_value_left_->setFixedWidth(75);
+  food_value_right_ = new nanogui::TextBox(grid, "0.0");
+  food_value_right_->setFixedWidth(75);
+
+  new nanogui::Label(grid,"BV", "sans-bold");
+  bv_value_left_ = new nanogui::TextBox(grid, "0.0");
+  bv_value_left_->setFixedWidth(75);
+  bv_value_right_ = new nanogui::TextBox(grid, "0.0");
+  bv_value_right_->setFixedWidth(75);
+
   for (unsigned int f = 0; f < robotWidgets.size(); f++) {
     robotWidgets[f]->setVisible(defaultEntity->get_type() == kBraitenberg);
   }
@@ -333,12 +369,19 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
     bvBehaviorSelect->setSelectedIndex(
       static_cast<BraitenbergVehicle*>(defaultEntity)->
         get_braitenberg_behavior_enum());
+
+    static_cast<BraitenbergVehicle*>(defaultEntity)->RegisterObserver(this);
   }
 
   entitySelect->setCallback(
     [this, isMobile, robotWidgets, lightBehaviorSelect,
     foodBehaviorSelect, bvBehaviorSelect](int index) {
       ArenaEntity* entity = this->arena_->get_entities()[index];
+
+      if (entity->get_type() == kBraitenberg) {
+        static_cast<BraitenbergVehicle*>(entity)->RemoveObserver(this);
+      }
+
       if (entity->is_mobile()) {
         ArenaMobileEntity* mobileEntity =
         static_cast<ArenaMobileEntity*>(entity);
@@ -361,6 +404,9 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
         bvBehaviorSelect->setSelectedIndex(
           static_cast<BraitenbergVehicle*>(entity)->
             get_braitenberg_behavior_enum());
+
+        static_cast<BraitenbergVehicle*>(entity)->
+          RegisterObserver(this);
       }
 
       screen()->performLayout();
@@ -373,7 +419,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       if (entity->get_type() == kBraitenberg) {
         static_cast<BraitenbergVehicle*>(entity)->set_light_behavior(
            static_cast<BehaviorEnum>(index));
-      }
+     }
     });
 
   foodBehaviorSelect->setCallback(
@@ -404,6 +450,17 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       mobileEntity->set_is_moving(moving);
     });
 }
+
+void GraphicsArenaViewer::Update(WheelVelocity * lightvel,
+  WheelVelocity * foodvel, WheelVelocity * bvvel){
+  light_value_right_->setValue(formatValue(lightvel->right));
+  light_value_left_->setValue(formatValue(lightvel->left));
+  food_value_right_->setValue(formatValue(foodvel->right));
+  food_value_left_->setValue(formatValue(foodvel->left));
+  bv_value_right_->setValue(formatValue(bvvel->right));
+  bv_value_left_->setValue(formatValue(bvvel->left));
+}
+
 
 bool GraphicsArenaViewer::RunViewer() {
   return Run();
