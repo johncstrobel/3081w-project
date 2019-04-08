@@ -39,9 +39,10 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     nanogui_intialized_(false),
     gui(nullptr),
     window(),
-    bvObserver_() {
+    light_value_right_(), light_value_left_(),
+    food_value_right_(), food_value_left_(),
+    bv_value_right_(), bv_value_left_(){
       xOffset_ = GUI_MENU_WIDTH + GUI_MENU_GAP;
-      bvObserver_ = new BraitenbergObserver();
 }
 
 void GraphicsArenaViewer::InitNanoGUI() {
@@ -226,7 +227,6 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
 }
 
 void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
-  std::cout << "a" << std::endl;
   if (arena_->get_entities().size() == 0) {
     return;
   }
@@ -338,22 +338,22 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
 
   // Rows: light behavior, food behavior, BV behavior
   new nanogui::Label(grid, "Light", "sans-bold");
-  nanogui::TextBox* light_value_left = new nanogui::TextBox(grid, "0.0");
-  light_value_left->setFixedWidth(75);
-  nanogui::TextBox* light_value_right = new nanogui::TextBox(grid, "0.0");
-  light_value_right->setFixedWidth(75);
+  light_value_left_ = new nanogui::TextBox(grid, "0.0");
+  light_value_left_->setFixedWidth(75);
+  light_value_right_ = new nanogui::TextBox(grid, "0.0");
+  light_value_right_->setFixedWidth(75);
 
   new nanogui::Label(grid, "Food", "sans-bold");
-  nanogui::TextBox* food_value_left = new nanogui::TextBox(grid, "0.0");
-  food_value_left->setFixedWidth(75);
-  nanogui::TextBox* food_value_right = new nanogui::TextBox(grid, "0.0");
-  food_value_right->setFixedWidth(75);
+  food_value_left_ = new nanogui::TextBox(grid, "0.0");
+  food_value_left_->setFixedWidth(75);
+  food_value_right_ = new nanogui::TextBox(grid, "0.0");
+  food_value_right_->setFixedWidth(75);
 
   new nanogui::Label(grid,"BV", "sans-bold");
-  nanogui::TextBox* bv_value_left = new nanogui::TextBox(grid, "0.0");
-  bv_value_left->setFixedWidth(75);
-  nanogui::TextBox* bv_value_right = new nanogui::TextBox(grid, "0.0");
-  bv_value_right->setFixedWidth(75);
+  bv_value_left_ = new nanogui::TextBox(grid, "0.0");
+  bv_value_left_->setFixedWidth(75);
+  bv_value_right_ = new nanogui::TextBox(grid, "0.0");
+  bv_value_right_->setFixedWidth(75);
 
   for (unsigned int f = 0; f < robotWidgets.size(); f++) {
     robotWidgets[f]->setVisible(defaultEntity->get_type() == kBraitenberg);
@@ -370,20 +370,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       static_cast<BraitenbergVehicle*>(defaultEntity)->
         get_braitenberg_behavior_enum());
 
-    //get all the bvObserver values
-    double light_right = (*bvObserver_->GetVelocities())[0];
-    double light_left = (*bvObserver_->GetVelocities())[1];
-    double food_right = (*bvObserver_->GetVelocities())[2];
-    double food_left = (*bvObserver_->GetVelocities())[3];
-    double bv_right = (*bvObserver_->GetVelocities())[4];
-    double bv_left = (*bvObserver_->GetVelocities())[5];
-
-    light_value_right->setValue(formatValue(light_right));
-    light_value_left->setValue(formatValue(light_left));
-    food_value_right->setValue(formatValue(food_right));
-    food_value_left->setValue(formatValue(food_left));
-    bv_value_right->setValue(formatValue(bv_right));
-    bv_value_left->setValue(formatValue(bv_left));
+    static_cast<BraitenbergVehicle*>(defaultEntity)->RegisterObserver(this);
   }
 
   entitySelect->setCallback(
@@ -391,8 +378,8 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
     foodBehaviorSelect, bvBehaviorSelect](int index) {
       ArenaEntity* entity = this->arena_->get_entities()[index];
 
-      if(bvObserver_->IsSubscribed()) {
-        bvObserver_->RequestUnsubscribe();
+      if (entity->get_type() == kBraitenberg) {
+        static_cast<BraitenbergVehicle*>(entity)->RemoveObserver(this);
       }
 
       if (entity->is_mobile()) {
@@ -419,7 +406,7 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
             get_braitenberg_behavior_enum());
 
         static_cast<BraitenbergVehicle*>(entity)->
-          RegisterObserver(bvObserver_);
+          RegisterObserver(this);
       }
 
       screen()->performLayout();
@@ -463,6 +450,17 @@ void GraphicsArenaViewer::AddEntityPanel(nanogui::Widget * panel) {
       mobileEntity->set_is_moving(moving);
     });
 }
+
+void GraphicsArenaViewer::Update(WheelVelocity * lightvel,
+  WheelVelocity * foodvel, WheelVelocity * bvvel){
+  light_value_right_->setValue(formatValue(lightvel->right));
+  light_value_left_->setValue(formatValue(lightvel->left));
+  food_value_right_->setValue(formatValue(foodvel->right));
+  food_value_left_->setValue(formatValue(foodvel->left));
+  bv_value_right_->setValue(formatValue(bvvel->right));
+  bv_value_left_->setValue(formatValue(bvvel->left));
+}
+
 
 bool GraphicsArenaViewer::RunViewer() {
   return Run();

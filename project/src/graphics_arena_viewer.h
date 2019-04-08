@@ -57,7 +57,7 @@ class Controller;
  *  Fill in the `Draw*()` methods to draw graphics on the screen using
  *  either the `nanovg` library or raw `OpenGL`.
  */
-class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer {
+class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer, public Observer {
  public:
   /**
    * @brief Constructor.
@@ -231,6 +231,7 @@ class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer {
     return ss.str();
   }
  private:
+
   void DrawArena(NVGcontext *ctx);
 
   /**
@@ -259,9 +260,20 @@ class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer {
   bool nanogui_intialized_;
   nanogui::FormHelper* gui;
   nanogui::ref<nanogui::Window> window;
+  nanogui::TextBox* light_value_right_;
+  nanogui::TextBox* light_value_left_;
+  nanogui::TextBox* food_value_right_;
+  nanogui::TextBox* food_value_left_;
+  nanogui::TextBox* bv_value_right_;
+  nanogui::TextBox* bv_value_left_;
 
 
-  BraitenbergObserver * bvObserver_;
+  void Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
+    WheelVelocity * bvvel) override;  // called by entity to pass info
+  void RequestUnsubscribe() override {
+    static_cast<BraitenbergVehicle*>(subject_)->RemoveObserver(this);
+    std::cout << "request unsubscribe (header)" << std::endl;
+  }
 };
 
 NAMESPACE_END(csci3081);

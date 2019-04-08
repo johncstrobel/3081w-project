@@ -29,16 +29,17 @@ NAMESPACE_BEGIN(csci3081);
 
 class Observer {
  public:
-   virtual void Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
-     WheelVelocity * bvvel) = 0;  // called by entity to pass info to observer
-
+   Observer():subscribed_(false), subject_(NULL){};
    virtual ~Observer(){};
+
    int operator=(const Observer &other) = delete;
    Observer(const Observer &other) = delete;
 
-   Observer():subscribed_(false), subject_(NULL){};
+   virtual void Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
+     WheelVelocity * bvvel) = 0;  // called by entity to pass info to observer
 
    virtual void RequestUnsubscribe(){};
+
    void SetSubscribed(bool t) {subscribed_ = t;}
    bool IsSubscribed() {return subscribed_;}
 

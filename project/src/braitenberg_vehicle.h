@@ -223,7 +223,7 @@ void set_braitenberg_behavior(BehaviorEnum behavior) {
   const ArenaEntity* closest_braitenberg_entity_;
   double defaultSpeed_;
   double colliding_;  // tracks time until robot is done backing up
-  std::vector<BraitenbergObserver*> observers_;
+  std::vector<Observer*> observers_;
 
 };
 
