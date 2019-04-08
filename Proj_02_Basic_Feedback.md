@@ -1,6 +1,6 @@
 ### Feedback for Proj 02
 
-Run on April 08, 13:42:24 PM.
+Run on April 08, 13:51:07 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -41,7 +41,7 @@ Commits found=76
 
 + Pass: Run git ls-remote gather all branches in repo
 
-975234dc78bd8af7a14a54203eaf54fc68f25c83	refs/heads/devel
+952fa9bf47f164823b8fe1b164d6f082fb8b24f3	refs/heads/devel
 
 378b0f72709749d7896d104e552f1b698a823eb5	refs/heads/feature/02-BV-sensor
 
@@ -63,7 +63,7 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 3204c5dde8d0ebc09252cf7db0c690c819983576	refs/heads/fix/05-predators-segfault-on-wall-collision
 
-f148efcc874e38869a0e04aa5d1ef5e8d1d2b6df	refs/heads/master
+0114a516281722bcbaedbf71ca17aa0630c5ed1d	refs/heads/master
 
 a744fddf2760036ad7d415132103c6727b725834	refs/heads/pre-release/iteration1
 
@@ -129,16 +129,6 @@ Link to full feedback: [Proj_02_Full_Feedback.md](Proj_02_Full_Feedback.md)
 make[1]: Entering directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_02_Basic_Feedback/repo-strob105/project/src'
 ==== Checking style is correct ====
 /class/grades/Spring-2019/csci3081/student-repos/Proj_02_Basic_Feedback/repo-strob105/cpplint/cpplint.py --root=.. *.cc *.h
-braitenberg_observer.cc:34:  Missing space after ,  [whitespace/comma] [3]
-braitenberg_observer.cc:35:  Missing space before {  [whitespace/braces] [5]
-braitenberg_observer.cc:36:  Missing space before ( in for(  [whitespace/parens] [5]
-braitenberg_observer.cc:37:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-braitenberg_observer.cc:37:  At least two spaces is best between code and comments  [whitespace/comments] [2]
-braitenberg_observer.cc:37:  Should have a space between // and comment  [whitespace/comments] [4]
-braitenberg_observer.cc:40:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-braitenberg_observer.cc:41:  Missing space before {  [whitespace/braces] [5]
-braitenberg_observer.cc:42:  Missing space after ,  [whitespace/comma] [3]
-braitenberg_observer.cc:55:  Missing space before {  [whitespace/braces] [5]
 braitenberg_vehicle.cc:190:  Missing space before {  [whitespace/braces] [5]
 braitenberg_vehicle.cc:191:  Redundant blank line at the start of a code block should be deleted.  [whitespace/blank_line] [2]
 braitenberg_vehicle.cc:226:  Missing space after ,  [whitespace/comma] [3]
@@ -158,20 +148,11 @@ graphics_arena_viewer.cc:44:  Missing space before {  [whitespace/braces] [5]
 graphics_arena_viewer.cc:330:  Missing space after ,  [whitespace/comma] [3]
 graphics_arena_viewer.cc:352:  Missing space after ,  [whitespace/comma] [3]
 graphics_arena_viewer.cc:455:  Missing space before {  [whitespace/braces] [5]
-behavior.h:49:  Line ends in whitespace.  Consider deleting these extra spaces.  [whitespace/end_of_line] [4]
-behavior.h:50:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-behavior.h:50:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-braitenberg_observer.h:32:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-braitenberg_observer.h:34:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-braitenberg_observer.h:36:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-braitenberg_observer.h:37:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-braitenberg_observer.h:40:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-braitenberg_observer.h:41:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
-braitenberg_vehicle.h:230:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
-graphics_arena_viewer.h:60:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-graphics_arena_viewer.h:233:  "private:" should be preceded by a blank line  [whitespace/blank_line] [3]
-graphics_arena_viewer.h:234:  Do not leave a blank line after "private:"  [whitespace/blank_line] [3]
-graphics_arena_viewer.h:228:  Add #include <string> for string  [build/include_what_you_use] [4]
+braitenberg_vehicle.h:229:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
+graphics_arena_viewer.h:59:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+graphics_arena_viewer.h:232:  "private:" should be preceded by a blank line  [whitespace/blank_line] [3]
+graphics_arena_viewer.h:233:  Do not leave a blank line after "private:"  [whitespace/blank_line] [3]
+graphics_arena_viewer.h:227:  Add #include <string> for string  [build/include_what_you_use] [4]
 observer.h:32:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
 observer.h:32:  You don't need a ; after a }  [readability/braces] [4]
 observer.h:33:  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]
@@ -191,7 +172,6 @@ Done processing behavior_coward.cc
 Done processing behavior_explore.cc
 Done processing behavior_love.cc
 Done processing behavior_none.cc
-Done processing braitenberg_observer.cc
 Done processing braitenberg_predator.cc
 Done processing braitenberg_vehicle.cc
 Done processing controller.cc
@@ -215,7 +195,6 @@ Done processing behavior_explore.h
 Done processing behavior.h
 Done processing behavior_love.h
 Done processing behavior_none.h
-Done processing braitenberg_observer.h
 Done processing braitenberg_predator.h
 Done processing braitenberg_vehicle.h
 Done processing common.h
@@ -232,7 +211,7 @@ Done processing params.h
 Done processing pose.h
 Done processing rgb_color.h
 Done processing wheel_velocity.h
-Total errors found: 56
+Total errors found: 37
 Makefile:162: recipe for target 'check-style' failed
 make[1]: *** [check-style] Error 1
 make[1]: Leaving directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_02_Basic_Feedback/repo-strob105/project/src'
