@@ -1,6 +1,6 @@
 ### Feedback for Proj 02
 
-Run on April 08, 16:22:08 PM.
+Run on April 09, 17:24:36 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -55,6 +55,8 @@ d32cde48fe964f60f12fd6c550752b2da0dd698d	refs/heads/feature/05-dynamic-color-add
 
 fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
+56c25ea4fa39f07fad79f73f2bf60bd93b38900e	refs/heads/feature/08-braitenberg-starvation
+
 6629d81c5c75c8e54ff7d64dd347f5f7bb612ef2	refs/heads/feature/priority-level-2
 
 1aafd986340a9c11cf0dc85e39d85551dec705e2	refs/heads/fix/01-simulator-not-compiling
@@ -63,13 +65,15 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 3204c5dde8d0ebc09252cf7db0c690c819983576	refs/heads/fix/05-predators-segfault-on-wall-collision
 
-f5a0a1b106ef6a18916cb46f2ef75a4b4dfa6406	refs/heads/master
+3b46fd58205dd2470da1d66767ba24576856fd08	refs/heads/master
 
 a744fddf2760036ad7d415132103c6727b725834	refs/heads/pre-release/iteration1
 
 cd25fdc074663860d170ad3f2becfc88c15b7f27	refs/heads/release/iteration1
 
 a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
+
+9130d8b68b116a042d40e06c25b5256b890243d4	refs/heads/release/iteration2-prelim2
 
 
 
@@ -78,9 +82,11 @@ a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
 
 + Pass: Configuring GHI
 
-+ Pass: Run ghi for total number of open issues in Github repo (Found: 5)
++ Pass: Run ghi for total number of open issues in Github repo (Found: 6)
 
-[OPEN issue #12] :  bug/06-segfault-on-entity-choice-switch 1
+[OPEN issue #13] :  bug/06-memory-leak-behaviors [bug]
+
+[OPEN issue #12] :  bug/06-segfault-on-entity-choice-switch [bug] 1
 
 [OPEN issue #10] :  Make factories for behaviors  [enhancement] 1
 
