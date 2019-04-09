@@ -196,8 +196,8 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   void CalculateWheelVelocity();
 
   void kill();
-
   bool IsDead() {return dead;}
+  virtual void ConsumeFood();
 
   static int count;
 
@@ -209,22 +209,30 @@ class BraitenbergVehicle : public ArenaMobileEntity {
  private:
   std::vector<Pose> light_sensors_;
   MotionBehaviorDifferential * motion_behavior_{nullptr};
-  WheelVelocity wheel_velocity_;
-  WheelVelocity * light_wheel_velocity_;
+
+  WheelVelocity wheel_velocity_;  // overall wheel velocity
+  WheelVelocity * light_wheel_velocity_;  // passed to observer
   WheelVelocity * food_wheel_velocity_;
   WheelVelocity * bv_wheel_velocity_;
+
   BehaviorEnum light_behavior_enum_;
   BehaviorEnum food_behavior_enum_;
   BehaviorEnum braitenberg_behavior_enum_;
+
   Behavior * light_behavior_;
   Behavior * food_behavior_;
   Behavior * braitenberg_behavior_;
+
   const ArenaEntity* closest_light_entity_;
   const ArenaEntity* closest_food_entity_;
   const ArenaEntity* closest_braitenberg_entity_;
+
   double defaultSpeed_;
+
   double colliding_;  // tracks time until robot is done backing up
   bool dead;  // marks if the robot is alive
+  double starving_;  // time until death by starvation
+
   std::vector<Observer*> observers_;
 };
 

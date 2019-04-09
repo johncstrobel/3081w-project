@@ -101,6 +101,16 @@ void Arena::AddEntity(ArenaEntity* ent) {
   }
 }
 
+bool Arena::RemoveEntity(ArenaEntity* entity){
+  for(unsigned int i = 0; i < entities_.size(); i++) {
+    if (entities_[i] == entity) {
+      entities_.erase(entities_.begin()+i);
+      return true;
+    }
+  }
+  return false;
+}
+
 void Arena::Reset() {
   for (auto ent : entities_) {
     ent->Reset();
@@ -154,10 +164,20 @@ void Arena::UpdateEntitiesTimestep() {
         // this is pretty ugly, I should move it into HandleCollision
         if (ent1->get_type() == kBraitenberg &&
             ent2->get_type() == kFood) {
-          // static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood();
+          static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood();
+          if (!RemoveEntity(ent2)) {
+            throw std::runtime_error(
+              "Remove Entity Error (in UpdateEntitiesTimestep)");
+          }
+          // std::cout << "todo: delete consumed food" << std::endl;
         } else if (ent1->get_type() == kFood &&
                    ent2->get_type() == kBraitenberg) {
-          // static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood();
+          static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood();
+          if (!RemoveEntity(ent1)) {
+            throw std::runtime_error(
+              "Remove Entity Error (in UpdateEntitiesTimestep)");
+          }
+          // std::cout << "todo: delete consumed food" << std::endl;
         }
         // lights and braitenberg vehicles do not collide
         // nothing collides with food, but bv's call consume() if they do

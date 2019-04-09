@@ -85,6 +85,18 @@ class Arena {
   void AddEntity(ArenaEntity* entity);
 
   /**
+  * @brief Removes an entity from entities_.
+  *
+  * @param entity The entity to be removed. Must be a pointer.
+  *
+  * @detail Searches through entities_ to find an entity matching entity. If
+  *  found, removes the entity from entities_ and returns true. Otherwise,
+  *  returns false.
+  */
+
+  bool RemoveEntity(ArenaEntity* entity);
+
+  /**
    * @brief Reset all entities in Arena.
    */
   void Reset();

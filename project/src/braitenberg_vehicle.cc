@@ -32,7 +32,8 @@ BraitenbergVehicle::BraitenbergVehicle() :
   light_behavior_(NULL), food_behavior_(NULL),
   braitenberg_behavior_(NULL), closest_light_entity_(NULL),
   closest_food_entity_(NULL), closest_braitenberg_entity_(NULL),
-  defaultSpeed_(5.0), colliding_(0.0), dead(false), observers_() {
+  defaultSpeed_(5.0), colliding_(0.0), dead(false), starving_(600.0),
+  observers_() {
   food_behavior_ = new BehaviorNone();
   light_behavior_ = new BehaviorNone();
   braitenberg_behavior_ = new BehaviorNone();
@@ -50,7 +51,7 @@ BraitenbergVehicle::BraitenbergVehicle() :
   set_id(count);
 }
 
-void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
+void BraitenbergVehicle::TimestepUpdate(unsigned int dt) {
   if (is_moving()) {
     motion_behavior_->UpdatePose(dt, wheel_velocity_);
   } else if (!dead) {  // is moving() returns something else
@@ -61,7 +62,12 @@ void BraitenbergVehicle::TimestepUpdate(__unused unsigned int dt) {
       set_heading(static_cast<int>((get_pose().theta + 45)) % 360);
     }
   }
-  // else do nothing
+  if (!dead) {
+    starving_ = starving_ - dt;
+    if (starving_ <= 0) {
+      this->kill();
+    }
+  }
   UpdateLightSensors();
 }
 
@@ -251,6 +257,10 @@ void BraitenbergVehicle::kill() {
   dead = true;
   set_is_moving(false);
   set_color(RgbColor(255, 255, 255));
+}
+
+void BraitenbergVehicle::ConsumeFood() {
+  starving_ = 600;
 }
 
 void BraitenbergVehicle::RegisterObserver(Observer * other) {

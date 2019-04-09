@@ -46,6 +46,8 @@ class Predator : public BraitenbergVehicle {
 
   bool IsPredator() override {return true;}
 
+  void ConsumeFood() override {printf("todo: override ConsumeFood in predator");}
+
   /* things it needs to do differently:
    * behaviors (ez)
    * when colliding with a BV, kill it
