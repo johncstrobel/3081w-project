@@ -232,7 +232,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
  protected:
   double colliding_;  // tracks time until robot is done backing up
   bool dead;  // marks if the robot is alive
-  double starving_;  // time until death by starvation
+  double hunger_;  // time until death by starvation
 
   std::vector<Observer*> observers_;
 };

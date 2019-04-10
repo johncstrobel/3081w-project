@@ -69,6 +69,10 @@ struct WheelVelocity {
      return((left == other.left) && (right == other.right));
   }
 
+  WheelVelocity * operator*(double multiplier) {
+    return new WheelVelocity(left*multiplier,right*multiplier);
+  }
+
   double left;
   double right;
 };

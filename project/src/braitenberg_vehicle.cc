@@ -32,7 +32,7 @@ BraitenbergVehicle::BraitenbergVehicle() :
   light_behavior_(NULL), food_behavior_(NULL),
   braitenberg_behavior_(NULL), closest_light_entity_(NULL),
   closest_food_entity_(NULL), closest_braitenberg_entity_(NULL),
-  defaultSpeed_(5.0), colliding_(0.0), dead(false), starving_(600.0),
+  defaultSpeed_(5.0), colliding_(0.0), dead(false), hunger_(600.0),
   observers_() {
   food_behavior_ = new BehaviorNone();
   light_behavior_ = new BehaviorNone();
@@ -63,8 +63,8 @@ void BraitenbergVehicle::TimestepUpdate(unsigned int dt) {
     }
   }
   if (!dead) {
-    starving_ = starving_ - dt;
-    if (starving_ <= 0) {
+    hunger_ = hunger_ - dt;
+    if (hunger_ <= 0) {
       this->kill();
     }
   }
@@ -161,6 +161,7 @@ void BraitenbergVehicle::UpdateLightSensors() {
 
 void BraitenbergVehicle::DynamicColor() {  // colors the robot
   // @TODO: change these so they depend on actual distance from the robot
+  // @TODO: color differently depending on hunger level
   int food_influence = 1;
   int light_influence = 1;
   int braitenberg_influence = 1;
@@ -190,7 +191,7 @@ void BraitenbergVehicle::DynamicColor() {  // colors the robot
     g = 0;
     b = 0;
   }
-  if(starving_ < PANIC_MODE) {
+  if(hunger_ < PANIC_MODE) {
     r = 150;
     g = 150;
     b = 150;
@@ -264,7 +265,7 @@ void BraitenbergVehicle::kill() {
 }
 
 void BraitenbergVehicle::ConsumeFood(__unused ArenaEntity * object) {
-  starving_ = 600;
+  hunger_ = 600;
 }
 
 void BraitenbergVehicle::RegisterObserver(Observer * other) {

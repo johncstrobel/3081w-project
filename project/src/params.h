@@ -57,7 +57,8 @@
 #define BRAITENBERG_RATIO .5
 #define BRAITENBERG_MAROON {122, 0, 25}
 #define MIN_DISTANCE 0.0001
-#define PANIC_MODE 100  // when starving_ is less than this, "panic"
+#define HUNGRY 300  // when hunger_ is less than this, alternate behavior
+#define PANIC_MODE 100  // when hunger_ is less than this, "panic"
 
 // light_sensor
 #define SENSOR_LIGHT_RAD 4

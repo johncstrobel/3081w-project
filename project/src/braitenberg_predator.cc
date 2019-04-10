@@ -55,7 +55,7 @@ void Predator::HandleCollision(__unused EntityType ent_type,
 void Predator::ConsumeFood(ArenaEntity * victim) {
   static_cast<BraitenbergVehicle*>(victim)->kill();
   killcount_++;
-  starving_ = 600.0;
+  hunger_ = 600.0;
 }
 
 void Predator::LoadFromObject(json_object* entity_config) {
