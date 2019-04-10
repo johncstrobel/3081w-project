@@ -22,7 +22,8 @@
 
 // graphics
 #define X_DIM 1024
-#define Y_DIM 768
+// #define Y_DIM 768
+#define Y_DIM 1024
 #define TEXT_BOX_WIDTH 50
 #define GUI_MENU_WIDTH 250
 #define COMBO_BOX_WIDTH 150
@@ -56,6 +57,7 @@
 #define BRAITENBERG_RATIO .5
 #define BRAITENBERG_MAROON {122, 0, 25}
 #define MIN_DISTANCE 0.0001
+#define PANIC_MODE 100  // when starving_ is less than this, "panic"
 
 // light_sensor
 #define SENSOR_LIGHT_RAD 4

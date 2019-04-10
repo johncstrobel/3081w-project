@@ -190,6 +190,11 @@ void BraitenbergVehicle::DynamicColor() {  // colors the robot
     g = 0;
     b = 0;
   }
+  if(starving_ < PANIC_MODE) {
+    r = 150;
+    g = 150;
+    b = 150;
+  }
   set_color(RgbColor(r, g, b));
 }
 
@@ -234,7 +239,6 @@ void BraitenbergVehicle::CalculateWheelVelocity() {
 
 void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   ArenaEntity::LoadFromObject(entity_config);
-
   if (entity_config->find("light_behavior") != entity_config->end()) {
       light_behavior_enum_ = get_behavior_type(
         (*entity_config)["light_behavior"].get<std::string>());
@@ -247,7 +251,7 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   }
   if (entity_config->find("robot_behavior") != entity_config->end()) {
       braitenberg_behavior_enum_ = get_behavior_type(
-        (*entity_config)["braitenberg_behavior"].get<std::string>());
+        (*entity_config)["robot_behavior"].get<std::string>());
       set_braitenberg_behavior(braitenberg_behavior_enum_);
   }
   UpdateLightSensors();
@@ -259,7 +263,7 @@ void BraitenbergVehicle::kill() {
   set_color(RgbColor(255, 255, 255));
 }
 
-void BraitenbergVehicle::ConsumeFood() {
+void BraitenbergVehicle::ConsumeFood(__unused ArenaEntity * object) {
   starving_ = 600;
 }
 

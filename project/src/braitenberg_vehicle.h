@@ -197,7 +197,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
 
   void kill();
   bool IsDead() {return dead;}
-  virtual void ConsumeFood();
+  virtual void ConsumeFood(__unused ArenaEntity * object);
 
   static int count;
 
@@ -229,6 +229,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
 
   double defaultSpeed_;
 
+ protected:
   double colliding_;  // tracks time until robot is done backing up
   bool dead;  // marks if the robot is alive
   double starving_;  // time until death by starvation

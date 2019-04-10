@@ -163,16 +163,16 @@ void Arena::UpdateEntitiesTimestep() {
         // if a braitenberg vehicle collides with food, call consume on bv
         // this is pretty ugly, I should move it into HandleCollision
         if (ent1->get_type() == kBraitenberg &&
-            ent2->get_type() == kFood) {
-          static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood();
+            ent2->get_type() == kFood && !ent1->IsPredator()) {
+          static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood(ent2);
           if (!RemoveEntity(ent2)) {
             throw std::runtime_error(
               "Remove Entity Error (in UpdateEntitiesTimestep)");
           }
           // std::cout << "todo: delete consumed food" << std::endl;
         } else if (ent1->get_type() == kFood &&
-                   ent2->get_type() == kBraitenberg) {
-          static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood();
+                   ent2->get_type() == kBraitenberg && !ent2->IsPredator()) {
+          static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood(ent1);
           if (!RemoveEntity(ent1)) {
             throw std::runtime_error(
               "Remove Entity Error (in UpdateEntitiesTimestep)");

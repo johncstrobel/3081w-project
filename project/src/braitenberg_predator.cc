@@ -46,11 +46,16 @@ void Predator::HandleCollision(__unused EntityType ent_type,
   if (object == nullptr) {
     BraitenbergVehicle::HandleCollision(ent_type, object);
   } else if (object->get_type() == kBraitenberg) {
-    static_cast<BraitenbergVehicle*>(object)->kill();
-    killcount_++;
+    ConsumeFood(object);
   } else {
     BraitenbergVehicle::HandleCollision(ent_type, object);
   }
+}
+
+void Predator::ConsumeFood(ArenaEntity * victim) {
+  static_cast<BraitenbergVehicle*>(victim)->kill();
+  killcount_++;
+  starving_ = 600.0;
 }
 
 void Predator::LoadFromObject(json_object* entity_config) {
