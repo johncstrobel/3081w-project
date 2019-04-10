@@ -167,7 +167,7 @@ void BraitenbergVehicle::DynamicColor() {  // colors the robot
   int braitenberg_influence = 1;
   double lefttol = 0.0002;
   double righttol = 0.0002;
-  int r = 0, g = 0, b = 0;
+  double r = 0, g = 0, b = 0;
   if (get_sensor_reading_left(closest_light_entity_) < lefttol &&
      get_sensor_reading_right(closest_light_entity_) < righttol) {
        light_influence = 0;
@@ -183,18 +183,33 @@ void BraitenbergVehicle::DynamicColor() {  // colors the robot
        braitenberg_influence = 0;
   }
 
-  if (food_influence) {b+=100;}
-  if (light_influence) {r+=100;}
-  if (braitenberg_influence) {g+=100;}
-  if (!food_influence && !light_influence && !braitenberg_influence) {
-    r = 0;
-    g = 0;
-    b = 0;
-  }
-  if(hunger_ < PANIC_MODE) {
-    r = 150;
-    g = 150;
-    b = 150;
+  if (food_influence) {b+=225;}
+  if (light_influence) {r+=225;}
+  if (braitenberg_influence) {g+=225;}
+
+  if(hunger_ > HUNGRY) {
+    //no change to color values
+    if (!food_influence && !light_influence && !braitenberg_influence) {
+      r = 0; g = 0; b = 0;
+    }
+  } else if (hunger_ > PANIC_MODE) {
+    r = r * 0.75;
+    g = g * 0.75;
+    b = b * 0.75;
+    // no influence: (105,105,105)
+    if (!food_influence && !light_influence && !braitenberg_influence) {
+      r = 105; g = 105; b = 105;
+    }
+
+  } else {  // hunger < panic mode; starving
+    r = r * 0.5;
+    g = g * 0.5;
+    b = b * 0.5;
+    // no influence: (192,192,192)
+    if (!food_influence && !light_influence && !braitenberg_influence) {
+      r = 192; g = 192; b = 192;
+    }
+
   }
   set_color(RgbColor(r, g, b));
 }
@@ -224,12 +239,26 @@ void BraitenbergVehicle::CalculateWheelVelocity() {
   if (food_behavior_enum_) numBehaviors++;
 
   if (numBehaviors) {  // numBehaviors > 0
-    wheel_velocity_ = WheelVelocity(
-      (light_wheel_velocity_->left + food_wheel_velocity_->left +
-        bv_wheel_velocity_->left)/numBehaviors,
-      (light_wheel_velocity_->right + food_wheel_velocity_->right +
-        bv_wheel_velocity_->right)/numBehaviors,
-      defaultSpeed_);
+    if (hunger_ > HUNGRY) {  // not hungry (l/f/bv = 1,1,1)
+      wheel_velocity_ = WheelVelocity(
+        (light_wheel_velocity_->left + food_wheel_velocity_->left +
+          bv_wheel_velocity_->left)/numBehaviors,
+        (light_wheel_velocity_->right + food_wheel_velocity_->right +
+          bv_wheel_velocity_->right)/numBehaviors,
+        defaultSpeed_);
+    } else if (hunger_ > PANIC_MODE) {  // hungry (l/f/bv = 0.75,1.5,0.75)
+       wheel_velocity_ = WheelVelocity(
+         ((light_wheel_velocity_->left * 0.75) +
+          (food_wheel_velocity_->left * 1.5) +
+          (bv_wheel_velocity_->left * 0.75))/numBehaviors,
+         ((light_wheel_velocity_->right * 0.75) +
+          (food_wheel_velocity_->right * 1.5)+
+          (bv_wheel_velocity_->right * 0.75))/numBehaviors,
+         defaultSpeed_);
+    } else {  // hunger < PANIC_MODE; starving (l/f/bv = 0,3.0,0)
+      wheel_velocity_ = WheelVelocity((food_wheel_velocity_->left),
+        (food_wheel_velocity_->right), defaultSpeed_);
+    }  // hunger levels
   } else {
     wheel_velocity_ = WheelVelocity(0, 0);
   }
