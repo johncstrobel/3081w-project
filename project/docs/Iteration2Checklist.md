@@ -99,10 +99,10 @@ See BraitenbergVehicle.cc: BraitenbergVehicle::CalculateWheelVelocity at line 21
 
 #### Doxygen
 
-- [ ] All classes have a _brief_ description that appears in the Doxygen web page class list.
+- [x] All classes have a _brief_ description that appears in the Doxygen web page class list.
 - [x] The Arena class is fully documented with respect to methods and member variables. In other words, in the html generated pages of Doxygen, the user can click on a class method and see more information about its purpose and parameters.
 - [x] The BraitenbergVehicle class is fully documented with respect to methods and member variables.
-- [ ] All new and updated/refactored code (classes and methods) is fully documented with respect to methods and member variables.
+- [x] All new and updated/refactored code (classes and methods) is fully documented with respect to methods and member variables.
 - [ ] A landing page that meets the requirements specified in the Iteration 2 Requirements (in the file Iteration2Requiements.md) exists in the file named **__mainpage.h__** and is in the src directory.
 - [ ] Doxygen successfully generates the main page (verify by running Doxygen and then opening the resulting **_index.html__** page).
 
