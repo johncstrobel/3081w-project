@@ -27,11 +27,13 @@ NAMESPACE_BEGIN(csci3081);
  ******************************************************************************/
 
 
-/**
- * @brief update me
- * @TODO
- *
- */
+ /**
+  * @brief A behavior where sensors are inversely related to wheels, and sensors
+  * are connected to the same wheel. The result is a robot that moves
+  * quickly while out of range of the target but slows and turns towards them
+  * when close.
+  *
+  */
 class BehaviorLove : public Behavior {
  public:
     BehaviorLove();
@@ -41,6 +43,11 @@ class BehaviorLove : public Behavior {
 
     ~BehaviorLove() {delete velocity_;}
 
+    /*
+     * @brief Calculates wheel velocity based on passed in distances and
+     * default speed. Overrides CalculateVelocity from behavior.h
+     *
+     */
     WheelVelocity * CalculateVelocity(double leftDist, double rightDist,
       double defaultSpeed) override;
 

@@ -28,7 +28,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 >If your source code or unit tests **do not compile** or if there is an obvious **seg fault** in either the arenaviewer or the unit tests, **__YOU MUST MODIFY THE COMMENT NEXT TO THE CHECKBOX BELOW__** to let us know what the problem is or you will lose all points for that item.
 
-- [ ] I have compiled and executed both the source code and unit tests using a fresh clone of my repo. They compile and execute without segmentation faults.
+- [x] I have compiled and executed both the source code and unit tests using a fresh clone of my repo. They compile and execute without segmentation faults.
 
 **__Next, please place an 'X' in the appropriate box for each requirement.__**
 
@@ -59,7 +59,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 | Simulation Control Panel updated to enable selection of any one Braitenberg Vehicle as the "Subject" whose wheel velocities are displayed. |x|  |  |  |
 | JSON file or files updated to include configuration of a Predator.  |x|  |  |  |
 | Predator class implemented and operational. |x|  |  |  |
-| Predator consumes Braitenberg Vehicles. |x|  |  |  | 
+| Predator consumes Braitenberg Vehicles. |x|  |  |  |
 | Braitenberg vehicles turn into "ghosts" as specified in the Iteration 2 requirements document (Iteration2Requirements.md), when consumed. |x|  |  |  |
 
 
@@ -78,9 +78,13 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 -Indicate the file, method, and line numbers associated with your implementation of dynamically calculated wheel velocities. If it is in multiple places, indicate where the primary functionality resides (e.g. “BraitenbergVehicle::Update on line 255 implements the dynamic equation using the coefficients that are set in BraitenbergVehicle::DetermineCoefficients”).
 
-- [ ] The information specified above regarding my implementation of dynamic wheel velocity caculation is as follows:
+- [x] The information specified above regarding my implementation of dynamic wheel velocity caculation is as follows:
 
-**__Insert the information requested above here__**
+Wheel Velocities are calculated based on hunger/food exclusively. The robot can be in three states of 'Fullness:' full (hunger > 300), hungry (300 > hunger > 100) and starving (100 > hunger). The food wheel velocity becomes a higher percentage of the total as time till starvation approaches 0.
+
+See BraitenbergVehicle.cc: BraitenbergVehicle::CalculateWheelVelocity at line 217. The logic determining which state of fullness to calculate starts on line 242.
+
+
 
 #### Design Document
 
@@ -90,18 +94,18 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 #### UML
 
-- [ ] UML for project can be generated without errors using Doxygen,  and can be viewed in the docs directory.
+- [x] UML for project can be generated without errors using Doxygen,  and can be viewed in the docs directory.
 
 
 #### Doxygen
 
 - [ ] All classes have a _brief_ description that appears in the Doxygen web page class list.
-- [ ] The Arena class is fully documented with respect to methods and member variables. In other words, in the html generated pages of Doxygen, the user can click on a class method and see more information about its purpose and parameters.
-- [ ] The BraitenbergVehicle class is fully documented with respect to methods and member variables.
+- [x] The Arena class is fully documented with respect to methods and member variables. In other words, in the html generated pages of Doxygen, the user can click on a class method and see more information about its purpose and parameters.
+- [x] The BraitenbergVehicle class is fully documented with respect to methods and member variables.
 - [ ] All new and updated/refactored code (classes and methods) is fully documented with respect to methods and member variables.
 - [ ] A landing page that meets the requirements specified in the Iteration 2 Requirements (in the file Iteration2Requiements.md) exists in the file named **__mainpage.h__** and is in the src directory.
-- [ ] Doxygen successfully generates the main page (verify by running Doxygen and then opening the resulting **_index.html__** page). 
- 
+- [ ] Doxygen successfully generates the main page (verify by running Doxygen and then opening the resulting **_index.html__** page).
+
 
 ### Linter and Git
 

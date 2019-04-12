@@ -28,8 +28,8 @@ NAMESPACE_BEGIN(csci3081);
 
 
 /**
- * @brief update me
- * @TODO
+ * @brief An abstract class that defines characteristics of Braitenberg motion
+ * behaviors.
  *
  */
 class Behavior {
@@ -44,6 +44,11 @@ class Behavior {
     // in inherited classes, params:
     // double leftDist, double rightDist, double defaultSpeed
 
+  /*
+   * @brief Calculates wheel velocity based on passed in distances and
+   * default speed.
+   *
+   */
   virtual WheelVelocity * CalculateVelocity(double leftDist, double rightDist,
     double defaultSpeed) = 0;
 

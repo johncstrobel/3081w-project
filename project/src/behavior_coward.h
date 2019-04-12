@@ -27,11 +27,13 @@ NAMESPACE_BEGIN(csci3081);
  ******************************************************************************/
 
 
-/**
- * @brief update me
- * @TODO
- *
- */
+ /**
+  * @brief A behavior where sensors are directly related to wheels, and sensors
+  * are connected to the opposite wheel. The result is a robot that moves
+  * slowly while out of range of the target but speeds up and turns away from
+  * them when close.
+  *
+  */
 class BehaviorCoward : public Behavior {
  public:
     BehaviorCoward();
@@ -41,6 +43,11 @@ class BehaviorCoward : public Behavior {
 
     ~BehaviorCoward() {delete velocity_;}
 
+    /*
+     * @brief Calculates wheel velocity based on passed in distances and
+     * default speed. Overrides CalculateVelocity from behavior.h
+     *
+     */
     WheelVelocity * CalculateVelocity(double leftDist, double rightDist,
       double defaultSpeed) override;
 
