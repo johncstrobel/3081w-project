@@ -110,7 +110,7 @@ See BraitenbergVehicle.cc: BraitenbergVehicle::CalculateWheelVelocity at line 21
 ### Linter and Git
 
 - [ ] All *.h and *.c files pass cpplint.
-- [ ] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
+- [x] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
 - [x] There exists a history of git commit messages to show effort.
 - [x] There exists a history of issues and branches to show effort.
 - [x] Github issues include current unresolved bugs.
