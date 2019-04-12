@@ -14,9 +14,9 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 - [x] _/project_ folder exists   <<<< I think we can remove this one.
 - [x] _/build_ is not in the repo
 - [x] _/html_  and _/latex_ is not in _docs_
-- [x] **__`make` from within _project_ completes without error.__**
-- [x] `./../build/bin/arenaviewer` executes without assert or a seg fault
-- [x] `./../build/bin/unittest` executes without a seg fault
+- [ ] **__`make` from within _project_ completes without error.__**
+- [ ] `./../build/bin/arenaviewer` executes without assert or a seg fault
+- [ ] `./../build/bin/unittest` executes without a seg fault
 - [ ] **_"make check-style" reports no errors when run in the master branch._**
 - [x] `doxygen docs/Doxyfile` compiles and creates the html pages for all classes without errors.
 
@@ -107,10 +107,10 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 - [ ] All *.h and *.c files pass cpplint.
 - [ ] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
-- [ ] There exists a history of git commit messages to show effort.
-- [ ] There exists a history of issues and branches to show effort.
-- [ ] Github issues include current unresolved bugs.
-- [ ] Github issues include unresolved feature enhancements and refactoring that is due for this iteration.
+- [x] There exists a history of git commit messages to show effort.
+- [x] There exists a history of issues and branches to show effort.
+- [x] Github issues include current unresolved bugs.
+- [x] Github issues include unresolved feature enhancements and refactoring that is due for this iteration.
 
 
 ## Ready For Submission
