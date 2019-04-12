@@ -101,8 +101,8 @@ void Arena::AddEntity(ArenaEntity* ent) {
   }
 }
 
-bool Arena::RemoveEntity(ArenaEntity* entity){
-  for(unsigned int i = 0; i < entities_.size(); i++) {
+bool Arena::RemoveEntity(ArenaEntity* entity) {
+  for (unsigned int i = 0; i < entities_.size(); i++) {
     if (entities_[i] == entity) {
       entities_.erase(entities_.begin()+i);
       return true;
