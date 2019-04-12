@@ -40,21 +40,36 @@ class Predator : public BraitenbergVehicle {
 
   ~Predator();
 
+  /**
+   * @brief Override of HandleCollision that kills braitenbergs if they are
+   * the colliding object.
+   *
+   * @param ent_type type of the passed in ArenaEntity.
+   *
+   * @param object ArenaEntity this is colliding with.
+   */
   void HandleCollision(EntityType ent_type, ArenaEntity * object) override;
 
+  /**
+   * @brief Override of LoadFromObject that ignores behavior parameters,
+   * instead automatically setting all behaviors to predator default.
+   */
   void LoadFromObject(json_object* entity_config) override;
 
+  /**
+   * @brief Method for determining if ArenaEntity is a predator.
+   */
   bool IsPredator() override {return true;}
 
-  void ConsumeFood(ArenaEntity * victim) override;
-  /* things it needs to do differently:
-   * behaviors (ez)
-   * when colliding with a BV, kill it
-   *  -overload handlecollision
-   *
+  /**
+   * @brief Overridden from BraitenbergVehicle to consume BVs instead of normal
+   * food objects.
    */
+  void ConsumeFood(ArenaEntity * victim) override;
+
  private:
-    int killcount_;
+    // for fun :)
+    int kill_count_;
 };
 
 NAMESPACE_END(csci3081);

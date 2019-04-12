@@ -35,9 +35,16 @@ class Observer {
   int operator=(const Observer &other) = delete;
   Observer(const Observer &other) = delete;
 
+  /**
+   * @brief Called by subject to pass info to observer.
+   */
   virtual void Update(WheelVelocity * lightvel, WheelVelocity * foodvel,
-    WheelVelocity * bvvel) = 0;  // called by entity to pass info to observer
+    WheelVelocity * bvvel) = 0;
 
+  /**
+   * @brief Method allowing observers to request unsubscription from their
+   * subjects.
+   */
   virtual void RequestUnsubscribe() {}
 
   void SetSubscribed(bool t) {subscribed_ = t;}

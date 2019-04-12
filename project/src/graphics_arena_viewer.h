@@ -76,7 +76,7 @@ class GraphicsArenaViewer : public mingfx::GraphicsApp, public ArenaViewer,
    */
   ~GraphicsArenaViewer() override { delete arena_; }
 
-  /** Used to setup the 2D GUI. */
+  /** @brief Used to setup the 2D GUI. */
   void InitNanoGUI() override;
 
   /**

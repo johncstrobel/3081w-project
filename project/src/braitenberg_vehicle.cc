@@ -65,7 +65,7 @@ void BraitenbergVehicle::TimestepUpdate(unsigned int dt) {
   if (!dead) {
     hunger_ = hunger_ - dt;
     if (hunger_ <= 0) {
-      this->kill();
+      this->Kill();
     }
   }
   UpdateLightSensors();
@@ -287,7 +287,7 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   UpdateLightSensors();
 }
 
-void BraitenbergVehicle::kill() {
+void BraitenbergVehicle::Kill() {
   dead = true;
   set_is_moving(false);
   set_color(RgbColor(255, 255, 255));

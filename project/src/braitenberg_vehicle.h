@@ -277,7 +277,7 @@ class BraitenbergVehicle : public ArenaMobileEntity {
    * @brief makes the BV a 'ghost' (no collisions, color is white, stops moving)
    *
    */
-  void kill();
+  void Kill();
   bool IsDead() {return dead;}
   virtual void ConsumeFood(__unused ArenaEntity * object);
 

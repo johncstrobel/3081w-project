@@ -28,8 +28,25 @@ class Factory {
  public:
   Factory();
 
+  /**
+   * @brief Constructs BraitenbergVehicle objects.
+   * @param entity_config the JSON object from which the robot will be loaded.
+   * @return a pointer to a BraitenbergVehicle object.
+   */
   BraitenbergVehicle* ConstructRobot(json_object* entity_config);
+
+  /**
+   * @brief Constructs Food objects.
+   * @param entity_config the JSON object from which the food will be loaded.
+   * @return a pointer to a food object.
+   */
   Food * ConstructFood(json_object* entity_config);
+
+  /**
+   * @brief Constructs light objects.
+   * @param entity_config the JSON object from which the light will be loaded.
+   * @return a pointer to a light object.
+   */
   Light * ConstructLight(json_object* entity_config);
 };
 
