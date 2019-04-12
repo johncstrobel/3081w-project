@@ -9,16 +9,16 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 ### Compilation and Execution
 
 
-- [ ]  cloned **fresh** from github onto a cselabs machine to test compilation, style compliance, and execution
+- [x]  cloned **fresh** from github onto a cselabs machine to test compilation, style compliance, and execution
 - [ ] Submission is on the **master** branch in the project folder of your repo
-- [ ] _/project_ folder exists   <<<< I think we can remove this one.
-- [ ] _/build_ is not in the repo
-- [ ] _/html_  and _/latex_ is not in _docs_
-- [ ] **__`make` from within _project_ completes without error.__**
-- [ ] `./../build/bin/arenaviewer` executes without assert or a seg fault
-- [ ] `./../build/bin/unittest` executes without a seg fault
+- [x] _/project_ folder exists   <<<< I think we can remove this one.
+- [x] _/build_ is not in the repo
+- [x] _/html_  and _/latex_ is not in _docs_
+- [x] **__`make` from within _project_ completes without error.__**
+- [x] `./../build/bin/arenaviewer` executes without assert or a seg fault
+- [x] `./../build/bin/unittest` executes without a seg fault
 - [ ] **_"make check-style" reports no errors when run in the master branch._**
-- [ ] `doxygen docs/Doxyfile` compiles and creates the html pages for all classes without errors.
+- [x] `doxygen docs/Doxyfile` compiles and creates the html pages for all classes without errors.
 
 
 ### Functionality Checklist
@@ -40,35 +40,35 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 | Functionality | Good | Okay | Help | Time |
 | ------------- | ---- |----- | ---- | ---- |
 | **__Priority Level 1__** |
-| Braitenberg Vehicle Love Behavior implemented and operational. |  |  |  |  |
-| Braitenberg Vehicle Explore Behavior implemented and operational. |  |  |  |  |
-| Braitenberg Vehicle Coward Behavior implemented and operational. |  |  |  |  |
-| Braitenberg Vehicle Aggression Behavior  implemented and operational. |  |  |  |  |
-| Braitenberg Vehicle None Behavior  implemented and operational. |  |  |  |  |
-| Strategy Pattern implemented and operates using Braitenberg Vehicle Behavior Classes. |  |  |  |  |
-| Braitenberg Vehicle (BV) sensors implemented within the BV class, and are operational (used in the simulation). |  |  |  |  |
-| The GUI includes an option to select robot/bv behavior. |  |  |  |  |
-| The bv wheel velocity is incorporated into the total wheel velocity |  |  |  |  |
-| “robot_behavior” in the JSON has been tested |  |  |  |  |
+| Braitenberg Vehicle Love Behavior implemented and operational. |x|  |  |  |
+| Braitenberg Vehicle Explore Behavior implemented and operational. |x|  |  |  |
+| Braitenberg Vehicle Coward Behavior implemented and operational. |x|  |  |  |
+| Braitenberg Vehicle Aggression Behavior  implemented and operational. |x|  |  |  |
+| Braitenberg Vehicle None Behavior  implemented and operational. |x|  |  |  |
+| Strategy Pattern implemented and operates using Braitenberg Vehicle Behavior Classes. |x|  |  |  |
+| Braitenberg Vehicle (BV) sensors implemented within the BV class, and are operational (used in the simulation). |x|  |  |  |
+| The GUI includes an option to select robot/bv behavior. |x|  |  |  |
+| The bv wheel velocity is incorporated into the total wheel velocity |x|  |  |  |
+| “robot_behavior” in the JSON has been tested |x|  |  |  |
 
 
 | Functionality | Good | Okay | Help | Time |
 | ------------- | ---- |----- | ---- | ---- |
 | **__Priority Level 2__** |
-| Observer Pattern implemented and operational (wheel velocities for the Braitenberg Vehicle "Subject" are displayed in real time in the simulation control panel). |  |  |  |  |
-| Simulation Control Panel updated to enable selection of any one Braitenberg Vehicle as the "Subject" whose wheel velocities are displayed. |  |  |  |  |
-| JSON file or files updated to include configuration of a Predator.  |  |  |  |  |
-| Predator class implemented and operational. |  |  |  |  |
-| Predator consumes Braitenberg Vehicles. |  |  |  |  | 
-| Braitenberg vehicles turn into "ghosts" as specified in the Iteration 2 requirements document (Iteration2Requirements.md), when consumed. |  |  |  |  |
+| Observer Pattern implemented and operational (wheel velocities for the Braitenberg Vehicle "Subject" are displayed in real time in the simulation control panel). |x|  |  |  |
+| Simulation Control Panel updated to enable selection of any one Braitenberg Vehicle as the "Subject" whose wheel velocities are displayed. |x|  |  |  |
+| JSON file or files updated to include configuration of a Predator.  |x|  |  |  |
+| Predator class implemented and operational. |x|  |  |  |
+| Predator consumes Braitenberg Vehicles. |x|  |  |  | 
+| Braitenberg vehicles turn into "ghosts" as specified in the Iteration 2 requirements document (Iteration2Requirements.md), when consumed. |x|  |  |  |
 
 
 | Functionality | Good | Okay | Help | Time |
 | -------- | -------- | -------- | -------- | --------- |
 | **__Priority Level 3__** |
-| Braitenberg Vehicle (BV) starvation functionality implemented and operational (BV's starve if they do not consume food after 600 simulation time steps). |  |  |  |   |
-| Upon starvation, Braitenberg vehicles turn into ghosts as specified in the Iteration 2 requirements document (Iteration2Requirements.md). |  |  |  |  |
-| The functionality to dynamically calculate Braitenberg Vehicle wheel velocities based on a weighted combination of wheel velocities is implemented and operational (or behaviors are dynamically modified). Note, you are to design and create the formula to dynamically combine the wheel velocities.  See the iteration 2 requirements (Iteration2Requiments.md) for ideas on how to do this.  |  |  |  |  |
+| Braitenberg Vehicle (BV) starvation functionality implemented and operational (BV's starve if they do not consume food after 600 simulation time steps). |x|  |  |   |
+| Upon starvation, Braitenberg vehicles turn into ghosts as specified in the Iteration 2 requirements document (Iteration2Requirements.md). |x|  |  |  |
+| The functionality to dynamically calculate Braitenberg Vehicle wheel velocities based on a weighted combination of wheel velocities is implemented and operational (or behaviors are dynamically modified). Note, you are to design and create the formula to dynamically combine the wheel velocities.  See the iteration 2 requirements (Iteration2Requiments.md) for ideas on how to do this.  |x|  |  |  |
 
 ### Documentation
 
@@ -84,8 +84,8 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 #### Design Document
 
-- [ ] The final version of the design document includes a description of two different implementations that enable the observation of Braitenberg Vehicle wheel velocities as specified in the the requirements, and one of the implementations discussed should be the implementation of the Observer pattern that you used. Another possibility for comparision to your implementation is to compare it to another implementation of the observer pattern that you did not implement.  In any case, describe your implementation of the observer pattern and one alternative implementation and discuss them as specified in the requirements.
-- [ ] The final version of your design document for iteration 2 (named **__iteration2\_design.pdf__**) has been submitted via Canvas (See the Iteration 2 Final Design Document Item on Canvas for the submission link).
+- [x] The final version of the design document includes a description of two different implementations that enable the observation of Braitenberg Vehicle wheel velocities as specified in the the requirements, and one of the implementations discussed should be the implementation of the Observer pattern that you used. Another possibility for comparision to your implementation is to compare it to another implementation of the observer pattern that you did not implement.  In any case, describe your implementation of the observer pattern and one alternative implementation and discuss them as specified in the requirements.
+- [x] The final version of your design document for iteration 2 (named **__iteration2\_design.pdf__**) has been submitted via Canvas (See the Iteration 2 Final Design Document Item on Canvas for the submission link).
 
 
 #### UML
