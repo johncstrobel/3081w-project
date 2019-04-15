@@ -52,6 +52,7 @@ class Observer {
 
  private:
   bool subscribed_;
+
  protected:
   ArenaEntity * subject_;
 };

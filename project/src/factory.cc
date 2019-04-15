@@ -36,7 +36,7 @@ NAMESPACE_BEGIN(csci3081);
      return Amanda;
   }
 
-  BraitenbergVehicle* Factory::ConstructPredator(json_object* entity_config){
+  BraitenbergVehicle* Factory::ConstructPredator(json_object* entity_config) {
     Predator * Teresa = new Predator();
     Teresa->LoadFromObject(entity_config);
     return Teresa;

@@ -1,3 +1,14 @@
+#ifndef SRC_MAINPAGE_H_
+#define SRC_MAINPAGE_H_
+/*
+ *
+ * Copyright 2019 John Strobel
+ *
+ *
+ *
+ *
+ */
+
 /*! \mainpage Braitenberg Vehicle Simulation
  *
  * \section Introduction Introduction
@@ -56,3 +67,5 @@
  *controller’s code.
  *
  */
+
+#endif  // SRC_MAINPAGE_H_
