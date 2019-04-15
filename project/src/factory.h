@@ -11,6 +11,7 @@
 #include "src/food.h"
 #include "src/light.h"
 #include "src/common.h"
+#include "src/braitenberg_predator.h"
 
 NAMESPACE_BEGIN(csci3081);
 
@@ -48,6 +49,13 @@ class Factory {
    * @return a pointer to a light object.
    */
   Light * ConstructLight(json_object* entity_config);
+
+  /**
+   * @brief Constructs Predator objects.
+   * @param entity_config the JSON object from which the robot will be loaded.
+   * @return a pointer to a Predator object.
+   */
+  BraitenbergVehicle* ConstructPredator(json_object* entity_config);
 };
 
 NAMESPACE_END(csci3081);

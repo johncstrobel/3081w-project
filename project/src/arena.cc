@@ -63,8 +63,9 @@ Arena::Arena(json_object* arena_object): x_dim_(X_DIM),
         entity = factory_->ConstructRobot(entity_config);
         break;
       case (kPredator):
-        entity = new Predator();
-        std::cout << "todo: implement predator factory!" << std::endl;
+        entity = factory_->ConstructPredator(entity_config);
+        // entity = new Predator();
+        // std::cout << "todo: implement predator factory!" << std::endl;
         break;
       default:
         std::cout << "FATAL: Bad entity type on creation" << std::endl;
