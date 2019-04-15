@@ -1,6 +1,6 @@
 ### Feedback for Proj 02
 
-Run on April 12, 14:45:30 PM.
+Run on April 15, 18:39:50 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -59,7 +59,7 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 72e3195f40b852a8f54384d3afb069d821c3ea96	refs/heads/feature/09-dynamic-wheel-velocity
 
-bdb3be593e221ee0f1fa016237bbf14cac6d7cf0	refs/heads/feature/iteration-2-checklist
+fc867bbb23069329570f6bdf73ab0c51cea4079c	refs/heads/feature/iteration-2-checklist
 
 6629d81c5c75c8e54ff7d64dd347f5f7bb612ef2	refs/heads/feature/priority-level-2
 
@@ -69,7 +69,7 @@ bdb3be593e221ee0f1fa016237bbf14cac6d7cf0	refs/heads/feature/iteration-2-checklis
 
 3204c5dde8d0ebc09252cf7db0c690c819983576	refs/heads/fix/05-predators-segfault-on-wall-collision
 
-ccc2a74a4bf0547c468473b82591cae27e673bb9	refs/heads/master
+9296818fed98e89bcbd9e8e4fa94627030743974	refs/heads/master
 
 a744fddf2760036ad7d415132103c6727b725834	refs/heads/pre-release/iteration1
 
@@ -86,7 +86,9 @@ a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
 
 + Pass: Configuring GHI
 
-+ Pass: Run ghi for total number of open issues in Github repo (Found: 6)
++ Pass: Run ghi for total number of open issues in Github repo (Found: 7)
+
+[OPEN issue #14] :  Make factories for Predators
 
 [OPEN issue #13] :  bug/06-memory-leak-behaviors [bug]
 
