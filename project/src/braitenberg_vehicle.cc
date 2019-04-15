@@ -65,7 +65,7 @@ void BraitenbergVehicle::TimestepUpdate(unsigned int dt) {
   if (!dead) {
     hunger_ = hunger_ - dt;
     if (hunger_ <= 0) {
-      this->kill();
+      this->Kill();
     }
   }
   UpdateLightSensors();
@@ -187,8 +187,8 @@ void BraitenbergVehicle::DynamicColor() {  // colors the robot
   if (light_influence) {r+=225;}
   if (braitenberg_influence) {g+=225;}
 
-  if(hunger_ > HUNGRY) {
-    //no change to color values
+  if (hunger_ > HUNGRY) {
+    // no change to color values
     if (!food_influence && !light_influence && !braitenberg_influence) {
       r = 0; g = 0; b = 0;
     }
@@ -209,7 +209,6 @@ void BraitenbergVehicle::DynamicColor() {  // colors the robot
     if (!food_influence && !light_influence && !braitenberg_influence) {
       r = 192; g = 192; b = 192;
     }
-
   }
   set_color(RgbColor(r, g, b));
 }
@@ -287,7 +286,7 @@ void BraitenbergVehicle::LoadFromObject(json_object* entity_config) {
   UpdateLightSensors();
 }
 
-void BraitenbergVehicle::kill() {
+void BraitenbergVehicle::Kill() {
   dead = true;
   set_is_moving(false);
   set_color(RgbColor(255, 255, 255));

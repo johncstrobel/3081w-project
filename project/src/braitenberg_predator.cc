@@ -31,7 +31,7 @@ NAMESPACE_BEGIN(csci3081);
  * @detail
  */
 
-Predator::Predator(): BraitenbergVehicle(), killcount_(0) {
+Predator::Predator(): BraitenbergVehicle(), kill_count_(0) {
   BraitenbergVehicle::set_light_behavior(kCoward);
   BraitenbergVehicle::set_food_behavior(kNone);
   BraitenbergVehicle::set_braitenberg_behavior(kAggressive);
@@ -53,8 +53,8 @@ void Predator::HandleCollision(__unused EntityType ent_type,
 }
 
 void Predator::ConsumeFood(ArenaEntity * victim) {
-  static_cast<BraitenbergVehicle*>(victim)->kill();
-  killcount_++;
+  static_cast<BraitenbergVehicle*>(victim)->Kill();
+  kill_count_++;
   hunger_ = 600.0;
 }
 
