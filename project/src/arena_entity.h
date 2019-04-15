@@ -149,6 +149,8 @@ class ArenaEntity {
     }
   }
 
+  virtual bool IsPredator() {return false;}
+
  private:
   double radius_{DEFAULT_RADIUS};
   Pose pose_;

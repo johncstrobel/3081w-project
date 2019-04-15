@@ -18,6 +18,7 @@
 #include "src/arena.h"
 #include "src/light.h"
 #include "src/braitenberg_vehicle.h"
+#include "src/braitenberg_predator.h"
 
 /*******************************************************************************
  * Namespaces
@@ -61,6 +62,11 @@ Arena::Arena(json_object* arena_object): x_dim_(X_DIM),
       case (kBraitenberg):
         entity = factory_->ConstructRobot(entity_config);
         break;
+      case (kPredator):
+        entity = factory_->ConstructPredator(entity_config);
+        // entity = new Predator();
+        // std::cout << "todo: implement predator factory!" << std::endl;
+        break;
       default:
         std::cout << "FATAL: Bad entity type on creation" << std::endl;
         assert(false);
@@ -94,6 +100,16 @@ void Arena::AddEntity(ArenaEntity* ent) {
   if (bv) {
     bv->UpdateLightSensors();
   }
+}
+
+bool Arena::RemoveEntity(ArenaEntity* entity) {
+  for (unsigned int i = 0; i < entities_.size(); i++) {
+    if (entities_[i] == entity) {
+      entities_.erase(entities_.begin()+i);
+      return true;
+    }
+  }
+  return false;
 }
 
 void Arena::Reset() {
@@ -138,21 +154,42 @@ void Arena::UpdateEntitiesTimestep() {
     */
     for (auto &ent2 : entities_) {
       if (ent2 == ent1) { continue; }
+      if ((ent1->get_type() == kBraitenberg &&
+            static_cast<BraitenbergVehicle*>(ent1)->IsDead()) ||
+          (ent2->get_type() == kBraitenberg &&
+            static_cast<BraitenbergVehicle*>(ent2)->IsDead()))
+         { continue; }
+
       if (IsColliding(ent1, ent2)) {
         // if a braitenberg vehicle collides with food, call consume on bv
         // this is pretty ugly, I should move it into HandleCollision
         if (ent1->get_type() == kBraitenberg &&
-            ent2->get_type() == kFood) {
-          // static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood();
+            ent2->get_type() == kFood && !ent1->IsPredator()) {
+          static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood(ent2);
+          if (!RemoveEntity(ent2)) {
+            throw std::runtime_error(
+              "Remove Entity Error (in UpdateEntitiesTimestep)");
+          }
+          // std::cout << "todo: delete consumed food" << std::endl;
         } else if (ent1->get_type() == kFood &&
-                   ent2->get_type() == kBraitenberg) {
-          // static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood();
+                   ent2->get_type() == kBraitenberg && !ent2->IsPredator()) {
+          static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood(ent1);
+          if (!RemoveEntity(ent1)) {
+            throw std::runtime_error(
+              "Remove Entity Error (in UpdateEntitiesTimestep)");
+          }
+          // std::cout << "todo: delete consumed food" << std::endl;
         }
         // lights and braitenberg vehicles do not collide
         // nothing collides with food, but bv's call consume() if they do
         if ((ent2->get_type() == kBraitenberg && ent1->get_type() == kLight) ||
             (ent2->get_type() == kLight && ent1->get_type() == kBraitenberg) ||
-            (ent2->get_type() == kFood) || (ent1->get_type() == kFood)     ) {
+            (ent2->get_type() == kFood) || (ent1->get_type() == kFood)) {
+          continue;
+        }
+        if ((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
+        (ent1->get_type() == kBraitenberg && ent2->IsPredator())) {
+          ent1->HandleCollision(ent2->get_type(), ent2);
           continue;
         }
         AdjustEntityOverlap(ent1, ent2);
@@ -163,7 +200,11 @@ void Arena::UpdateEntitiesTimestep() {
     if (ent1->get_type() == kBraitenberg) {
       BraitenbergVehicle* bv = static_cast<BraitenbergVehicle*>(ent1);
       for (unsigned int f = 0; f < entities_.size(); f++) {
-        bv->SenseEntity(*entities_[f]);
+        // if entity is both a different type and a different ID
+        if ((entities_[f]->get_id() != ent1->get_id()) ||
+           (entities_[f]->get_type() != ent1->get_type())) {
+            bv->SenseEntity(*entities_[f]);
+        }
       }
 
       bv->Update();
@@ -226,12 +267,6 @@ bool Arena::IsColliding(
 */
 /* @TODO: Add to Pose distance distance_between (e.g. overload operator -)
 */
-/* @BUG: The robot will pass through the home food on occasion. The problem
- * is likely due to the adjustment being in the wrong direction. This could
- * be because the cos/sin generate the wrong sign of the distance_to_move
- * when the collision is in a specific quadrant relative to the center of the
- * colliding entities..
- */
 void Arena::AdjustEntityOverlap(ArenaMobileEntity * const mobile_e,
   ArenaEntity *const other_e) {
     double delta_x = mobile_e->get_pose().x - other_e->get_pose().x;

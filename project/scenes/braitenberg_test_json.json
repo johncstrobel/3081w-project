@@ -1,0 +1,14 @@
+{
+  "width": 600,
+  "height": 600,
+  "entities": [
+      {"type": "Braitenberg", "x":100, "y":300, "r":15, "theta": 270.0, "light_behavior": "Explore", "food_behavior": "Love" },
+      {"type": "Food", "x":100, "y":250, "r":20, "theta": 0.0 },
+
+      {"type": "Braitenberg", "x":250, "y":300, "r":15, "theta": 270.0, "light_behavior": "Explore", "food_behavior": "Love" },
+      {"type": "Light", "x":250, "y":250, "r":30 },
+
+      {"type": "Braitenberg", "x":500, "y":300, "r":15, "theta": 270.0, "light_behavior": "Explore", "food_behavior": "Love" },
+      {"type": "Food", "x":525, "y":250, "r":20, "theta": 0.0 },
+      {"type": "Light", "x":475, "y":250, "r":30 } ]
+}

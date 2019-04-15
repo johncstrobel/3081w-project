@@ -1,0 +1,11 @@
+{
+  "width": 600,
+  "height": 600,
+  "entities": [
+      {"type": "Predator", "x":220, "y":200, "r":15, "theta": 270.0,
+        "light_behavior": "Explore", "food_behavior": "Coward",
+        "robot_behavior": "Aggressive"},
+      {"type": "Braitenberg", "x":230, "y":50, "r":15, "theta": 270.0,
+        "light_behavior": "None", "food_behavior": "None",
+        "robot_behavior": "None"}]
+}
