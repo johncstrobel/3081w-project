@@ -109,7 +109,7 @@ See BraitenbergVehicle.cc: BraitenbergVehicle::CalculateWheelVelocity at line 21
 
 ### Linter and Git
 
-- [ ] All *.h and *.c files pass cpplint.
+- [x] All *.h and *.c files pass cpplint.
 - [x] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
 - [x] There exists a history of git commit messages to show effort.
 - [x] There exists a history of issues and branches to show effort.
@@ -122,7 +122,7 @@ See BraitenbergVehicle.cc: BraitenbergVehicle::CalculateWheelVelocity at line 21
 
 When everything above is as you want it or the deadline is upon you, it is time to submit!
 
-- [ ] I pushed this file and any changes resulting from this checklist.
+- [x] I pushed this file and any changes resulting from this checklist.
 - [ ] Everything is in the **__master__** branch.
 
 _One more thing_ -- check that what you think you pushed was really pushed to github. If you can see it, we can see it. If you can't, we can't.
