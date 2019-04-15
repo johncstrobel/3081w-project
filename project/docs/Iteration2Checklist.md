@@ -10,14 +10,14 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 
 - [x]  cloned **fresh** from github onto a cselabs machine to test compilation, style compliance, and execution
-- [ ] Submission is on the **master** branch in the project folder of your repo
+- [x] Submission is on the **master** branch in the project folder of your repo
 - [x] _/project_ folder exists   <<<< I think we can remove this one.
 - [x] _/build_ is not in the repo
 - [x] _/html_  and _/latex_ is not in _docs_
 - [x] **__`make` from within _project_ completes without error.__**
 - [x] `./../build/bin/arenaviewer` executes without assert or a seg fault
 - [x] `./../build/bin/unittest` executes without a seg fault
-- [ ] **_"make check-style" reports no errors when run in the master branch._**
+- [x] **_"make check-style" reports no errors when run in the master branch._**
 - [x] `doxygen docs/Doxyfile` compiles and creates the html pages for all classes without errors.
 
 
@@ -123,7 +123,7 @@ See BraitenbergVehicle.cc: BraitenbergVehicle::CalculateWheelVelocity at line 21
 When everything above is as you want it or the deadline is upon you, it is time to submit!
 
 - [x] I pushed this file and any changes resulting from this checklist.
-- [ ] Everything is in the **__master__** branch.
+- [x] Everything is in the **__master__** branch.
 
 _One more thing_ -- check that what you think you pushed was really pushed to github. If you can see it, we can see it. If you can't, we can't.
 
