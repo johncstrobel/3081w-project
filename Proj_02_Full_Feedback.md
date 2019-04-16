@@ -1,6 +1,6 @@
 ### Feedback for Proj 02
 
-Run on April 15, 16:53:51 PM.
+Run on April 15, 20:47:15 PM.
 
 + Pass: Checkout devel branch.
 
@@ -75,7 +75,7 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 72e3195f40b852a8f54384d3afb069d821c3ea96	refs/heads/feature/09-dynamic-wheel-velocity
 
-b90b575fc0d4ce935d68a83382679e2599d17fda	refs/heads/feature/iteration-2-checklist
+9797843cfda642b4da48dbe68052155448efdd0d	refs/heads/feature/iteration-2-checklist
 
 6629d81c5c75c8e54ff7d64dd347f5f7bb612ef2	refs/heads/feature/priority-level-2
 
@@ -85,7 +85,7 @@ b90b575fc0d4ce935d68a83382679e2599d17fda	refs/heads/feature/iteration-2-checklis
 
 3204c5dde8d0ebc09252cf7db0c690c819983576	refs/heads/fix/05-predators-segfault-on-wall-collision
 
-d18c4c874ff93ec8082304b210770ffd50b741d5	refs/heads/master
+f0e77c2b05bf1530dac2af1d38cc559a92680cd3	refs/heads/master
 
 a744fddf2760036ad7d415132103c6727b725834	refs/heads/pre-release/iteration1
 
@@ -120,7 +120,9 @@ a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
 
 
 
-+ Pass: Run ghi for total number of closed issues in Github repo (Found: 7)
++ Pass: Run ghi for total number of closed issues in Github repo (Found: 8)
+
+[CLOSED issue #14] :  Make factories for Predators
 
 [CLOSED issue #11] :  bug/05-predators-segfault-on-wall-collision [bug]
 
