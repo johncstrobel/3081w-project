@@ -1,6 +1,6 @@
 ### Feedback for Proj 02
 
-Run on April 15, 18:54:25 PM.
+Run on April 22, 17:49:53 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -41,7 +41,7 @@ Commits found=76
 
 + Pass: Run git ls-remote gather all branches in repo
 
-912db89d2eeb5e561665fc83eb66e25bddcfca04	refs/heads/devel
+36ea110e5e9f4cc081938d9301a83223ceeff6a0	refs/heads/devel
 
 378b0f72709749d7896d104e552f1b698a823eb5	refs/heads/feature/02-BV-sensor
 
@@ -69,11 +69,15 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 3204c5dde8d0ebc09252cf7db0c690c819983576	refs/heads/fix/05-predators-segfault-on-wall-collision
 
-ef4b11333c17b5872ec965c99a1e4758f9874357	refs/heads/master
+07de717fae7ef52bd436fea1f484164d3793ad6f	refs/heads/master
 
 a744fddf2760036ad7d415132103c6727b725834	refs/heads/pre-release/iteration1
 
+912db89d2eeb5e561665fc83eb66e25bddcfca04	refs/heads/pre-release/iteration2
+
 cd25fdc074663860d170ad3f2becfc88c15b7f27	refs/heads/release/iteration1
+
+642ef4faa68814046d671681b91ae70191160133	refs/heads/release/iteration2
 
 a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
 
@@ -86,7 +90,9 @@ a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
 
 + Pass: Configuring GHI
 
-+ Pass: Run ghi for total number of open issues in Github repo (Found: 6)
++ Pass: Run ghi for total number of open issues in Github repo (Found: 7)
+
+[OPEN issue #15] :  Food respawn  [enhancement]
 
 [OPEN issue #13] :  bug/06-memory-leak-behaviors [bug]
 
@@ -135,69 +141,7 @@ Link to full feedback: [Proj_02_Full_Feedback.md](Proj_02_Full_Feedback.md)
 
 #### Style Tests
 
-+ Fail: Ensuring code follows style guide.
-
-<pre>cd src; make check-style
-make[1]: Entering directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_02_Basic_Feedback/repo-strob105/project/src'
-==== Checking style is correct ====
-/class/grades/Spring-2019/csci3081/student-repos/Proj_02_Basic_Feedback/repo-strob105/cpplint/cpplint.py --root=.. *.cc *.h
-arena.cc:104:  Missing space before {  [whitespace/braces] [5]
-arena.cc:105:  Missing space before ( in for(  [whitespace/parens] [5]
-braitenberg_vehicle.cc:190:  Missing space before ( in if(  [whitespace/parens] [5]
-braitenberg_vehicle.cc:191:  Should have a space between // and comment  [whitespace/comments] [4]
-braitenberg_vehicle.cc:212:  Redundant blank line at the end of a code block should be deleted.  [whitespace/blank_line] [3]
-Done processing arena.cc
-Done processing behavior_aggressive.cc
-Done processing behavior_coward.cc
-Done processing behavior_explore.cc
-Done processing behavior_love.cc
-Done processing behavior_none.cc
-Done processing braitenberg_predator.cc
-Done processing braitenberg_vehicle.cc
-Done processing controller.cc
-Done processing factory.cc
-Done processing food.cc
-Done processing graphics_arena_viewer.cc
-Done processing light.cc
-Done processing main.cc
-Done processing motion_behavior.cc
-Done processing motion_behavior_differential.cc
-Done processing rgb_color.cc
-Done processing arena_entity.h
-Done processing arena.h
-Done processing arena_immobile_entity.h
-Done processing arena_mobile_entity.h
-Done processing arena_viewer.h
-Done processing behavior_aggressive.h
-Done processing behavior_coward.h
-Done processing behavior_enum.h
-Done processing behavior_explore.h
-Done processing behavior.h
-Done processing behavior_love.h
-Done processing behavior_none.h
-Done processing braitenberg_predator.h
-Done processing braitenberg_vehicle.h
-Done processing common.h
-Done processing controller.h
-Done processing entity_type.h
-Done processing factory.h
-Done processing food.h
-Done processing graphics_arena_viewer.h
-Done processing light.h
-Done processing motion_behavior_differential.h
-Done processing motion_behavior.h
-Done processing observer.h
-Done processing params.h
-Done processing pose.h
-Done processing rgb_color.h
-Done processing wheel_velocity.h
-Total errors found: 5
-Makefile:162: recipe for target 'check-style' failed
-make[1]: *** [check-style] Error 1
-make[1]: Leaving directory '/class/grades/Spring-2019/csci3081/student-repos/Proj_02_Basic_Feedback/repo-strob105/project/src'
-Makefile:8: recipe for target 'check-style' failed
-make: *** [check-style] Error 2
-</pre>
++ Pass: Ensuring code follows style guide.
 
 
 
