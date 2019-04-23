@@ -23,17 +23,31 @@ NAMESPACE_BEGIN(csci3081);
      return Brandon;
   }
 
-  Food * Factory::ConstructFood(json_object * entity_config) {
-     Food * Fred = new Food();
-     Fred->LoadFromObject(entity_config);
-     return Fred;
+  BraitenbergVehicle* Factory::ConstructRobot() {
+    BraitenbergVehicle * Sam = new BraitenbergVehicle();
+    return Sam;
   }
 
+  Food * Factory::ConstructFood(json_object * entity_config) {
+    Food * Fred = new Food();
+    Fred->LoadFromObject(entity_config);
+    return Fred;
+  }
+
+  Food * Factory::ConstructFood(){
+    Food * Guy = new Food();
+    return Guy;
+  }
 
   Light * Factory::ConstructLight(json_object* entity_config) {
-     Light * Amanda = new Light();
-     Amanda->LoadFromObject(entity_config);
-     return Amanda;
+    Light * Amanda = new Light();
+    Amanda->LoadFromObject(entity_config);
+    return Amanda;
+  }
+
+  Light * Factory::ConstructLight(){
+    Light * JeanPierre = new Light();
+    return JeanPierre;
   }
 
   BraitenbergVehicle* Factory::ConstructPredator(json_object* entity_config) {

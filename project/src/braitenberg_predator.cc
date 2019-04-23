@@ -15,6 +15,7 @@
 #include <string>
 #include <vector>
 #include "src/braitenberg_predator.h"
+#include "src/light.h"
 
 
 /*******************************************************************************
@@ -31,11 +32,16 @@ NAMESPACE_BEGIN(csci3081);
  * @detail
  */
 
-Predator::Predator(): BraitenbergVehicle(), kill_count_(0) {
+Predator::Predator(): BraitenbergVehicle(), kill_count_(0), disguise_(),
+  disguise_factory_(), disguise_options_() {
   BraitenbergVehicle::set_light_behavior(kCoward);
   BraitenbergVehicle::set_food_behavior(kNone);
   BraitenbergVehicle::set_braitenberg_behavior(kAggressive);
-  // set_type(kPredator);
+  disguise_ = nullptr;
+  disguise_factory_ = new Factory();
+  disguise_options_.push_back(kBraitenberg);
+  disguise_options_.push_back(kFood);
+  disguise_options_.push_back(kLight);
 }
 
 
@@ -44,11 +50,27 @@ Predator::~Predator() {}
 void Predator::HandleCollision(__unused EntityType ent_type,
   ArenaEntity * object) {
   if (object == nullptr) {
-    BraitenbergVehicle::HandleCollision(ent_type, object);
+    if(disguise_){
+      if(disguise_->get_type() == kLight) {
+        static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
+      } else if (disguise_->get_type() == kFood) {
+        //TODO
+      }
+    } else {
+      BraitenbergVehicle::HandleCollision(ent_type, object);
+    }
   } else if (object->get_type() == kBraitenberg) {
     ConsumeFood(object);
   } else {
-    BraitenbergVehicle::HandleCollision(ent_type, object);
+    if(disguise_){
+      if(disguise_->get_type() == kLight) {
+        static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
+      } else if (disguise_->get_type() == kFood) {
+        //TODO
+      }
+    } else {
+      BraitenbergVehicle::HandleCollision(ent_type, object);
+    }
   }
 }
 
@@ -62,12 +84,53 @@ void Predator::LoadFromObject(json_object* entity_config) {
   ArenaEntity::LoadFromObject(entity_config);
   UpdateLightSensors();
 }
-   /* things it needs to do differently:
-    * behaviors (ez)
-    * when colliding with a BV, kill it
-    *  -overload handlecollision
-    *  -remove BV from collidable objects
-    */
+
+void Predator::Update(){
+  if(disguise_){
+    disguise_->Update();
+  } else {
+    BraitenbergVehicle::Update();
+  }
+}
+
+void Predator::DisguiseSelf() {
+  if(disguise_){
+    for(int i = 0; i < static_cast<int>(disguise_options_.size()); i++){
+      if(disguise_->get_type() == disguise_options_[i]){
+        disguise_options_.erase(disguise_options_.begin()+i);
+      }
+    }
+  }
+  int x = rand() % (disguise_options_.size());
+
+  int newDisguise = disguise_options_[x];
+  switch(newDisguise){
+    case kLight:
+      disguise_ = disguise_factory_->ConstructLight();
+      break;
+    case kFood:
+      disguise_ = disguise_factory_->ConstructFood();
+      break;
+    case kBraitenberg:
+      disguise_ = disguise_factory_->ConstructRobot();
+      // TODO: set behaviors randomly
+      break;
+    default:
+      std::cout << "error: predator disguiseself" << std::endl;
+      break;
+  }
+}
+
+void Predator::TimestepUpdate(unsigned int dt) {
+  BraitenbergVehicle::TimestepUpdate(dt);
+  if(hunger_ < HUNGER1 && disguise_options_.size() == 3) {
+    DisguiseSelf();
+  } else if(hunger_ < HUNGER2 && disguise_options_.size() == 2) {
+    DisguiseSelf();
+  } else if(hunger_ < HUNGER2 && disguise_options_.size() == 2) {
+    DisguiseSelf();
+  }
+}
 
 NAMESPACE_END(csci3081);
 

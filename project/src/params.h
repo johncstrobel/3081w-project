@@ -60,6 +60,11 @@
 #define HUNGRY 300  // when hunger_ is less than this, alternate behavior
 #define PANIC_MODE 100  // when hunger_ is less than this, "panic"
 
+// predator
+#define HUNGER1 450
+#define HUNGER2 300
+#define HUNGER3 150
+
 // light_sensor
 #define SENSOR_LIGHT_RAD 4
 
