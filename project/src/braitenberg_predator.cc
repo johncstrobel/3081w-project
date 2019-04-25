@@ -114,6 +114,7 @@ void Predator::DisguiseSelf() {
     case kBraitenberg:
       disguise_ = disguise_factory_->ConstructRobot();
       static_cast<BraitenbergVehicle*>(disguise_)->RandomizeBehaviors();
+      disguise_->set_braitenberg_behavior(kAggressive);
       std::cout << "disguising as braitenberg. id: " << static_cast<int>(get_id()) << "Behaviors: "<< static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_food_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_light_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_braitenberg_behavior()->get_type()) << std::endl;
       break;
     default:
