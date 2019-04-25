@@ -17,12 +17,12 @@
 #include "src/braitenberg_vehicle.h"
 #include "src/factory.h"
 
-// class Factory;
-
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
+
+class Factory;
 
 /*******************************************************************************
  * Class Definitions
@@ -78,6 +78,15 @@ class Predator : public BraitenbergVehicle {
   void DisguiseSelf();
 
   void TimestepUpdate(unsigned int dt) override;
+
+  EntityType get_type() {
+    if(disguise_){
+      return disguise_->get_type();
+    }
+    return get_type();
+  }
+
+  // EntityType get_type() const { return type_; }
 
  private:
     // for fun :)

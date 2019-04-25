@@ -44,7 +44,7 @@ Predator::Predator(): BraitenbergVehicle(), kill_count_(0), disguise_(),
   disguise_options_.push_back(kLight);
 }
 
-
+  // number of behaviors
 Predator::~Predator() {}
 
 void Predator::HandleCollision(__unused EntityType ent_type,
@@ -78,6 +78,10 @@ void Predator::ConsumeFood(ArenaEntity * victim) {
   static_cast<BraitenbergVehicle*>(victim)->Kill();
   kill_count_++;
   hunger_ = 600.0;
+  disguise_options_.clear();
+  disguise_options_.push_back(kBraitenberg);
+  disguise_options_.push_back(kFood);
+  disguise_options_.push_back(kLight);
 }
 
 void Predator::LoadFromObject(json_object* entity_config) {
@@ -87,6 +91,7 @@ void Predator::LoadFromObject(json_object* entity_config) {
 
 void Predator::Update(){
   if(disguise_){
+    // std::cout << "predator disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
     disguise_->Update();
   } else {
     BraitenbergVehicle::Update();
@@ -94,30 +99,33 @@ void Predator::Update(){
 }
 
 void Predator::DisguiseSelf() {
-  if(disguise_){
-    for(int i = 0; i < static_cast<int>(disguise_options_.size()); i++){
-      if(disguise_->get_type() == disguise_options_[i]){
-        disguise_options_.erase(disguise_options_.begin()+i);
-      }
-    }
-  }
   int x = rand() % (disguise_options_.size());
 
   int newDisguise = disguise_options_[x];
   switch(newDisguise){
     case kLight:
       disguise_ = disguise_factory_->ConstructLight();
+      std::cout << "disguising as light. id: " << static_cast<int>(get_id()) <<std::endl;
       break;
     case kFood:
       disguise_ = disguise_factory_->ConstructFood();
+      std::cout << "disguising as food. id: " << static_cast<int>(get_id()) <<std::endl;
       break;
     case kBraitenberg:
       disguise_ = disguise_factory_->ConstructRobot();
-      // TODO: set behaviors randomly
+      static_cast<BraitenbergVehicle*>(disguise_)->RandomizeBehaviors();
+      std::cout << "disguising as braitenberg. id: " << static_cast<int>(get_id()) << "Behaviors: "<< static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_food_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_light_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_braitenberg_behavior()->get_type()) << std::endl;
       break;
     default:
-      std::cout << "error: predator disguiseself" << std::endl;
       break;
+  }
+
+  if(disguise_){
+    for(int i = 0; i < static_cast<int>(disguise_options_.size()); i++){
+      if(disguise_->get_type() == disguise_options_[i]){
+        disguise_options_.erase(disguise_options_.begin()+i);
+      }
+    }
   }
 }
 
@@ -127,10 +135,12 @@ void Predator::TimestepUpdate(unsigned int dt) {
     DisguiseSelf();
   } else if(hunger_ < HUNGER2 && disguise_options_.size() == 2) {
     DisguiseSelf();
-  } else if(hunger_ < HUNGER2 && disguise_options_.size() == 2) {
+  } else if(hunger_ < HUNGER3 && disguise_options_.size() == 1) {
     DisguiseSelf();
   }
 }
+
+
 
 NAMESPACE_END(csci3081);
 

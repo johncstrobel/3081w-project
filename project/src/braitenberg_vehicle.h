@@ -303,6 +303,8 @@ class BraitenbergVehicle : public ArenaMobileEntity {
   void NotifyObservers(WheelVelocity * lightvel, WheelVelocity * foodvel,
       WheelVelocity * bvvel);
 
+  void RandomizeBehaviors();
+
  private:
   std::vector<Pose> light_sensors_;
   MotionBehaviorDifferential * motion_behavior_{nullptr};

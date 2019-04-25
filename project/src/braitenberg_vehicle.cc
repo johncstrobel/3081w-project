@@ -316,5 +316,14 @@ void BraitenbergVehicle::NotifyObservers(WheelVelocity * lightvel,
   }
 }  // for o in observers o-> update();
 
+void BraitenbergVehicle::RandomizeBehaviors(){
+  int x = rand() % (5);  // number of behaviors
+  int y = rand() % (5);
+  int z = rand() % (5);
+
+  set_braitenberg_behavior(static_cast<BehaviorEnum>(x));
+  set_light_behavior(static_cast<BehaviorEnum>(y));
+  set_food_behavior(static_cast<BehaviorEnum>(z));
+}
 
 NAMESPACE_END(csci3081);
