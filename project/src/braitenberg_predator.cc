@@ -90,6 +90,8 @@ void Predator::LoadFromObject(json_object* entity_config) {
 }
 
 void Predator::Update(){
+  // int x = (rand() % (disguise_options_.size()));
+  // std::cout << "random x: " << x << std::endl;
   if(disguise_){
     // std::cout << "predator disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
     disguise_->Update();
@@ -99,23 +101,28 @@ void Predator::Update(){
 }
 
 void Predator::DisguiseSelf() {
-  int x = rand() % (disguise_options_.size());
+  int x = (rand() % (disguise_options_.size()));
+  std::cout << "rand: " << x << std::endl;
+  std::cout << "disguise options size" << disguise_options_.size() << std::endl;
 
   int newDisguise = disguise_options_[x];
   switch(newDisguise){
     case kLight:
       disguise_ = disguise_factory_->ConstructLight();
       std::cout << "disguising as light. id: " << static_cast<int>(get_id()) <<std::endl;
+      set_color(LIGHT_COLOR);
       break;
     case kFood:
       disguise_ = disguise_factory_->ConstructFood();
       std::cout << "disguising as food. id: " << static_cast<int>(get_id()) <<std::endl;
+      set_color(FOOD_COLOR);
       break;
     case kBraitenberg:
       disguise_ = disguise_factory_->ConstructRobot();
       static_cast<BraitenbergVehicle*>(disguise_)->RandomizeBehaviors();
-      disguise_->set_braitenberg_behavior(kAggressive);
+      static_cast<BraitenbergVehicle*>(disguise_)->set_braitenberg_behavior(kAggressive);
       std::cout << "disguising as braitenberg. id: " << static_cast<int>(get_id()) << "Behaviors: "<< static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_food_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_light_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_braitenberg_behavior()->get_type()) << std::endl;
+      set_color(BRAITENBERG_MAROON);
       break;
     default:
       break;

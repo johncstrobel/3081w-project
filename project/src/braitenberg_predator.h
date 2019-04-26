@@ -79,11 +79,11 @@ class Predator : public BraitenbergVehicle {
 
   void TimestepUpdate(unsigned int dt) override;
 
-  EntityType get_type() {
+  EntityType get_type() const override {
     if(disguise_){
       return disguise_->get_type();
     }
-    return get_type();
+    return kBraitenberg;
   }
 
   // EntityType get_type() const { return type_; }

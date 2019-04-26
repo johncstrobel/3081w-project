@@ -161,15 +161,16 @@ void Arena::UpdateEntitiesTimestep() {
       if (IsColliding(ent1, ent2)) {
         // if a braitenberg vehicle collides with food, call consume on bv
         // this is pretty ugly, I should move it into HandleCollision
-        if (ent1->get_type() == kBraitenberg &&
-            ent2->get_type() == kFood && !ent1->IsPredator()) {
+        if (ent1->get_type() == kBraitenberg && !ent1->IsPredator() &&
+            ent2->get_type() == kFood && !ent2->IsPredator()) {
           static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood(ent2);
           if (!RemoveEntity(ent2)) {
+
             throw std::runtime_error(
               "Remove Entity Error (in UpdateEntitiesTimestep)");
           }
           // std::cout << "todo: delete consumed food" << std::endl;
-        } else if (ent1->get_type() == kFood &&
+        } else if (ent1->get_type() == kFood && !ent1->IsPredator() &&
                    ent2->get_type() == kBraitenberg && !ent2->IsPredator()) {
           static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood(ent1);
           if (!RemoveEntity(ent1)) {
@@ -178,16 +179,18 @@ void Arena::UpdateEntitiesTimestep() {
           }
           // std::cout << "todo: delete consumed food" << std::endl;
         }
+        if ((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
+        (ent1->get_type() == kBraitenberg && ent2->IsPredator())) {
+          std::cout << "made it here" << std::endl;
+          ent1->HandleCollision(ent2->get_type(), ent2);
+          continue;
+        }
+
         // lights and braitenberg vehicles do not collide
         // nothing collides with food, but bv's call consume() if they do
         if ((ent2->get_type() == kBraitenberg && ent1->get_type() == kLight) ||
             (ent2->get_type() == kLight && ent1->get_type() == kBraitenberg) ||
             (ent2->get_type() == kFood) || (ent1->get_type() == kFood)) {
-          continue;
-        }
-        if ((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
-        (ent1->get_type() == kBraitenberg && ent2->IsPredator())) {
-          ent1->HandleCollision(ent2->get_type(), ent2);
           continue;
         }
         AdjustEntityOverlap(ent1, ent2);
