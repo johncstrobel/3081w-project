@@ -1,6 +1,6 @@
 ### Feedback for Proj 02
 
-Run on April 25, 19:02:31 PM.
+Run on April 26, 14:22:03 PM.
 
 
 ***Note: This is just the basic feedback.  The full feedback is run daily as a batch process (click link below)***
@@ -59,7 +59,7 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 72e3195f40b852a8f54384d3afb069d821c3ea96	refs/heads/feature/09-dynamic-wheel-velocity
 
-6d075fd708e42640f225667c31611f6715784e26	refs/heads/feature/10-predator-decorator-pattern
+13311b374bb6905c9efd3c090e90182f12575d1e	refs/heads/feature/10-predator-decorator-pattern
 
 9797843cfda642b4da48dbe68052155448efdd0d	refs/heads/feature/iteration-2-checklist
 
@@ -71,7 +71,7 @@ fc776e7bba32f65c7bbf6559823b06529e4fdcf2	refs/heads/feature/07-BV-predator-class
 
 3204c5dde8d0ebc09252cf7db0c690c819983576	refs/heads/fix/05-predators-segfault-on-wall-collision
 
-5b34f7cd4f173e63741f12ecc15b9262416f736d	refs/heads/master
+3ac747f1e5901743d867eb6316bc96783c9b4b69	refs/heads/master
 
 a744fddf2760036ad7d415132103c6727b725834	refs/heads/pre-release/iteration1
 
@@ -92,7 +92,9 @@ a6a0a49913cd35245e523130dc71153f6d78aeb7	refs/heads/release/iteration2-prelim1
 
 + Pass: Configuring GHI
 
-+ Pass: Run ghi for total number of open issues in Github repo (Found: 7)
++ Pass: Run ghi for total number of open issues in Github repo (Found: 8)
+
+[OPEN issue #16] :  bug/08-predators-eating-predators
 
 [OPEN issue #15] :  Food respawn  [enhancement]
 
