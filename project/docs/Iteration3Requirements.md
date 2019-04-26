@@ -2,7 +2,11 @@
 
 ### UPDATES
 
-**Check this file regularly (that is, every day or two) for updates**
+- 04/26/19: Fixed omission. <a href="#reqs1">Predator</a> decoration: choose between the 3 entities.
+- 04/25/19: <a href="#assessment">Assessment Weighting</a> added.
+- 04/25/19: <a href="#doxy">Doxygen</a> landing page requirements clarified.
+- 04/25/19: <a href="#design_doc">Design Document</a> correction that replaced _strategy_ with _observer_ and clarified what could be compared for the decorator pattern.
+- 04/25/19: <a href="#reqs1">Predator decorated</a> with Light may be stationary OR moving. We will accept both.
 
 <hr>
 
@@ -66,7 +70,7 @@ Predators to disguise themselves as a food entity, a light entity or a Braitenbe
 
 #### Decorator Design Pattern
 
-Employ the Decorator pattern to implement the enable a Predator to assume the identities of a food, light, or a Braitenberg vehicle entity.   The Decorator can be implemented via inheritance or aggregation. You should read about the Decorator Pattern in Chapter 3 of your text Head First Design Patterns before deciding which approach you will follow to design and implement this functionality.
+Employ the Decorator pattern to implement the enable a Predator to assume the identities of a food, light, or a Braitenberg vehicle entity. The Decorator can be implemented via inheritance or aggregation. You should read about the Decorator Pattern in Chapter 3 of your text Head First Design Patterns before deciding which approach you will follow to design and implement this functionality.
 
 #### Factory Design Pattern
 
@@ -86,11 +90,11 @@ In this iteration you will be required to deliver a UML diagram again that repre
 
 ### <a name="design_doc">Design Document
 
-Your final iteration of the design document should be updated to include your final design and implementation of the strategy pattern,   your design of the Decorator pattern, and a description of your final Factory Pattern design and implementation. 
+Your final iteration of the design document should be updated to include your final design and implementation of the <del>strategy</del> observer pattern, your design of the Decorator pattern, and a description of your final Factory Pattern design and implementation. 
 
-For the strategy pattern, discuss how the design of the pattern you submitted at the end of iteration 1 differed from the design you implemented and submitted in iteration 2.  Your discussion should note any differences between the iteration 1 design and iteration 2 implementation and the primary reason they were different (if they were different). 
+<del>For the strategy pattern, discuss how the design of the pattern you submitted at the end of iteration 1 differed from the design you implemented and submitted in iteration 2. </del> CORRECTION: For the observer pattern, discuss any differences between your design and your final implementation and the primary reason they were different (if they were different). 
 
-For the decorator pattern,  describe two alternative implementations, one pro and con for each, and the primary reason you chose the design that you implemented. One alternative is to implement the decorator pattern through aggregation, and another is to implement the decorator pattern using inheritance. 
+For the decorator pattern,  describe two alternative implementations, one pro and con for each, and the primary reason you chose the design that you implemented. One alternative is to implement the decorator pattern through aggregation, and another is to implement the decorator pattern using inheritance. CLARIFICATION: You may also compare and contrast implementations that would not be considered the decorator pattern.
 
 For the factory pattern, describe how your simulation incorporates the functionality to configure the factory from configurations stored in a JSON file or from configurations stored in a file with comma separated values (a csv file). You should compare your design against one that employs the adapter pattern by noting one pro and con for each design. If your implementation employs the adapter pattern, you should discuss the primary reason you used it. 
 
@@ -111,19 +115,7 @@ See the information at the URL: https://google.github.io/styleguide/cppguide.htm
 
 Continue to refine your in-code Doxygen documentation including a brief description for all classes and a full documentation of Arena, Braitenberg Vehicles, and your factories with JSON including both methods and member variables. _You do not have to fully document your new factory classes that do not use JSON._
 
-In addition to the code documentation, please update the first version of the _landing page_ (i.e. mainpage.h) that you created in iteration 2 in this iteration. This file is placed in the **src** directory for Doxygen to find. You can try it out by placing this text in _mainpage.h_ :
-
-```
-  /*! \mainpage My Personal Index Page
-   *
-   * \section intro_sec Introduction
-   *
-   * This is the introduction.
-   *
-   */
-```
-
-You should add and/or update instructions on how to run the simulation and tell the user how to build a configuration file (in JSON and a csv format).
+In addition to the code documentation, please update the first version of the _landing page_ (i.e. mainpage.h) that you created in iteration 2 in this iteration. This file is placed in the **src** directory for Doxygen to find. You should add and/or update instructions on how to run the simulation and tell the user how to build a configuration file (in JSON and a csv format). CLARIFICATION: updating means to work on improving and expanding the text, as well as the formating. An example _mainpage.h_ has been added to Canvas files to demonstrate how to make section headings, to add images, links, and a table of contents,  
 
 <hr>
 
@@ -152,17 +144,17 @@ The iterative method identifies and prioritizes feature enhancements and code re
 ### <a name="reqs1">Priority Level 1 : Add functionality for Predator to disguise itself as food, light or Braitenberg vehicle using the Decorator Pattern, and implement Predator starvation behavior</a>
 ### Due: Friday, April 26th at 11:55pm
 
-- Implement Predator capability to disguise itself as food or a braitenberg vehicle using the decorator pattern. This can be accomplished via inheritance or via aggregation. 
+- Implement Predator capability to disguise itself as food, light or a braitenberg vehicle using the decorator pattern. This can be accomplished via inheritance or via aggregation. 
 
-One a new identity is assumed, the Predator should behave as the entity whose behavior it assumes. If a predator assumes the identity of food, it should remain at the location at which it assumed that identity. 
+When a new identity is assumed, the Predator should behave as the entity whose behavior it assumes. If a predator assumes the identity of food, it should remain at the location at which it assumed that identity. 
 
-If the predator assumes the identity of a light, it should be a stationary light, and remain at the location at which it assumed that identity.  **NOTE** - this is requirement is subject to change as lights have the ability to move.
+If the predator assumes the identity of a light, it should be a stationary light, and remain at the location at which it assumed that identity. **CLARIFICATION**: You may implement the light either as stationary or moving -- we will accept both.
 
 If the Predator assumes the identity of another Braitenberg vehicle, it should randomly set its behaviors towards food and light to explore, love, coward, aggression or none. However, its behaviors towards other robots should remain aggressive. 
 
 Implement Starvation Behavior for Predators. Starvation will be the trigger which causes predators to disguise themselves. 
-- If a predator has not eaten after 150 iterations, it should randomly switch identities to either food or a Braitenberg vehicle (so it has a 1 in 3 chance of assuming the identity of either food,light or a Braitenberg vehicle (bv)). 
-- If a predator has still not eaten after 300 iterations, it should switch its identity to one of the remaining identities it has not assumed (if assumed the identity of food after 150 iterations, it should randomly assume the identity of either a bv or a light after 300 iterations (so it has a 50/50 chance of assumming the identity of either a light or bv). 
+- If a predator has not eaten after 150 iterations, it should randomly switch identities to either food, light or a Braitenberg vehicle (so it has a 1 in 3 chance of assuming the identity of either food, light or a Braitenberg vehicle (bv)). 
+- If a predator has still not eaten after 300 iterations, it should switch its identity to one of the remaining identities it has not assumed (for example, if assumed the identity of food after 150 iterations, it should randomly assume the identity of either a bv or a light after 300 iterations (so it has a 50/50 chance of assumming the identity of either a light or bv)). 
 - If the predator has not eaten after 450 iterations, it should assume the identity of the entity it has not yet assumed. So if the predator assumed the identity of food after 150 iterations, and a bv after 300 iterations, it should assume the identity of a light after 450 iterations.  
 - Finally, if a predator has not eaten after 600 iterations, it should starve and become a "ghost".
 
@@ -182,7 +174,6 @@ or
 ./build/bin/areanviewer xdim ydim ConfigurationFile.csv
 
 
-
 <hr>
 
 ## <a name="deliver">Deliverables and Submission Process</a>
@@ -199,7 +190,14 @@ Your software will be assessed through automatic testing and by the TA. The proc
 
 ## <a name="assessment">Assessment Weighting</a>
 
-To be determined.  This will be posted in approximately 1 week. 
+- (20%) Predator, including implementation and design
+- (12%) Factory Rework
+- (4%) Style Compliance
+- (9%) Git Usage
+- (5%) Compiles, no seg faults.
+- (20%) Design Doc
+- (20%) Landing Page
+- (10%) UML
 
 ## <a name="resources">Resources</a>
 
