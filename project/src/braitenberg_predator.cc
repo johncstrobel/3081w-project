@@ -53,24 +53,20 @@ void Predator::HandleCollision(__unused EntityType ent_type,
     if(disguise_){
       if(disguise_->get_type() == kLight) {
         static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
-      } else if (disguise_->get_type() == kFood) {
-        //TODO
       }
-    } else {
-      BraitenbergVehicle::HandleCollision(ent_type, object);
+      else {BraitenbergVehicle::HandleCollision(ent_type, object);}
     }
-  } else if (object->get_type() == kBraitenberg) {
-    ConsumeFood(object);
-  } else {
+    else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+  }
+  else if (object->get_type() == kBraitenberg) {ConsumeFood(object);}
+  else {
     if(disguise_){
       if(disguise_->get_type() == kLight) {
         static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
-      } else if (disguise_->get_type() == kFood) {
-        //TODO
       }
-    } else {
-      BraitenbergVehicle::HandleCollision(ent_type, object);
+      else {BraitenbergVehicle::HandleCollision(ent_type, object);}
     }
+    else {BraitenbergVehicle::HandleCollision(ent_type, object);}
   }
 }
 
@@ -93,8 +89,15 @@ void Predator::Update(){
   // int x = (rand() % (disguise_options_.size()));
   // std::cout << "random x: " << x << std::endl;
   if(disguise_){
-    // std::cout << "predator disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
-    disguise_->Update();
+    if(disguise_->get_type() != kLight) {
+      disguise_->Update();
+      // std::cout << "predator " << get_id() << " disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
+      // std::cout << "update (is light)";
+    }
+    else if(disguise_->get_type() == kLight) {
+      std::cout << "predator " << get_id() << " disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
+    }
+      // else do nothing
   } else {
     BraitenbergVehicle::Update();
   }
@@ -102,26 +105,21 @@ void Predator::Update(){
 
 void Predator::DisguiseSelf() {
   int x = (rand() % (disguise_options_.size()));
-  std::cout << "rand: " << x << std::endl;
-  std::cout << "disguise options size" << disguise_options_.size() << std::endl;
 
   int newDisguise = disguise_options_[x];
   switch(newDisguise){
     case kLight:
       disguise_ = disguise_factory_->ConstructLight();
-      std::cout << "disguising as light. id: " << static_cast<int>(get_id()) <<std::endl;
       set_color(LIGHT_COLOR);
       break;
     case kFood:
       disguise_ = disguise_factory_->ConstructFood();
-      std::cout << "disguising as food. id: " << static_cast<int>(get_id()) <<std::endl;
       set_color(FOOD_COLOR);
       break;
     case kBraitenberg:
       disguise_ = disguise_factory_->ConstructRobot();
       static_cast<BraitenbergVehicle*>(disguise_)->RandomizeBehaviors();
       static_cast<BraitenbergVehicle*>(disguise_)->set_braitenberg_behavior(kAggressive);
-      std::cout << "disguising as braitenberg. id: " << static_cast<int>(get_id()) << "Behaviors: "<< static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_food_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_light_behavior()->get_type()) << static_cast<int>(static_cast<BraitenbergVehicle*>(disguise_)->get_braitenberg_behavior()->get_type()) << std::endl;
       set_color(BRAITENBERG_MAROON);
       break;
     default:
@@ -138,13 +136,27 @@ void Predator::DisguiseSelf() {
 }
 
 void Predator::TimestepUpdate(unsigned int dt) {
-  BraitenbergVehicle::TimestepUpdate(dt);
   if(hunger_ < HUNGER1 && disguise_options_.size() == 3) {
     DisguiseSelf();
   } else if(hunger_ < HUNGER2 && disguise_options_.size() == 2) {
     DisguiseSelf();
   } else if(hunger_ < HUNGER3 && disguise_options_.size() == 1) {
     DisguiseSelf();
+  }
+
+  if(disguise_ && disguise_->get_type() == kLight) {
+    static_cast<Light*>(disguise_)->TimestepUpdate(dt);
+    hunger_ = hunger_ - dt;
+  }
+  if(disguise_ && disguise_->get_type() == kBraitenberg) {
+    BraitenbergVehicle::TimestepUpdate(dt);
+  }
+  if(disguise_ && disguise_->get_type() == kFood) {
+    static_cast<Food*>(disguise_)->TimestepUpdate(dt);
+    hunger_ = hunger_ - dt;
+  }
+  if(!disguise_){
+    BraitenbergVehicle::TimestepUpdate(dt);
   }
 }
 

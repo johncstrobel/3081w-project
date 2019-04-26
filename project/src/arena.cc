@@ -135,7 +135,12 @@ void Arena::UpdateEntitiesTimestep() {
    *  ^^ Nope, I use TimestepUpdate on all entities now (to update sensors)
    */
   for (auto ent : entities_) {
-    ent->TimestepUpdate(1);
+    if(ent->IsPredator()) {
+      static_cast<Predator*>(ent)->TimestepUpdate(1);
+    }
+    else {
+      ent->TimestepUpdate(1);
+    }
   }
 
    /* Determine if any mobile entity is colliding with wall.
@@ -181,7 +186,6 @@ void Arena::UpdateEntitiesTimestep() {
         }
         if ((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
         (ent1->get_type() == kBraitenberg && ent2->IsPredator())) {
-          std::cout << "made it here" << std::endl;
           ent1->HandleCollision(ent2->get_type(), ent2);
           continue;
         }

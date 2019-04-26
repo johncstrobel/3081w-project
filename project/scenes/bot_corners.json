@@ -1,0 +1,18 @@
+{
+  "width": 200,
+  "height": 200,
+  "entities": [
+      {"type": "Predator", "x":150, "y":150, "r":15, "theta": 45.0,
+        "light_behavior": "Explore", "food_behavior": "Explore",
+        "robot_behavior": "Coward"},
+      {"type": "Predator", "x":50, "y":150, "r":15, "theta": 135.0,
+        "light_behavior": "Explore", "food_behavior": "Explore",
+        "robot_behavior": "Coward"},
+      {"type": "Predator", "x":50, "y":50, "r":15, "theta": 225.0,
+        "light_behavior": "Explore", "food_behavior": "Explore",
+        "robot_behavior": "Coward"},
+      {"type": "Predator", "x":150, "y":50, "r":15, "theta": 315.0,
+        "light_behavior": "Explore", "food_behavior": "Explore",
+        "robot_behavior": "Coward"}]
+
+}
