@@ -87,11 +87,6 @@ void Predator::Update() {
   if (disguise_) {
     if (disguise_->get_type() != kLight) {
       disguise_->Update();
-      // std::cout << "predator " << get_id() << " disguised as " <<
-      //   static_cast<int>(disguise_->get_type()) << std::endl;
-      // std::cout << "update (is light)";
-    } else if (disguise_->get_type() == kLight) {
-      std::cout << "predator " << get_id() << " disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
     }
       // else do nothing
   } else {
