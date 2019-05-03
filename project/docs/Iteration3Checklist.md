@@ -72,27 +72,27 @@ In your comparisons, provide an overall description highlighting key points of t
 
 #### UML
 
-- [ ] UML for project can be generated without errors using Doxygen,  and can be viewed in the docs directory.
+- [x] UML for project can be generated without errors using Doxygen,  and can be viewed in the docs directory.
 - [ ]  Deliver a UML diagram  that represents your final implementation. This will include Classes and relationships between the Arena, Braitenberg Vehicle, Predator, Food, Light, all factories, Classes that implement the observer pattern, classes that implement the strategy pattern, the classes that implement the Decorator Patten and any other classes used to implement the functionality for this iteration.
 - [ ] The final version of your UML design document for iteration 3 (named **__UML\_finaldesign.pdf__**) has been submitted via Canvas (See the **_Iteration 3  UML Complete_** Item on Canvas for the submission link).
 
 
 #### Doxygen
 
-- [ ] All classes have a _brief_ description that appears in the Doxygen web page class list.
-- [ ] The Arena, Braitenberg vehicle and Factories using JSON  are fully documented with respect to methods and member variables. In other words, in the html generated pages of Doxygen, the user can click on a class method and see more information about its purpose and parameters.
+- [x] All classes have a _brief_ description that appears in the Doxygen web page class list.
+- [x] The Arena, Braitenberg vehicle and Factories using JSON  are fully documented with respect to methods and member variables. In other words, in the html generated pages of Doxygen, the user can click on a class method and see more information about its purpose and parameters.
 - [ ] A landing page that updates the landing page you submitted for iteration 2 and  meets the requirements specified in the Iteration 3 Requirements (in the file Iteration3Requiements.md located here: https://github.umn.edu/umn-csci-3081-S19/csci3081-shared-upstream/blob/support-code/project/docs/Iteration3Requirements.md ) exists in the file named **__mainpage.h__** and is in the src directory.
-- [ ] Doxygen successfully generates the main page (verify by running Doxygen and then opening the resulting **_index.html__** page).
+- [x] Doxygen successfully generates the main page (verify by running Doxygen and then opening the resulting **_index.html__** page).
 
 
 ### Linter and Git
 
 - [ ] All *.h and *.c files pass cpplint.
 - [ ] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
-- [ ] There exists a history of git commit messages to show effort.
-- [ ] There exists a history of issues and branches to show effort.
-- [ ] Github issues include current unresolved bugs.
-- [ ] Github issues include unresolved feature enhancements and refactoring that is due for this iteration.
+- [x] There exists a history of git commit messages to show effort.
+- [x] There exists a history of issues and branches to show effort.
+- [x] Github issues include current unresolved bugs.
+- [x] Github issues include unresolved feature enhancements and refactoring that is due for this iteration.
 
 
 ## Ready For Submission

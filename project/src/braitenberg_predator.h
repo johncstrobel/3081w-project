@@ -28,12 +28,13 @@ class Factory;
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief Braitenberg vehicle subclass that can consume other braitenbergs
+ * @brief A Braitenberg vehicle subclass that can consume other braitenbergs
  *
  * @detail See description of BraitenbergVehicle class for more details on basic
  *  behavior. This class operates identically, except that when it collides with
  *  a braitenberg vehicle, it 'kills' it instead of performing the normal
- *  backing up and changing direction.
+ *  backing up and changing direction. It can also 'disguise' itself as other
+ *  standard arena entities in order to attract BraitenbergVehicles to it.
  */
 
 class Predator : public BraitenbergVehicle {

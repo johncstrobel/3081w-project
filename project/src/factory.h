@@ -38,6 +38,10 @@ class Factory {
    */
   BraitenbergVehicle* ConstructRobot(json_object* entity_config);
 
+  /**
+  * @brief Constructs BraitenbergVehicle objects (with default values instead
+  * of using a configuration file)
+  */
   BraitenbergVehicle* ConstructRobot();
 
 
@@ -48,6 +52,10 @@ class Factory {
    */
   Food * ConstructFood(json_object* entity_config);
 
+  /**
+  * @brief Constructs Food objects (with default values instead
+  * of using a configuration file)
+  */
   Food * ConstructFood();
 
   /**
@@ -57,6 +65,10 @@ class Factory {
    */
   Light * ConstructLight(json_object* entity_config);
 
+  /**
+  * @brief Constructs Light objects (with default values instead
+  * of using a configuration file)
+  */
   Light * ConstructLight();
 
   /**
