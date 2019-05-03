@@ -38,12 +38,14 @@ Arena::Arena(): x_dim_(X_DIM),
     AddEntity(new BraitenbergVehicle());
 }
 
-Arena::Arena(json_object* arena_object): x_dim_(X_DIM),
-      y_dim_(Y_DIM),
+Arena::Arena(json_object* arena_object, double x, double y):
+      x_dim_(X_DIM), y_dim_(Y_DIM),
       entities_(),
       mobile_entities_(), factory_(new Factory()) {
-  x_dim_ = (*arena_object)["width"].get<double>();
-  y_dim_ = (*arena_object)["height"].get<double>();
+  // x_dim_ = (*arena_object)["width"].get<double>();
+  // y_dim_ = (*arena_object)["height"].get<double>();
+  x_dim_ = x;
+  y_dim_ = y;
   json_array& entities = (*arena_object)["entities"].get<json_array>();
   for (unsigned int f = 0; f < entities.size(); f++) {
     json_object * entity_config = &(entities[f].get<json_object>());
