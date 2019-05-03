@@ -57,7 +57,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 #### Design Document
 
-- [ ] Your final iteration of the design document should be updated (that is,  add the following to the previous version of your design document) to include a discussion of  your final design and implementation of the observer pattern, your design of the Decorator pattern, and a description of your final Factory Pattern design and implementation.
+- [x] Your final iteration of the design document should be updated (that is,  add the following to the previous version of your design document) to include a discussion of  your final design and implementation of the observer pattern, your design of the Decorator pattern, and a description of your final Factory Pattern design and implementation.
 
 For the observer pattern, discuss any differences between your design and your final implementation and the primary reason they were different (if they were different).
 
@@ -67,7 +67,7 @@ For the factory pattern, describe how your simulation incorporates the functiona
 
 In your comparisons, provide an overall description highlighting key points of the implementation and using UML and/or code snippets to clarify your ideas. Also provide at least one advantage and one disadvantage of each implementation.
 
-- [ ] The final version of your design document for iteration 2 (named **__iteration3\_design.pdf__**) has been submitted via Canvas (See the **_Iteration 3  Design Doc Complete_** Item on Canvas for the submission link).
+- [x] The final version of your design document for iteration 2 (named **__iteration3\_design.pdf__**) has been submitted via Canvas (See the **_Iteration 3  Design Doc Complete_** Item on Canvas for the submission link).
 
 
 #### UML
@@ -81,7 +81,7 @@ In your comparisons, provide an overall description highlighting key points of t
 
 - [x] All classes have a _brief_ description that appears in the Doxygen web page class list.
 - [x] The Arena, Braitenberg vehicle and Factories using JSON  are fully documented with respect to methods and member variables. In other words, in the html generated pages of Doxygen, the user can click on a class method and see more information about its purpose and parameters.
-- [ ] A landing page that updates the landing page you submitted for iteration 2 and  meets the requirements specified in the Iteration 3 Requirements (in the file Iteration3Requiements.md located here: https://github.umn.edu/umn-csci-3081-S19/csci3081-shared-upstream/blob/support-code/project/docs/Iteration3Requirements.md ) exists in the file named **__mainpage.h__** and is in the src directory.
+- [x] A landing page that updates the landing page you submitted for iteration 2 and  meets the requirements specified in the Iteration 3 Requirements (in the file Iteration3Requiements.md located here: https://github.umn.edu/umn-csci-3081-S19/csci3081-shared-upstream/blob/support-code/project/docs/Iteration3Requirements.md ) exists in the file named **__mainpage.h__** and is in the src directory.
 - [x] Doxygen successfully generates the main page (verify by running Doxygen and then opening the resulting **_index.html__** page).
 
 

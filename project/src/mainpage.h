@@ -23,6 +23,7 @@
  *class, and the GraphicsArenaViewer class.
  *
  *
+ *
  * \section Classes Classes
  *
  *
@@ -66,6 +67,48 @@
  *class that is instantiated and run; every entity is created as a result of the
  *controller’s code.
  *
+ * \section running Running the Simulation
+ *
+ * In order to actually run the simulation, run the following commands:
+ * \code{.sh}
+ * cd <path>/project
+ * make
+ * ./build/bin/arenaviewer xdim ydim scenes/<configuration file>
+ * \endcode
+ * xdim and ydim refer to the size of the arena in which the entities will
+ * run, and the configuration file will be discussed below.
+ *
+ * \subsection configuration Configuration Files
+ * Configuration files define the way the arena will be on startup. They contain
+ * identifiers for each of the entities that will be created in the arena, and
+ * details on where and how they are created.
+ *
+ * These files can currently be written in two types: .CSV and .JSON. CSV files
+ * should be structured as follows:
+ \code
+ type,x,y,r,theta,light_behavior,food_behavior,robot_behavior
+ <entity type>,<entity x>,<entity y>,<entity radius>,<entity theta>,<entity light behavior>, <entity food behavior>, <entity robot behavior>
+ \endcode
+ Entities that do not rely on certain parameters can ignore those parameters.
+ For example, the row corresponding to a light entity might look like this:
+ \code
+ Light,100,250,30
+ \endcode
+
+ JSON files should be structured as follows:
+ \code
+ {
+   "entities": [
+       {"type": "<entity type>", "x":<entity x>, "y":<entity y>,
+       "r":<entity radius>, "theta": <entity theta>,
+         "light_behavior": "<entity light behavior>",
+          "food_behavior": "<entity food behavior>",
+         "robot_behavior": "<entity robot behavior>"}
+   ]
+ }
+ \endcode
+ As before, entities that do not rely on certain parameters can be instantiated
+ just fine by not including those parameters.
  */
 
 #endif  // SRC_MAINPAGE_H_
