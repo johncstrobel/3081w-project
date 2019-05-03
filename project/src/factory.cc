@@ -34,7 +34,7 @@ NAMESPACE_BEGIN(csci3081);
     return Fred;
   }
 
-  Food * Factory::ConstructFood(){
+  Food * Factory::ConstructFood() {
     Food * Guy = new Food();
     return Guy;
   }
@@ -45,7 +45,7 @@ NAMESPACE_BEGIN(csci3081);
     return Amanda;
   }
 
-  Light * Factory::ConstructLight(){
+  Light * Factory::ConstructLight() {
     Light * JeanPierre = new Light();
     return JeanPierre;
   }
