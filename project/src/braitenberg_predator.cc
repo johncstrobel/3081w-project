@@ -50,23 +50,19 @@ Predator::~Predator() {}
 void Predator::HandleCollision(__unused EntityType ent_type,
   ArenaEntity * object) {
   if (object == nullptr) {
-    if(disguise_){
-      if(disguise_->get_type() == kLight) {
-        static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
-      }
-      else {BraitenbergVehicle::HandleCollision(ent_type, object);}
-    }
-    else {BraitenbergVehicle::HandleCollision(ent_type, object);}
-  }
-  else if (object->get_type() == kBraitenberg) {ConsumeFood(object);}
-  else {
-    if(disguise_){
-      if(disguise_->get_type() == kLight) {
-        static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
-      }
-      else {BraitenbergVehicle::HandleCollision(ent_type, object);}
-    }
-    else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+    if (disguise_) {
+      if (disguise_->get_type() == kLight) {
+        static_cast<Light*>(disguise_)->HandleCollision(ent_type, object);
+      } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+    } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+  } else if (object->get_type() == kBraitenberg) {
+    ConsumeFood(object);
+  } else {
+    if (disguise_) {
+      if (disguise_->get_type() == kLight) {
+        static_cast<Light*>(disguise_)->HandleCollision(ent_type, object);
+      } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+    } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
   }
 }
 
@@ -85,17 +81,12 @@ void Predator::LoadFromObject(json_object* entity_config) {
   UpdateLightSensors();
 }
 
-void Predator::Update(){
+void Predator::Update() {
   // int x = (rand() % (disguise_options_.size()));
   // std::cout << "random x: " << x << std::endl;
-  if(disguise_){
-    if(disguise_->get_type() != kLight) {
+  if (disguise_) {
+    if (disguise_->get_type() != kLight) {
       disguise_->Update();
-      // std::cout << "predator " << get_id() << " disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
-      // std::cout << "update (is light)";
-    }
-    else if(disguise_->get_type() == kLight) {
-      std::cout << "predator " << get_id() << " disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
     }
       // else do nothing
   } else {
@@ -104,10 +95,10 @@ void Predator::Update(){
 }
 
 void Predator::DisguiseSelf() {
-  int x = (rand() % (disguise_options_.size()));
+  int x = (rand_r() % (disguise_options_.size()));
 
   int newDisguise = disguise_options_[x];
-  switch(newDisguise){
+  switch (newDisguise) {
     case kLight:
       disguise_ = disguise_factory_->ConstructLight();
       set_color(LIGHT_COLOR);
@@ -119,16 +110,17 @@ void Predator::DisguiseSelf() {
     case kBraitenberg:
       disguise_ = disguise_factory_->ConstructRobot();
       static_cast<BraitenbergVehicle*>(disguise_)->RandomizeBehaviors();
-      static_cast<BraitenbergVehicle*>(disguise_)->set_braitenberg_behavior(kAggressive);
+      static_cast<BraitenbergVehicle*>(disguise_)->
+        set_braitenberg_behavior(kAggressive);
       set_color(BRAITENBERG_MAROON);
       break;
     default:
       break;
   }
 
-  if(disguise_){
-    for(int i = 0; i < static_cast<int>(disguise_options_.size()); i++){
-      if(disguise_->get_type() == disguise_options_[i]){
+  if (disguise_) {
+    for (int i = 0; i < static_cast<int>(disguise_options_.size()); i++) {
+      if (disguise_->get_type() == disguise_options_[i]) {
         disguise_options_.erase(disguise_options_.begin()+i);
       }
     }
@@ -136,31 +128,29 @@ void Predator::DisguiseSelf() {
 }
 
 void Predator::TimestepUpdate(unsigned int dt) {
-  if(hunger_ < HUNGER1 && disguise_options_.size() == 3) {
+  if (hunger_ < HUNGER1 && disguise_options_.size() == 3) {
     DisguiseSelf();
-  } else if(hunger_ < HUNGER2 && disguise_options_.size() == 2) {
+  } else if (hunger_ < HUNGER2 && disguise_options_.size() == 2) {
     DisguiseSelf();
-  } else if(hunger_ < HUNGER3 && disguise_options_.size() == 1) {
+  } else if (hunger_ < HUNGER3 && disguise_options_.size() == 1) {
     DisguiseSelf();
   }
 
-  if(disguise_ && disguise_->get_type() == kLight) {
+  if (disguise_ && disguise_->get_type() == kLight) {
     static_cast<Light*>(disguise_)->TimestepUpdate(dt);
     hunger_ = hunger_ - dt;
   }
-  if(disguise_ && disguise_->get_type() == kBraitenberg) {
+  if (disguise_ && disguise_->get_type() == kBraitenberg) {
     BraitenbergVehicle::TimestepUpdate(dt);
   }
-  if(disguise_ && disguise_->get_type() == kFood) {
+  if (disguise_ && disguise_->get_type() == kFood) {
     static_cast<Food*>(disguise_)->TimestepUpdate(dt);
     hunger_ = hunger_ - dt;
   }
-  if(!disguise_){
+  if (!disguise_) {
     BraitenbergVehicle::TimestepUpdate(dt);
   }
 }
-
-
 
 NAMESPACE_END(csci3081);
 

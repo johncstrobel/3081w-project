@@ -38,12 +38,14 @@ Arena::Arena(): x_dim_(X_DIM),
     AddEntity(new BraitenbergVehicle());
 }
 
-Arena::Arena(json_object* arena_object): x_dim_(X_DIM),
-      y_dim_(Y_DIM),
+Arena::Arena(json_object* arena_object, double x, double y):
+      x_dim_(X_DIM), y_dim_(Y_DIM),
       entities_(),
       mobile_entities_(), factory_(new Factory()) {
-  x_dim_ = (*arena_object)["width"].get<double>();
-  y_dim_ = (*arena_object)["height"].get<double>();
+  // x_dim_ = (*arena_object)["width"].get<double>();
+  // y_dim_ = (*arena_object)["height"].get<double>();
+  x_dim_ = x;
+  y_dim_ = y;
   json_array& entities = (*arena_object)["entities"].get<json_array>();
   for (unsigned int f = 0; f < entities.size(); f++) {
     json_object * entity_config = &(entities[f].get<json_object>());
@@ -135,10 +137,9 @@ void Arena::UpdateEntitiesTimestep() {
    *  ^^ Nope, I use TimestepUpdate on all entities now (to update sensors)
    */
   for (auto ent : entities_) {
-    if(ent->IsPredator()) {
+    if (ent->IsPredator()) {
       static_cast<Predator*>(ent)->TimestepUpdate(1);
-    }
-    else {
+    } else {
       ent->TimestepUpdate(1);
     }
   }
@@ -170,7 +171,6 @@ void Arena::UpdateEntitiesTimestep() {
             ent2->get_type() == kFood && !ent2->IsPredator()) {
           static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood(ent2);
           if (!RemoveEntity(ent2)) {
-
             throw std::runtime_error(
               "Remove Entity Error (in UpdateEntitiesTimestep)");
           }
