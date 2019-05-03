@@ -50,23 +50,19 @@ Predator::~Predator() {}
 void Predator::HandleCollision(__unused EntityType ent_type,
   ArenaEntity * object) {
   if (object == nullptr) {
-    if(disguise_){
-      if(disguise_->get_type() == kLight) {
-        static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
-      }
-      else {BraitenbergVehicle::HandleCollision(ent_type, object);}
-    }
-    else {BraitenbergVehicle::HandleCollision(ent_type, object);}
-  }
-  else if (object->get_type() == kBraitenberg) {ConsumeFood(object);}
-  else {
-    if(disguise_){
-      if(disguise_->get_type() == kLight) {
-        static_cast<Light*>(disguise_)->HandleCollision(ent_type,object);
-      }
-      else {BraitenbergVehicle::HandleCollision(ent_type, object);}
-    }
-    else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+    if (disguise_) {
+      if (disguise_->get_type() == kLight) {
+        static_cast<Light*>(disguise_)->HandleCollision(ent_type, object);
+      } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+    } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+  } else if (object->get_type() == kBraitenberg) {
+    ConsumeFood(object);
+  } else {
+    if (disguise_) {
+      if (disguise_->get_type() == kLight) {
+        static_cast<Light*>(disguise_)->HandleCollision(ent_type, object);
+      } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
+    } else {BraitenbergVehicle::HandleCollision(ent_type, object);}
   }
 }
 
@@ -85,16 +81,16 @@ void Predator::LoadFromObject(json_object* entity_config) {
   UpdateLightSensors();
 }
 
-void Predator::Update(){
+void Predator::Update() {
   // int x = (rand() % (disguise_options_.size()));
   // std::cout << "random x: " << x << std::endl;
-  if(disguise_){
-    if(disguise_->get_type() != kLight) {
+  if (disguise_) {
+    if (disguise_->get_type() != kLight) {
       disguise_->Update();
-      // std::cout << "predator " << get_id() << " disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
+      // std::cout << "predator " << get_id() << " disguised as " <<
+      //   static_cast<int>(disguise_->get_type()) << std::endl;
       // std::cout << "update (is light)";
-    }
-    else if(disguise_->get_type() == kLight) {
+    } else if (disguise_->get_type() == kLight) {
       std::cout << "predator " << get_id() << " disguised as " << static_cast<int>(disguise_->get_type()) << std::endl;
     }
       // else do nothing

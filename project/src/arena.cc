@@ -137,10 +137,9 @@ void Arena::UpdateEntitiesTimestep() {
    *  ^^ Nope, I use TimestepUpdate on all entities now (to update sensors)
    */
   for (auto ent : entities_) {
-    if(ent->IsPredator()) {
+    if (ent->IsPredator()) {
       static_cast<Predator*>(ent)->TimestepUpdate(1);
-    }
-    else {
+    } else {
       ent->TimestepUpdate(1);
     }
   }
@@ -172,7 +171,6 @@ void Arena::UpdateEntitiesTimestep() {
             ent2->get_type() == kFood && !ent2->IsPredator()) {
           static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood(ent2);
           if (!RemoveEntity(ent2)) {
-
             throw std::runtime_error(
               "Remove Entity Error (in UpdateEntitiesTimestep)");
           }
