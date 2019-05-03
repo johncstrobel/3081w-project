@@ -19,6 +19,7 @@ class SensorLightLove;
 NAMESPACE_BEGIN(csci3081);
 
 int BraitenbergVehicle::count = 0;
+unsigned int RANDOM_SEED = 49111096;  // not a random number but I tried
 
 /*******************************************************************************
  * Constructors/Destructor
@@ -317,9 +318,9 @@ void BraitenbergVehicle::NotifyObservers(WheelVelocity * lightvel,
 }  // for o in observers o-> update();
 
 void BraitenbergVehicle::RandomizeBehaviors() {
-  int x = rand_r() % (5);  // number of behaviors
-  int y = rand_r() % (5);
-  int z = rand_r() % (5);
+  int x = rand_r(&RANDOM_SEED) % (5);  // number of behaviors
+  int y = rand_r(&RANDOM_SEED) % (5);
+  int z = rand_r(&RANDOM_SEED) % (5);
 
   set_braitenberg_behavior(static_cast<BehaviorEnum>(x));
   set_light_behavior(static_cast<BehaviorEnum>(y));

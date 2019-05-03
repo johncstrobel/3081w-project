@@ -15,7 +15,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 - [x] `./../build/bin/arenaviewer  xdim dim configfile.json` executes without assert or a seg fault
 - [x] `./../build/bin/arenaviewer  xdim dim configfile.csv` executes without assert or a seg fault
 - [x] `./../build/bin/unittest` executes without a seg fault
-- [x] **_"make check-style" reports no errors when run in the master branch._**
+- [ ] **_"make check-style" reports no errors when run in the master branch._**
 - [x] `doxygen docs/Doxyfile` compiles and creates the html pages for you main page and  all classes without errors.
 
 

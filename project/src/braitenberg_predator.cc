@@ -22,6 +22,7 @@
  * Namespaces
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
+unsigned int RANDOM_SEED_P = 3802513667;
 
 /*******************************************************************************
  * Class Definitions
@@ -95,7 +96,7 @@ void Predator::Update() {
 }
 
 void Predator::DisguiseSelf() {
-  int x = (rand_r() % (disguise_options_.size()));
+  int x = (rand_r(&RANDOM_SEED_P) % (disguise_options_.size()));
 
   int newDisguise = disguise_options_[x];
   switch (newDisguise) {
