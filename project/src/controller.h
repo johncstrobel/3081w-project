@@ -68,7 +68,8 @@ class Controller {
 
   // copy constructor
   Controller(const Controller &other):
-  last_dt(other.last_dt), viewers_(other.viewers_), config_(other.config_) {
+  last_dt(other.last_dt), arena_x_(other.arena_x_), arena_y_(other.arena_y_),
+  viewers_(other.viewers_), config_(other.config_) {
     // normal params
 //    last_dt = other.last_dt;
 //    viewers_ = other.viewers_;
@@ -81,9 +82,18 @@ class Controller {
 
   Controller &operator=(const Controller &other) = delete;
 
+  std::string add_quotes(std::string word);
+  inline bool in_number_set(std::string word);
+  std::string csv_to_json(std::string filename);
+
+  bool is_json_file(std::string in);
+  bool is_csv_file(std::string in);
+
  private:
   double last_dt{0};
   Arena* arena_{nullptr};
+  double arena_x_;
+  double arena_y_;
   ArenaViewer* viewer_{nullptr};
   std::vector<ArenaViewer*> viewers_;
   json_value* config_;
