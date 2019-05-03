@@ -11,11 +11,11 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 - [x] _/project_ folder exists   <<<< I think we can remove this one.
 - [x] _/build_ is not in the repo
 - [x] _/html_  and _/latex_ is not in _docs_
-- [ ] **__`make` from within _project_ completes without error.__**
+- [x] **__`make` from within _project_ completes without error.__**
 - [x] `./../build/bin/arenaviewer  xdim dim configfile.json` executes without assert or a seg fault
 - [x] `./../build/bin/arenaviewer  xdim dim configfile.csv` executes without assert or a seg fault
 - [x] `./../build/bin/unittest` executes without a seg fault
-- [ ] **_"make check-style" reports no errors when run in the master branch._**
+- [x] **_"make check-style" reports no errors when run in the master branch._**
 - [x] `doxygen docs/Doxyfile` compiles and creates the html pages for you main page and  all classes without errors.
 
 
