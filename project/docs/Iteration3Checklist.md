@@ -27,7 +27,7 @@ Please ensure that this file is in your /docs folder. Place an 'x' in each of th
 
 >If your source code  **does not compile** or if there is an obvious **seg fault** in either the arenaviewer or the unit tests, **__YOU MUST MODIFY THE COMMENT NEXT TO THE CHECKBOX BELOW__** to let us know what the problem is or you will lose all points for that item.
 
-- [ ] I have compiled and executed both the source code and unit tests using a fresh clone of my repo. They compile and execute without segmentation faults.
+- [x] I have compiled and executed both the source code and unit tests using a fresh clone of my repo. They compile and execute without segmentation faults.
 
 **__Next, please place an 'X' in the appropriate box for each requirement.__**
 
@@ -87,8 +87,8 @@ In your comparisons, provide an overall description highlighting key points of t
 
 ### Linter and Git
 
-- [ ] All *.h and *.c files pass cpplint.
-- [ ] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
+- [x] All *.h and *.c files pass cpplint.
+- [x] The code complies with naming conventions for Classes, ClassMethods, and class\_members\_.
 - [x] There exists a history of git commit messages to show effort.
 - [x] There exists a history of issues and branches to show effort.
 - [x] Github issues include current unresolved bugs.
