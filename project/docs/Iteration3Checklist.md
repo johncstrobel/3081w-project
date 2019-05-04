@@ -73,8 +73,8 @@ In your comparisons, provide an overall description highlighting key points of t
 #### UML
 
 - [x] UML for project can be generated without errors using Doxygen,  and can be viewed in the docs directory.
-- [ ]  Deliver a UML diagram  that represents your final implementation. This will include Classes and relationships between the Arena, Braitenberg Vehicle, Predator, Food, Light, all factories, Classes that implement the observer pattern, classes that implement the strategy pattern, the classes that implement the Decorator Patten and any other classes used to implement the functionality for this iteration.
-- [ ] The final version of your UML design document for iteration 3 (named **__UML\_finaldesign.pdf__**) has been submitted via Canvas (See the **_Iteration 3  UML Complete_** Item on Canvas for the submission link).
+- [x]  Deliver a UML diagram  that represents your final implementation. This will include Classes and relationships between the Arena, Braitenberg Vehicle, Predator, Food, Light, all factories, Classes that implement the observer pattern, classes that implement the strategy pattern, the classes that implement the Decorator Patten and any other classes used to implement the functionality for this iteration.
+- [x] The final version of your UML design document for iteration 3 (named **__UML\_finaldesign.pdf__**) has been submitted via Canvas (See the **_Iteration 3  UML Complete_** Item on Canvas for the submission link).
 
 
 #### Doxygen
