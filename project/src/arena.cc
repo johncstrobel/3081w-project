@@ -38,12 +38,14 @@ Arena::Arena(): x_dim_(X_DIM),
     AddEntity(new BraitenbergVehicle());
 }
 
-Arena::Arena(json_object* arena_object): x_dim_(X_DIM),
-      y_dim_(Y_DIM),
+Arena::Arena(json_object* arena_object, double x, double y):
+      x_dim_(X_DIM), y_dim_(Y_DIM),
       entities_(),
       mobile_entities_(), factory_(new Factory()) {
-  x_dim_ = (*arena_object)["width"].get<double>();
-  y_dim_ = (*arena_object)["height"].get<double>();
+  // x_dim_ = (*arena_object)["width"].get<double>();
+  // y_dim_ = (*arena_object)["height"].get<double>();
+  x_dim_ = x;
+  y_dim_ = y;
   json_array& entities = (*arena_object)["entities"].get<json_array>();
   for (unsigned int f = 0; f < entities.size(); f++) {
     json_object * entity_config = &(entities[f].get<json_object>());
@@ -64,8 +66,6 @@ Arena::Arena(json_object* arena_object): x_dim_(X_DIM),
         break;
       case (kPredator):
         entity = factory_->ConstructPredator(entity_config);
-        // entity = new Predator();
-        // std::cout << "todo: implement predator factory!" << std::endl;
         break;
       default:
         std::cout << "FATAL: Bad entity type on creation" << std::endl;
@@ -137,7 +137,11 @@ void Arena::UpdateEntitiesTimestep() {
    *  ^^ Nope, I use TimestepUpdate on all entities now (to update sensors)
    */
   for (auto ent : entities_) {
-    ent->TimestepUpdate(1);
+    if (ent->IsPredator()) {
+      static_cast<Predator*>(ent)->TimestepUpdate(1);
+    } else {
+      ent->TimestepUpdate(1);
+    }
   }
 
    /* Determine if any mobile entity is colliding with wall.
@@ -163,15 +167,15 @@ void Arena::UpdateEntitiesTimestep() {
       if (IsColliding(ent1, ent2)) {
         // if a braitenberg vehicle collides with food, call consume on bv
         // this is pretty ugly, I should move it into HandleCollision
-        if (ent1->get_type() == kBraitenberg &&
-            ent2->get_type() == kFood && !ent1->IsPredator()) {
+        if (ent1->get_type() == kBraitenberg && !ent1->IsPredator() &&
+            ent2->get_type() == kFood && !ent2->IsPredator()) {
           static_cast<BraitenbergVehicle*>(ent1)->ConsumeFood(ent2);
           if (!RemoveEntity(ent2)) {
             throw std::runtime_error(
               "Remove Entity Error (in UpdateEntitiesTimestep)");
           }
           // std::cout << "todo: delete consumed food" << std::endl;
-        } else if (ent1->get_type() == kFood &&
+        } else if (ent1->get_type() == kFood && !ent1->IsPredator() &&
                    ent2->get_type() == kBraitenberg && !ent2->IsPredator()) {
           static_cast<BraitenbergVehicle*>(ent2)->ConsumeFood(ent1);
           if (!RemoveEntity(ent1)) {
@@ -180,16 +184,17 @@ void Arena::UpdateEntitiesTimestep() {
           }
           // std::cout << "todo: delete consumed food" << std::endl;
         }
+        if ((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
+        (ent1->get_type() == kBraitenberg && ent2->IsPredator())) {
+          ent1->HandleCollision(ent2->get_type(), ent2);
+          continue;
+        }
+
         // lights and braitenberg vehicles do not collide
         // nothing collides with food, but bv's call consume() if they do
         if ((ent2->get_type() == kBraitenberg && ent1->get_type() == kLight) ||
             (ent2->get_type() == kLight && ent1->get_type() == kBraitenberg) ||
             (ent2->get_type() == kFood) || (ent1->get_type() == kFood)) {
-          continue;
-        }
-        if ((ent1->IsPredator() && ent2->get_type() == kBraitenberg) ||
-        (ent1->get_type() == kBraitenberg && ent2->IsPredator())) {
-          ent1->HandleCollision(ent2->get_type(), ent2);
           continue;
         }
         AdjustEntityOverlap(ent1, ent2);

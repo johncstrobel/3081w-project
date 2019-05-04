@@ -15,6 +15,8 @@
 
 NAMESPACE_BEGIN(csci3081);
 
+// class BraitenbergPredator;
+
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/
@@ -37,6 +39,13 @@ class Factory {
   BraitenbergVehicle* ConstructRobot(json_object* entity_config);
 
   /**
+  * @brief Constructs BraitenbergVehicle objects (with default values instead
+  * of using a configuration file)
+  */
+  BraitenbergVehicle* ConstructRobot();
+
+
+  /**
    * @brief Constructs Food objects.
    * @param entity_config the JSON object from which the food will be loaded.
    * @return a pointer to a food object.
@@ -44,11 +53,23 @@ class Factory {
   Food * ConstructFood(json_object* entity_config);
 
   /**
+  * @brief Constructs Food objects (with default values instead
+  * of using a configuration file)
+  */
+  Food * ConstructFood();
+
+  /**
    * @brief Constructs light objects.
    * @param entity_config the JSON object from which the light will be loaded.
    * @return a pointer to a light object.
    */
   Light * ConstructLight(json_object* entity_config);
+
+  /**
+  * @brief Constructs Light objects (with default values instead
+  * of using a configuration file)
+  */
+  Light * ConstructLight();
 
   /**
    * @brief Constructs Predator objects.

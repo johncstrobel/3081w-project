@@ -122,7 +122,7 @@ class ArenaEntity {
 
   void set_radius(double radius) { radius_ = radius; }
 
-  EntityType get_type() const { return type_; }
+  virtual EntityType get_type() const { return type_; }
   void set_type(EntityType et) { type_ = et; }
 
   int get_id() const { return id_; }

@@ -27,11 +27,10 @@ NAMESPACE_BEGIN(csci3081);
  ******************************************************************************/
 
 
-/**
- * @brief update me
- * 
- *
- */
+ /**
+  * @brief A behavior where the robot does NOT react to stimulus. 
+  *
+  */
 class BehaviorNone : public Behavior {
  public:
     BehaviorNone();

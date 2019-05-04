@@ -15,23 +15,26 @@
 #include <string>
 #include <vector>
 #include "src/braitenberg_vehicle.h"
-
+#include "src/factory.h"
 
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
 
+class Factory;
+
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/
 /**
- * @brief Braitenberg vehicle subclass that can consume other braitenbergs
+ * @brief A Braitenberg vehicle subclass that can consume other braitenbergs
  *
  * @detail See description of BraitenbergVehicle class for more details on basic
  *  behavior. This class operates identically, except that when it collides with
  *  a braitenberg vehicle, it 'kills' it instead of performing the normal
- *  backing up and changing direction.
+ *  backing up and changing direction. It can also 'disguise' itself as other
+ *  standard arena entities in order to attract BraitenbergVehicles to it.
  */
 
 class Predator : public BraitenbergVehicle {
@@ -39,6 +42,10 @@ class Predator : public BraitenbergVehicle {
   Predator();
 
   ~Predator();
+
+  Predator(const Predator & rhs) = delete;
+
+  Predator operator=(const Predator & rhs) = delete;
 
   /**
    * @brief Override of HandleCollision that kills braitenbergs if they are
@@ -67,9 +74,28 @@ class Predator : public BraitenbergVehicle {
    */
   void ConsumeFood(ArenaEntity * victim) override;
 
+  void Update() override;
+
+  void DisguiseSelf();
+
+  void TimestepUpdate(unsigned int dt) override;
+
+  EntityType get_type() const override {
+    if (disguise_) {
+      return disguise_->get_type();
+    }
+    return kBraitenberg;
+  }
+
+  // EntityType get_type() const { return type_; }
+
  private:
     // for fun :)
     int kill_count_;
+
+    ArenaEntity * disguise_;
+    Factory * disguise_factory_;
+    std::vector<EntityType> disguise_options_;
 };
 
 NAMESPACE_END(csci3081);
